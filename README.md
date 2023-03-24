@@ -1,4 +1,4 @@
-# Stable Diffusion bot
+# Stable Diffusion Bot
 
 This is a stable diffusion Bot written in Python. It uses Stable Horde to generate the images.
 
