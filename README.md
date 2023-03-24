@@ -12,6 +12,20 @@ Next, run this command:
 git clone 'https://github.com/db0/AI-Horde'
 ```
 
+If you are on Linux or MacOS, run these commands to install the dependencies:
+```shell
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+```
+
+If you are on Windows, run these commands to install the dependencies:
+```shell
+python -m venv venv
+venv\Scripts\activate.bat
+pip install -r requirements.txt
+```
+
 
 ## How to get faster image generations
 Stable Horde uses as system called Kudos to rank users on a queue. The more Kudos you have, the higher you are on the queue. To get more Kudos, first stick your api key in at [this page](https://tinybots.net/artbot/settings). Then, rate some images at [this page](https://tinybots.net/artbot/rate). After rating a few, you should have gotten a bunch more Kudos!
