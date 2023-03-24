@@ -1,6 +1,6 @@
 # Stable Diffusion bot
 
-This is a stable diffusion bot written in Python. It uses Stable Horde to generate the images.
+This is a stable diffusion Bot written in Python. It uses Stable Horde to generate the images.
 
 This repository assumes that you have Python installed. If you don't, [get Python](https://python.org/downloads). When you are installing, make sure to check the box "Add Python to PATH."
 
