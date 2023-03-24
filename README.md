@@ -2,12 +2,13 @@
 
 This is a stable diffusion bot written in Python. It uses Stable Horde to generate the images.
 
+This repository assumes that you have Python installed. If you don't, [get Python](https://python.org/downloads). When you are installing, make sure to check the box "Add Python to PATH."
+
 
 ## Setup
 Put your stable horde key in ```api_key.txt``` and put your bot token in ```bot_token.txt```! You can get a bot token at the [Discord Developer Portal](https://discord.com/developers/applications) and an api key at the [Stable Horde register page](https://stablehorde.net/register).
 
 Next, run this command:
-
 ```shell
 git clone 'https://github.com/db0/AI-Horde'
 ```
