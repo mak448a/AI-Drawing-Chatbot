@@ -28,7 +28,7 @@ async def on_ready():
 @app_commands.describe(prompt="Write an amazing prompt for Stable Diffusion to generate")
 async def imagine(interaction: discord.Interaction, prompt: str):
     sanitized = ""
-    forbidden = ['"', "'", "`", "\\"]
+    forbidden = ['"', "'", "`", "\\", "$"]
 
     for char in prompt:
         if char in forbidden:
