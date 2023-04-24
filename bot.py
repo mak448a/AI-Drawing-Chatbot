@@ -1,13 +1,12 @@
 import discord
 from discord import app_commands
 from discord.ext import commands
-import disnake
 import platform
 import os
 
 
 bot = commands.Bot(command_prefix="!", intents=discord.Intents.default())
-intents = disnake.Intents.all()
+intents = discord.Intents.all()
 
 # Load api key
 
@@ -25,8 +24,8 @@ async def on_ready():
     synced = await bot.tree.sync()
     print(f"Synced {len(synced)} command(s)")
 
-@bot.slash_command(name="imagine")
-async def imagine(inter: disnake.ApplicationCommandInteraction, prompt: str):
+@bot.command(name="imagine")
+async def imagine(ctx: commands.Context, *, prompt: str):
     sanitized = ""
     forbidden = ['"', "'", "`", "\\", "$"]
 
@@ -36,14 +35,17 @@ async def imagine(inter: disnake.ApplicationCommandInteraction, prompt: str):
         else:
             sanitized += char
 
-    await inter.response.send_message(f"{inter.user.mention} is generating \"{sanitized}\"")
-
+    loading_message = await ctx.send(f"{ctx.author.mention} is generating \"{sanitized}\"")
     print(f"Generating {sanitized}")
 
+    for i in range(10):
+        await asyncio.sleep(0.3)
+        await loading_message.edit(content=f"{ctx.author.mention} is generating \"{sanitized}\"{'.' * (i % 4)}")
+
     if platform.system() == "Windows":
-        os.system(f"python AI-Horde/cli_request.py --prompt '{sanitized}' --api_key '{api_key}' -n 4")
+        os.system(f"python AI-Horde/cli_request.py --prompt '{sanitized}' --api_key _QqEQbyCxoNXiuhN1Rlqlw -n 4")
     else:
-        os.system(f"python3 AI-Horde/cli_request.py --prompt '{sanitized}' --api_key '{api_key}' -n 4")
+        os.system(f"python3 AI-Horde/cli_request.py --prompt '{sanitized}' --api_key _QqEQbyCxoNXiuhN1Rlqlw -n 4")
 
     while True:
         if os.path.exists("0_horde_generation.png"):
@@ -53,9 +55,11 @@ async def imagine(inter: disnake.ApplicationCommandInteraction, prompt: str):
 
     for i in range(4):
         with open(f'{i}_horde_generation.png', 'rb') as f:
-            picture = disnake.File(f)
-            await inter.followup.send(file=picture)
+            picture = discord.File(f)
+            await ctx.send(file=picture)
         os.remove(f"{i}_horde_generation.png")
+
+    await loading_message.edit(content=f"{ctx.author.mention} has generated \"{sanitized}\"")
 
 
 try:
