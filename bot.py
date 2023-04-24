@@ -1,12 +1,13 @@
 import discord
 from discord import app_commands
 from discord.ext import commands
+import disnake
 import platform
 import os
 
 
 bot = commands.Bot(command_prefix="!", intents=discord.Intents.default())
-
+intents = disnake.Intents.all()
 
 # Load api key
 
