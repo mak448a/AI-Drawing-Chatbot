@@ -1,7 +1,6 @@
 import discord
 from discord import app_commands
 from discord.ext import commands
-from discord_slash import SlashCommand
 import platform
 import os
 
@@ -25,8 +24,8 @@ async def on_ready():
     synced = await bot.tree.sync()
     print(f"Synced {len(synced)} command(s)")
 
-@slash.slash(name="imagine", guild_ids=guild_ids)
-async def imagine(ctx, prompt: str):
+@bot.slash_command(name="imagine")
+async def imagine(inter: disnake.ApplicationCommandInteraction, prompt: str):
     sanitized = ""
     forbidden = ['"', "'", "`", "\\", "$"]
 
@@ -36,7 +35,7 @@ async def imagine(ctx, prompt: str):
         else:
             sanitized += char
 
-    await ctx.send(f"{ctx.author.mention} is generating \"{sanitized}\"")
+    await inter.response.send_message(f"{inter.user.mention} is generating \"{sanitized}\"")
 
     print(f"Generating {sanitized}")
 
@@ -53,8 +52,8 @@ async def imagine(ctx, prompt: str):
 
     for i in range(4):
         with open(f'{i}_horde_generation.png', 'rb') as f:
-            picture = discord.File(f)
-            await ctx.send(file=picture)
+            picture = disnake.File(f)
+            await inter.followup.send(file=picture)
         os.remove(f"{i}_horde_generation.png")
 
 
