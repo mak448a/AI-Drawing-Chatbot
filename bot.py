@@ -3,13 +3,11 @@ from discord import app_commands
 from discord.ext import commands
 import platform
 import os
-
+import time
 
 bot = commands.Bot(command_prefix="!", intents=discord.Intents.default())
 
-
 # Load api key
-
 try:
     with open("api_key.txt") as f:
         api_key = f.read()
@@ -23,6 +21,7 @@ async def on_ready():
     print("Ready")
     synced = await bot.tree.sync()
     print(f"Synced {len(synced)} command(s)")
+
 
 @bot.tree.command(name="imagine")
 @app_commands.describe(prompt="Write an amazing prompt for Stable Diffusion to generate")
@@ -41,24 +40,28 @@ async def imagine(interaction: discord.Interaction, prompt: str):
 
     # Generate image
     print(f"Generating {sanitized}")
-    
+
+    current_time = time.time()
+
     if platform.system() == "Windows":
-        os.system(f"python AI-Horde/cli_request.py --prompt '{sanitized}' --api_key '{api_key}' -n 4")
+        os.system(f"python AI-Horde/cli_request.py --prompt '{sanitized}'"
+                  f" --api_key '{api_key}' -n 4 -f {current_time}.png")
     else:
-        os.system(f"python3 AI-Horde/cli_request.py --prompt '{sanitized}' --api_key '{api_key}' -n 4")
+        os.system(f"python3 AI-Horde/cli_request.py --prompt '{sanitized}'"
+                  f" --api_key '{api_key}' -n 4 -f {current_time}.png")
 
     # Loop until image generates
     while True:
-        if os.path.exists("0_horde_generation.png"):
+        if os.path.exists(f"0_{current_time}.png"):
             break
         else:
             continue
-    
+
     for i in range(4):
-        with open(f'{i}_horde_generation.png', 'rb') as f:
-            picture = discord.File(f)
+        with open(f'{i}_{current_time}.png', 'rb') as file:
+            picture = discord.File(file)
             await interaction.followup.send(file=picture)
-        os.remove(f"{i}_horde_generation.png")
+        os.remove(f"{i}_{current_time}.png")
 
 
 try:
