@@ -3,3 +3,4 @@ api_key.txt
 bot_token.txt
 venv/
 .idea/
+cliRequests.log
