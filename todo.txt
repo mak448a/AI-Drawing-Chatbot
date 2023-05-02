@@ -1,1 +1,1 @@
-Add multiple request support (the bot currently just doesn't respond to anything when busy)
+Also use Ai horde api to create a chatbot
