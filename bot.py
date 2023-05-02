@@ -1,4 +1,5 @@
 import discord
+import asyncio
 from discord import app_commands
 from discord.ext import commands
 import platform
@@ -41,6 +42,11 @@ async def imagine(interaction: discord.Interaction, prompt: str):
     # Generate image
     print(f"Generating {sanitized}")
 
+    # Create a task to generate the image
+    image_generation_task = asyncio.create_task(generate_image(sanitized, interaction))
+    await image_generation_task
+
+async def generate_image(sanitized, interaction):
     current_time = time.time()
 
     if platform.system() == "Windows":
@@ -55,7 +61,7 @@ async def imagine(interaction: discord.Interaction, prompt: str):
         if os.path.exists(f"0_{current_time}.png"):
             break
         else:
-            continue
+            await asyncio.sleep(0.1)  # Add a short delay to avoid busy waiting
 
     for i in range(4):
         with open(f'{i}_{current_time}.png', 'rb') as file:
