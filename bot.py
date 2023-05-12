@@ -18,14 +18,19 @@ except FileNotFoundError:
 
 @bot.event
 async def on_ready():
-    print("Ready")
-    synced = await bot.tree.sync()
-    print(f"Synced {len(synced)} command(s)")
+    await bot.tree.sync()
+    await bot.change_presence(activity=discord.Game(name="Try /imagine"))
+    print(f"{bot.user.name} has connected to Discord!")
+    invite_link = discord.utils.oauth_url(
+        bot.user.id,
+        permissions=discord.Permissions(administrator=True),
+        scopes=("bot", "applications.commands")
+    )
+    print(f"Invite link: {invite_link}")
 
 
-@bot.tree.command(name="imagine")
-@app_commands.describe(prompt="Write an amazing prompt for Stable Diffusion to generate")
-async def imagine(interaction: discord.Interaction, prompt: str):
+@bot.hybrid_command(name="Imagine", description="Write an amazing prompt for Stable Diffusion to generate")
+async def imagine(ctx, *, prompt: str):
     sanitized = ""
     forbidden = ['"', "'", "`", "\\", "$"]
 
@@ -36,7 +41,7 @@ async def imagine(interaction: discord.Interaction, prompt: str):
             sanitized += char
 
     # Add ephemeral=True to make it only visible by you
-    await interaction.response.send_message(f"{interaction.user.mention} is generating \"{sanitized}\"")
+    await ctx.send(f"{ctx.user.mention} is generating \"{sanitized}\"")
 
     # Generate image
     print(f"Generating {sanitized}")
@@ -60,7 +65,7 @@ async def imagine(interaction: discord.Interaction, prompt: str):
     for i in range(4):
         with open(f'{i}_{current_time}.png', 'rb') as file:
             picture = discord.File(file)
-            await interaction.followup.send(file=picture)
+            await ctx.send(file=picture)
         os.remove(f"{i}_{current_time}.png")
 
 
