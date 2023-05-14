@@ -18,7 +18,7 @@ If you are on Linux or MacOS, run these commands to install the dependencies:
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
-pip install -r AI-Horde/cli_requirements.txt
+pip install -r AI-Horde-With-Cli/cli_requirements.txt
 ```
 
 If you are on Windows, run these commands to install the dependencies:
@@ -26,7 +26,7 @@ If you are on Windows, run these commands to install the dependencies:
 python -m venv venv
 venv\Scripts\activate.bat
 pip install -r requirements.txt
-pip install -r AI-Horde/cli_requirements.txt
+pip install -r AI-Horde-With-Cli/cli_requirements.txt
 ```
 
 
