@@ -8,9 +8,9 @@ This repository assumes that you have Python installed. If you don't, [get Pytho
 ## Setup
 Put your stable horde key in ```api_key.txt``` and put your bot token in ```bot_token.txt```. You can get a bot token at the [Discord Developer Portal](https://discord.com/developers/applications) and an api key at the [Stable Horde register page](https://stablehorde.net/register).
 
-Next, run this command to clone the Stable Horde repository:
+Next, run this command to clone my fork of the Stable Horde repository:
 ```shell
-git clone 'https://github.com/db0/AI-Horde'
+git clone 'https://github.com/mak448a/AI-Horde-With-Cli'
 ```
 
 If you are on Linux or MacOS, run these commands to install the dependencies:
