@@ -13,7 +13,7 @@ Next, run this command to clone my fork of the Stable Horde repository:
 git clone 'https://github.com/mak448a/AI-Horde-With-Cli'
 ```
 
-If you are on Linux or MacOS, run these commands to install the dependencies:
+If you are on Linux or macOS, run these commands to install the dependencies:
 ```shell
 python3 -m venv venv
 source venv/bin/activate
