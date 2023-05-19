@@ -75,4 +75,33 @@ try:
 except FileNotFoundError:
     print("BOT TOKEN NOT FOUND! PUT YOUR BOT TOKEN IN `bot_token.txt`")
 
+
+@bot.hybrid_command(name="dallegen", description="Generate image using DALLE")
+async def images(ctx, *, prompt):
+    url = "https://imagine.mishal0legit.repl.co"
+    json_data = {"prompt": prompt}
+    
+    try:
+        temp_message = await ctx.send("Sending post request to end point...")
+        async with aiohttp.ClientSession() as session:
+            async with session.post(url, json=json_data) as response:
+                if response.status == 200:
+                    data = await response.json()
+                    image_url = data.get("image_url")
+                    image_name = f"{prompt}.jpeg"
+                    if image_url:
+                        await download_image(image_url, image_name)
+                        with open(image_name, 'rb') as file:
+                            await temp_message.edit(content="Finished Image Generation")
+                            await ctx.reply(file=discord.File(file))
+                        os.remove(image_name)
+                    else:
+                        await temp_message.edit(content="An error occurred during image generation.")
+                else:
+                    await temp_message.edit(content="An error occurred with the server request.")
+    except aiohttp.ClientError as e:
+        await temp_message.edit(content=f"An error occurred while sending the request: {str(e)}")
+    except Exception as e:
+        await temp_message.edit(content=f"An error occurred: {str(e)}")    
+
 bot.run(bot_token)
