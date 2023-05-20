@@ -7,6 +7,8 @@ import os
 import time
 import httpx
 import urllib.parse
+import requests
+import random
 
 bot = commands.Bot(command_prefix="!", intents=discord.Intents.default())
 
@@ -87,26 +89,46 @@ except FileNotFoundError:
 
     
 @bot.hybrid_command(name="polygen", description="Generate image using pollinations")
-async def polygen(ctx, *, prompt):
+async def polygen(ctx, *, prompt: str):
     encoded_prompt = urllib.parse.quote(prompt)
     images = []
-    
-    for _ in range(4):
-        image_url = f'https://image.pollinations.ai/prompt/{encoded_prompt}'
-        response = requests.get(image_url)
-        
-        if response.status_code == 200:
-            image_data = response.json()['image']
-            
-            await download_image(image_data['uuid'], f'{image_data["uuid"]}.png')
-                
-            images.append(f'{image_data["uuid"]}.png')
 
-    image_files = [discord.File(image) for image in images]
-    await ctx.send(files=image_files)
-    for image in images:
-        os.remove(image)    
-    
+    temp_message = await ctx.send("Generating images...")  # Send a temporary message
+
+    # Generate four images with the given prompt
+    i = 0
+    while len(images) < 4:
+        seed = random.randint(1, 100000)  # Generate a random seed
+        image_url = f'https://image.pollinations.ai/prompt/{encoded_prompt}{seed}'
+        response = requests.get(image_url)
+
+        try:
+            image_data = response.content
+
+            # Generate a unique filename for each image
+            filename = f'{ctx.author.id}_{ctx.message.id}_{i}.png'
+            with open(filename, 'wb') as f:
+                f.write(image_data)
+
+            images.append(filename)
+            i += 1
+        except (requests.exceptions.RequestException, ValueError, KeyError) as e:
+            print(f"Error generating image: {e}")
+
+    # Delete the temporary message
+    await temp_message.delete()
+
+    if images:
+        # Send all image files as attachments in a single message
+        image_files = [discord.File(image) for image in images]
+        await ctx.send(files=image_files)
+
+        # Delete the local image files
+        for image in image_files:
+            os.remove(image.filename)
+    else:
+        await ctx.send("Error generating images. Please try again later.")
+
     
 @bot.hybrid_command(name="dallegen", description="Generate image using DALLE")
 async def images(ctx, *, prompt):
