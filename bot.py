@@ -84,7 +84,7 @@ except FileNotFoundError:
 
     
 @bot.hybrid_command(name="polygen", description="Generate image using pollinations")
-async def imagine(ctx, *, prompt: str):
+async def imagine(ctx, *, prompt):
     encoded_prompt = urllib.parse.quote(prompt)
     images = []
     
