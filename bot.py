@@ -29,6 +29,12 @@ async def on_ready():
     print(f"Invite link: {invite_link}")
 
 
+async def download_image(image_url, save_as):
+    async with httpx.AsyncClient() as client:
+        response = await client.get(image_url)
+    with open(save_as, "wb") as f:
+        f.write(response.content)    
+
 @bot.hybrid_command(name="Imagine", description="Write an amazing prompt for Stable Diffusion to generate")
 async def imagine(ctx, *, prompt: str):
     sanitized = ""
@@ -76,6 +82,29 @@ except FileNotFoundError:
     print("BOT TOKEN NOT FOUND! PUT YOUR BOT TOKEN IN `bot_token.txt`")
 
 
+    
+@bot.hybrid_command(name="polygen", description="Generate image using pollinations")
+async def imagine(ctx, *, prompt: str):
+    encoded_prompt = urllib.parse.quote(prompt)
+    images = []
+    
+    for _ in range(4):
+        image_url = f'https://image.pollinations.ai/prompt/{encoded_prompt}'
+        response = requests.get(image_url)
+        
+        if response.status_code == 200:
+            image_data = response.json()['image']
+            
+            await download_image(image_data['uuid'], f'{image_data["uuid"]}.png')
+                
+            images.append(f'{image_data["uuid"]}.png')
+
+    image_files = [discord.File(image) for image in images]
+    await ctx.send(files=image_files)
+    for image in images:
+        os.remove(image)    
+    
+    
 @bot.hybrid_command(name="dallegen", description="Generate image using DALLE")
 async def images(ctx, *, prompt):
     url = "https://imagine.mishal0legit.repl.co"
