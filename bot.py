@@ -35,7 +35,7 @@ async def download_image(image_url, save_as):
     with open(save_as, "wb") as f:
         f.write(response.content)    
 
-@bot.hybrid_command(name="Imagine", description="Write an amazing prompt for Stable Diffusion to generate")
+@bot.hybrid_command(name="imagine", description="Write an amazing prompt for Stable Diffusion to generate")
 async def imagine(ctx, *, prompt: str):
     sanitized = ""
     forbidden = ['"', "'", "`", "\\", "$"]
@@ -84,7 +84,7 @@ except FileNotFoundError:
 
     
 @bot.hybrid_command(name="polygen", description="Generate image using pollinations")
-async def imagine(ctx, *, prompt):
+async def polygen(ctx, *, prompt):
     encoded_prompt = urllib.parse.quote(prompt)
     images = []
     
