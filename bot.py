@@ -5,6 +5,7 @@ import platform
 import aiohttp
 import os
 import time
+import httpx
 
 bot = commands.Bot(command_prefix="!", intents=discord.Intents.default())
 
