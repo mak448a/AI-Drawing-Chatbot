@@ -6,6 +6,7 @@ import aiohttp
 import os
 import time
 import httpx
+import urllib.parse
 
 bot = commands.Bot(command_prefix="!", intents=discord.Intents.default())
 
