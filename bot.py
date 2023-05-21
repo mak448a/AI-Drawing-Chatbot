@@ -41,7 +41,7 @@ async def imagine(ctx, *, prompt: str):
             sanitized += char
 
     # Add ephemeral=True to make it only visible by you
-    await ctx.send(f"{ctx.user.mention} is generating \"{sanitized}\"")
+    await ctx.send(f"{ctx.messgae.author.mention} is generating \"{sanitized}\"")
 
     # Generate image
     print(f"Generating {sanitized}")
