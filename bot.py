@@ -29,7 +29,7 @@ async def on_ready():
     print(f"Invite link: {invite_link}")
 
 
-@bot.hybrid_command(name="Imagine", description="Write an amazing prompt for Stable Diffusion to generate")
+@bot.hybrid_command(name="imagine", description="Write an amazing prompt for Stable Diffusion to generate")
 async def imagine(ctx, *, prompt: str):
     sanitized = ""
     forbidden = ['"', "'", "`", "\\", "$"]
