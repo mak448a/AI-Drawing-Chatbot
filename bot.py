@@ -78,15 +78,7 @@ async def imagine(ctx, *, prompt: str):
             picture = discord.File(file)
             await ctx.send(file=picture)
         os.remove(f"{i}_{current_time}.png")
-
-
-try:
-    with open("bot_token.txt") as f:
-        bot_token = f.read()
-except FileNotFoundError:
-    print("BOT TOKEN NOT FOUND! PUT YOUR BOT TOKEN IN `bot_token.txt`")
-
-
+        
     
 @bot.hybrid_command(name="polygen", description="Generate image using pollinations")
 async def polygen(ctx, *, prompt: str):
@@ -158,4 +150,10 @@ async def images(ctx, *, prompt):
     except Exception as e:
         await temp_message.edit(content=f"An error occurred: {str(e)}")    
 
+
+try:
+    with open("bot_token.txt") as f:
+        bot_token = f.read()
+except FileNotFoundError:
+    print("BOT TOKEN NOT FOUND! PUT YOUR BOT TOKEN IN `bot_token.txt`")
 bot.run(bot_token)
