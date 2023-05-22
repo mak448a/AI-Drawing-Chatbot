@@ -1,1 +1,4 @@
 discord
+requests >= 2.27
+loguru
+pillow
