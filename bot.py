@@ -124,7 +124,7 @@ async def polygen(ctx, *, prompt: str):
     
 @bot.hybrid_command(name="dallegen", description="Generate image using DALLE")
 async def images(ctx, *, prompt):
-    url = "https://imagine.mishal0legit.repl.co"
+    url = "https://imagine.mishal0legit.repl.co/image"
     json_data = {"prompt": prompt}
     
     try:
@@ -148,7 +148,7 @@ async def images(ctx, *, prompt):
     except aiohttp.ClientError as e:
         await temp_message.edit(content=f"An error occurred while sending the request: {str(e)}")
     except Exception as e:
-        await temp_message.edit(content=f"An error occurred: {str(e)}")    
+        await temp_message.edit(content=f"An error occurred: {str(e)}")
 
 
 try:
