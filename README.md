@@ -5,7 +5,7 @@
 
 This is a stable diffusion Bot written in Python. It uses Stable Horde to generate the images.
 As a result, you will not need a powerful computer!
-All generated images will be sent back to LAION to train Stable Diffusion. If you don't want this, get an api key from [here](https://stablehorde.net/register) and place it in `api_key.txt`. Please note that your prompts are still sent to Stable Horde, as listed in their [privacy policy](https://stablehorde.net/privacy)
+All generated images will be sent back to LAION to train Stable Diffusion. If you don't want this, get an api key from [here](https://stablehorde.net/register) and place it in `api_key.txt`. Please note that your prompts are still sent to Stable Horde, as listed in their [privacy policy](https://stablehorde.net/privacy).
 
 
 ## Setup
