@@ -25,6 +25,7 @@ This project assumes that:
 git clone 'https://github.com/mak448a/AI-Horde-With-Cli' --depth=1
 ```
 4: Install the dependencies:
+
 Linux or MacOS
 ```shell
 python3 -m venv venv
