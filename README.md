@@ -1,5 +1,8 @@
 # Stable Diffusion Bot
 
+![](https://img.shields.io/github/contributors/mak448a/Stable-Diffusion-Bot)
+![](https://img.shields.io/github/repo-size/mak448a/Stable-Diffusion-Bot)
+
 This is a stable diffusion Bot written in Python. It uses Stable Horde to generate the images.
 As a result, all generated images will be sent back to LAION to train Stable Diffusion. If you don't want this, get an api key from [here](https://stablehorde.net/register) and place it in `api_key.txt`.
 This repository assumes that you have Python installed. If you don't, [get Python](https://python.org/downloads). When you are installing, make sure to check the box "Add Python to PATH."
