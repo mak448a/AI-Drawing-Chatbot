@@ -13,7 +13,7 @@ try:
         api_key = f.read()
 except FileNotFoundError:
     api_key = "0000000000"
-    print("No api key selected. Using anonymous account!")
+    print("No API key selected. Using Anonymous account!")
 
 
 @bot.event
@@ -29,7 +29,7 @@ async def on_ready():
     print(f"Invite link: {invite_link}")
 
 
-@bot.hybrid_command(name="imagine", description="Write an amazing prompt for Stable Diffusion to generate")
+@bot.hybrid_command(name="imagine", description="Write an amazing prompt for Stable Diffusion to generate.")
 async def imagine(ctx, *, prompt: str):
     sanitized = ""
     forbidden = ['"', "'", "`", "\\", "$"]
@@ -73,6 +73,6 @@ try:
     with open("bot_token.txt") as f:
         bot_token = f.read()
 except FileNotFoundError:
-    print("BOT TOKEN NOT FOUND! PUT YOUR BOT TOKEN IN `bot_token.txt`")
+    print("BOT TOKEN NOT FOUND! PLEASE PLace YOUR BOT TOKEN IN `bot_token.txt`.")
 
 bot.run(bot_token)
