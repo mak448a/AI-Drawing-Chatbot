@@ -24,7 +24,7 @@ This project assumes that:
 ```shell
 git clone 'https://github.com/mak448a/AI-Horde-With-Cli' --depth=1
 ```
-4: Install the dependencies:
+4: Install dependencies:
 
 Linux or MacOS
 ```shell
