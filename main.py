@@ -3,6 +3,7 @@ from discord.ext import commands
 import platform
 import os
 import time
+import json
 import asyncio
 
 bot = commands.Bot(command_prefix="!", intents=discord.Intents.default())
@@ -14,6 +15,14 @@ try:
 except FileNotFoundError:
     api_key = "0000000000"
     print("No API key selected. Using anonymous account.")
+
+# Check if enable anything_diffusion_enable.txt.txt exists
+if os.path.exists("anything_diffusion_enable.txt"):
+    use_anything_diffusion = True
+    print("Using Anything Diffusion")
+else:
+    print("Using Stable Diffusion")
+    use_anything_diffusion = False
 
 
 @bot.event
@@ -48,7 +57,7 @@ async def imagine(ctx, *, prompt: str):
 
     os.system(f"python{'3' if platform.system() != 'Windows' else ''} "
               f"AI-Horde-With-Cli/cli_request.py --prompt '{sanitized}'"
-              f" --api_key '{api_key}' -n 4 -f {current_time}.png")
+              f" --api_key '{api_key}' -n 4 -f {current_time}.png {'--anything' if use_anything_diffusion else ''}")
 
     # Loop until image generates
     while True:
