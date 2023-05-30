@@ -3,6 +3,7 @@ from discord.ext import commands
 import platform
 import os
 import time
+import asyncio
 
 bot = commands.Bot(command_prefix="!", intents=discord.Intents.default())
 
@@ -41,8 +42,7 @@ async def imagine(ctx, *, prompt: str):
 
     await ctx.send(f"{ctx.message.author.mention} is generating \"{sanitized}\"")
 
-    # Generate image
-    print(f"Generating {sanitized}")
+    print(f"{ctx.message.author.name} is generating \"{sanitized}\"")
 
     current_time = time.time()
 
@@ -58,6 +58,7 @@ async def imagine(ctx, *, prompt: str):
         if os.path.exists(f"0_{current_time}.png"):
             break
         else:
+            await asyncio.sleep(0.8)
             continue
 
     for i in range(4):
