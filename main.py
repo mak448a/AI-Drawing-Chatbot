@@ -3,7 +3,6 @@ from discord.ext import commands
 import platform
 import os
 import time
-import json
 import asyncio
 
 bot = commands.Bot(command_prefix="!", intents=discord.Intents.default())
