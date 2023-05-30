@@ -1,5 +1,4 @@
 import discord
-from discord import app_commands
 from discord.ext import commands
 import platform
 import os
@@ -40,7 +39,7 @@ async def imagine(ctx, *, prompt: str):
         else:
             sanitized += char
 
-    await ctx.send(f"{ctx.messgae.author.mention} is generating \"{sanitized}\"")
+    await ctx.send(f"{ctx.message.author.mention} is generating \"{sanitized}\"")
 
     # Generate image
     print(f"Generating {sanitized}")
