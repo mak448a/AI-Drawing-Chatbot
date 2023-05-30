@@ -1,3 +1,4 @@
 Add multiple request support (the bot currently just doesn't respond to anything when busy)
 Add chatbot
 Add negative prompts
+Add anything diffusion (add --anything to the cli)
