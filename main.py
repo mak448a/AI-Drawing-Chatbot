@@ -46,12 +46,9 @@ async def imagine(ctx, *, prompt: str):
 
     current_time = time.time()
 
-    if platform.system() == "Windows":
-        os.system(f"python AI-Horde-With-Cli/cli_request.py --prompt '{sanitized}'"
-                  f" --api_key '{api_key}' -n 4 -f {current_time}.png")
-    else:
-        os.system(f"python3 AI-Horde-With-Cli/cli_request.py --prompt '{sanitized}'"
-                  f" --api_key '{api_key}' -n 4 -f {current_time}.png")
+    os.system(f"python{'3' if platform.system() != 'Windows' else ''} "
+              f"AI-Horde-With-Cli/cli_request.py --prompt '{sanitized}'"
+              f" --api_key '{api_key}' -n 4 -f {current_time}.png")
 
     # Loop until image generates
     while True:
