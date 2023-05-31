@@ -24,6 +24,15 @@ else:
     use_anything_diffusion = False
 
 
+async def check_generated_images(gen_time: float):
+    while True:
+        if os.path.exists(f"0_{gen_time}.png"):
+            return
+        else:
+            await asyncio.sleep(0.8)
+            continue
+
+
 @bot.event
 async def on_ready():
     await bot.tree.sync()
@@ -59,12 +68,7 @@ async def imagine(ctx, *, prompt: str):
               f" --api_key '{api_key}' -n 4 -f {current_time}.png {'--anything' if use_anything_diffusion else ''}")
 
     # Loop until image generates
-    while True:
-        if os.path.exists(f"0_{current_time}.png"):
-            break
-        else:
-            await asyncio.sleep(0.8)
-            continue
+    await check_generated_images(current_time)
 
     for i in range(4):
         with open(f'{i}_{current_time}.png', 'rb') as file:
