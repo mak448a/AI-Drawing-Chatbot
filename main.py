@@ -1,4 +1,4 @@
-from utils import api_key, use_anything_diffusion, check_generated_images, bot_token
+from utils import api_key, use_anything_diffusion, bot_token
 from gpt_utils import generate_message
 import discord
 from discord.ext import commands
@@ -57,9 +57,6 @@ async def imagine(ctx, *, prompt: str):
     os.system(f"python{'3' if platform.system() != 'Windows' else ''} "
               f"AI-Horde-With-Cli/cli_request.py --prompt '{sanitized}'"
               f" --api_key '{api_key}' -n 4 -f {current_time}.png {'--anything' if use_anything_diffusion else ''}")
-
-    # Loop until image generates
-    await check_generated_images(current_time)
 
     for i in range(4):
         with open(f'{i}_{current_time}.png', 'rb') as file:
