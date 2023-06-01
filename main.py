@@ -1,5 +1,4 @@
 import discord
-from discord import app_commands
 from discord.ext import commands
 import platform
 import aiohttp
@@ -10,16 +9,15 @@ import urllib.parse
 import requests
 import random
 from imaginepy import AsyncImagine, Style, Ratio
+from utils import api_key, use_anything_diffusion, bot_token
+from gpt_utils import generate_message
+from replit_detector import is_replit
 
-bot = commands.Bot(command_prefix="!", intents=discord.Intents.default())
 
-# Load api key
-try:
-    with open("api_key.txt") as f:
-        api_key = f.read()
-except FileNotFoundError:
-    api_key = "0000000000"
-    print("No api key selected. Using anonymous account!")
+intents = discord.Intents.default()
+intents.message_content = True
+bot = commands.Bot(command_prefix="!", intents=intents)
+
 
 # Imaginepy function
 async def generate_image(image_prompt, style_value, ratio_value):
@@ -55,7 +53,7 @@ async def on_ready():
     print(f"{bot.user.name} has connected to Discord!")
     invite_link = discord.utils.oauth_url(
         bot.user.id,
-        permissions=discord.Permissions(administrator=True),
+        permissions=discord.Permissions(administrator=False),
         scopes=("bot", "applications.commands")
     )
     print(f"Invite link: {invite_link}")
@@ -65,9 +63,24 @@ async def download_image(image_url, save_as):
     async with httpx.AsyncClient() as client:
         response = await client.get(image_url)
     with open(save_as, "wb") as f:
-        f.write(response.content)    
+        f.write(response.content)
+        
+        
+@bot.event
+async def on_message(message):
+    if not is_replit:
+        if message.author == bot.user:
+            return
+        try:
+            async with message.channel.typing():
+                msg = generate_message(message.content)
+                print("Assistant said:", msg)
+                await message.channel.send(msg)
+        except:  # NOQA
+            await message.channel.send("I had an error.")
 
-@bot.hybrid_command(name="imagine", description="Write an amazing prompt for Stable Diffusion to generate")
+
+@bot.hybrid_command(name="imagine", description="Generate an image")
 async def imagine(ctx, *, prompt: str):
     sanitized = ""
     forbidden = ['"', "'", "`", "\\", "$"]
@@ -78,35 +91,23 @@ async def imagine(ctx, *, prompt: str):
         else:
             sanitized += char
 
-    # Add ephemeral=True to make it only visible by you
-    await ctx.send(f"{ctx.user.mention} is generating \"{sanitized}\"")
+    await ctx.send(f"{ctx.message.author.mention} is generating \"{sanitized}\"")
 
-    # Generate image
-    print(f"Generating {sanitized}")
+    print(f"{ctx.message.author.name} is generating \"{sanitized}\"")
 
     current_time = time.time()
 
-    if platform.system() == "Windows":
-        os.system(f"python AI-Horde-With-Cli/cli_request.py --prompt '{sanitized}'"
-                  f" --api_key '{api_key}' -n 4 -f {current_time}.png")
-    else:
-        os.system(f"python3 AI-Horde-With-Cli/cli_request.py --prompt '{sanitized}'"
-                  f" --api_key '{api_key}' -n 4 -f {current_time}.png")
-
-    # Loop until image generates
-    while True:
-        if os.path.exists(f"0_{current_time}.png"):
-            break
-        else:
-            continue
+    os.system(f"python{'3' if platform.system() != 'Windows' else ''} "
+              f"AI-Horde-With-Cli/cli_request.py --prompt '{sanitized}'"
+              f" --api_key '{api_key}' -n 4 -f {current_time}.png {'--anything' if use_anything_diffusion else ''}")
 
     for i in range(4):
         with open(f'{i}_{current_time}.png', 'rb') as file:
             picture = discord.File(file)
             await ctx.send(file=picture)
         os.remove(f"{i}_{current_time}.png")
+
         
-    
 @bot.hybrid_command(name="polygen", description="Generate image using pollinations")
 async def polygen(ctx, *, prompt: str):
     encoded_prompt = urllib.parse.quote(prompt)
@@ -149,7 +150,7 @@ async def polygen(ctx, *, prompt: str):
         await ctx.send("Error generating images. Please try again later.")
 
     
-@bot.hybrid_command(name="imagine", description="Generate image")
+@bot.hybrid_command(name="imaginepy", description="Generate image with imaginepy")
 @app_commands.choices(style=[
     app_commands.Choice(name='Imagine V4 Beta', value='IMAGINE_V4_Beta'),
     app_commands.Choice(name='Realistic', value='REALISTIC'),
@@ -184,16 +185,12 @@ async def polygen(ctx, *, prompt: str):
     app_commands.Choice(name='4x3', value='RATIO_4X3'),
     app_commands.Choice(name='3x2', value='RATIO_3X2')
 ])
-async def imagine(ctx, prompt: str, style: app_commands.Choice[str], ratio: app_commands.Choice[str]):
+async def imaginepy(ctx, prompt: str, style: app_commands.Choice[str], ratio: app_commands.Choice[str]):
     temp_message = await ctx.send("https://cdn.discordapp.com/emojis/1075796965515853955.gif?size=96&quality=lossless")
     filename = await generate_image(prompt, style.value, ratio.value)
     await ctx.send(content=f"Here is the generated image for {ctx.author.mention} \n- Prompt : `{prompt}`\n- Style :`{style.name}`", file=discord.File(filename))
     os.remove(filename)
     await temp_message.edit(content=f"Finished Image Generation")
 
-try:
-    with open("bot_token.txt") as f:
-        bot_token = f.read()
-except FileNotFoundError:
-    print("BOT TOKEN NOT FOUND! PUT YOUR BOT TOKEN IN `bot_token.txt`")
+
 bot.run(bot_token)

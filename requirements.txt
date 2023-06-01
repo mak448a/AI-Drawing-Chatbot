@@ -1,2 +1,6 @@
 discord
+requests
+loguru
+gpt4all
+python-dotenv
 imaginepy
