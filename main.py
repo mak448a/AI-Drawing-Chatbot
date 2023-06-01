@@ -1,19 +1,20 @@
-import discord
-from discord.ext import commands
-from discord import app_commands
-import platform
-import aiohttp
-import os
-import time
-import httpx
-import urllib.parse
-import requests
-import random
-import uuid
-from imaginepy import AsyncImagine, Style, Ratio
 from utils import api_key, use_anything_diffusion, bot_token
 from gpt_utils import generate_message
 from replit_detector import is_replit
+import discord
+from discord.ext import commands
+from discord import app_commands
+
+import platform
+import random
+import time
+import uuid
+import os
+
+from imaginepy import AsyncImagine, Style, Ratio
+import urllib.parse
+import requests
+import httpx
 
 
 intents = discord.Intents.default()
@@ -23,11 +24,11 @@ bot = commands.Bot(command_prefix="!", intents=intents)
 
 # Imaginepy function
 async def generate_image(image_prompt, style_value, ratio_value):
-    imagine = AsyncImagine()
+    async_imagine = AsyncImagine()
     filename = str(uuid.uuid4()) + ".png"
     style_enum = Style[style_value]
     ratio_enum = Ratio[ratio_value]
-    img_data = await imagine.sdprem(
+    img_data = await async_imagine.sdprem(
         prompt=image_prompt,
         style=style_enum,
         ratio=ratio_enum
@@ -43,7 +44,7 @@ async def generate_image(image_prompt, style_value, ratio_value):
         print(f"An error occurred while writing the image to file: {e}")
         return None
     
-    await imagine.close()
+    await async_imagine.close()
 
     return filename
 
@@ -190,7 +191,8 @@ async def polygen(ctx, *, prompt: str):
 async def imaginepy(ctx, prompt: str, style: app_commands.Choice[str], ratio: app_commands.Choice[str]):
     temp_message = await ctx.send("https://cdn.discordapp.com/emojis/1075796965515853955.gif?size=96&quality=lossless")
     filename = await generate_image(prompt, style.value, ratio.value)
-    await ctx.send(content=f"Here is the generated image for {ctx.author.mention} \n- Prompt : `{prompt}`\n- Style :`{style.name}`", file=discord.File(filename))
+    await ctx.send(content=f"Here is the generated image for {ctx.author.mention} \n- Prompt: `{prompt}`\n- Style: `"
+                           f"{style.name}`", file=discord.File(filename))
     os.remove(filename)
     await temp_message.edit(content=f"Finished Image Generation")
 
