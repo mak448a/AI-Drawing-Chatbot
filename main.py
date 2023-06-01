@@ -9,6 +9,7 @@ import httpx
 import urllib.parse
 import requests
 import random
+import uuid
 from imaginepy import AsyncImagine, Style, Ratio
 from utils import api_key, use_anything_diffusion, bot_token
 from gpt_utils import generate_message
