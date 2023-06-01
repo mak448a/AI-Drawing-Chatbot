@@ -7,6 +7,10 @@ This is a Stable Diffusion Bot written in Python. It uses Stable Horde to genera
 As a result, you will not need a powerful computer!
 Please note that your prompts are sent to Stable Horde, as listed in their [privacy policy](https://stablehorde.net/privacy).
 
+**Run on**
+
+[![Replit](https://img.shields.io/badge/replit-667881?style=for-the-badge&logo=replit&logoColor=red)](https://replit.com/new/github/mak448a/Stable-Diffusion-Bot)
+
 ![](demo.png)
 
 ## Prerequisites
@@ -50,8 +54,6 @@ pip install -r requirements.txt
 5. Use /imagine to start generating pictures!
 6. [**OPTIONAL**] If you want Anything Diffusion, set the `ANYTHING_DIFFUSION` value to `True`. It should look something like this:
 ```
-API_KEY=0000000000
-BOT_TOKEN=abc132
 ANYTHING_DIFFUSION=True
 ```
 
