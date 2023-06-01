@@ -4,3 +4,4 @@ loguru
 gpt4all
 python-dotenv
 imaginepy
+httpx
