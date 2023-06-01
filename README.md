@@ -3,9 +3,17 @@
 ![](https://img.shields.io/github/repo-size/mak448a/Stable-Diffusion-Bot)
 ![](https://img.shields.io/github/contributors/mak448a/Stable-Diffusion-Bot)
 
-This is a Stable Diffusion Bot written in Python. It uses Stable Horde to generate the images.
+This is an AI image generator written in Python.
+
+Image providers:
+- Imaginepy
+- Stable Horde
+- Pollination
+
+All of these are online providers.
 As a result, you will not need a powerful computer!
-Please note that your prompts are sent to Stable Horde, as listed in their [privacy policy](https://stablehorde.net/privacy).
+
+Please note that when you use Stable Horde to generate the images, your prompts are sent to Stable Horde, as listed in their [privacy policy](https://stablehorde.net/privacy).
 
 **Run on**
 
@@ -51,7 +59,7 @@ venv\Scripts\activate.bat
 pip install -r requirements.txt
 ```
 5. Run the bot and invite it with the link it provides.
-5. Use /imagine to start generating pictures!
+5. Type / in the message box and start messing around with the commands!
 6. [**OPTIONAL**] If you want Anything Diffusion, set the `ANYTHING_DIFFUSION` value to `True`. It should look something like this:
 ```
 ANYTHING_DIFFUSION=True
