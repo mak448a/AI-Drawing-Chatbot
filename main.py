@@ -1,4 +1,4 @@
-from utils import api_key, use_anything_diffusion, bot_token
+from utils import api_key, bot_token
 from gpt_utils import generate_message
 from replit_detector import is_replit
 import discord
@@ -67,24 +67,9 @@ async def download_image(image_url, save_as):
         response = await client.get(image_url)
     with open(save_as, "wb") as f:
         f.write(response.content)
-        
-        
-@bot.event
-async def on_message(message):
-    if not is_replit:
-        if message.author == bot.user:
-            return
-        try:
-            async with message.channel.typing():
-                msg = generate_message(message.content)
-                print("Assistant said:", msg)
-                await message.channel.send(msg)
-        except:  # NOQA
-            await message.channel.send("I had an error.")
 
 
-@bot.hybrid_command(name="imagine", description="Generate an image")
-async def imagine(ctx, *, prompt: str):
+async def generate_with_stable_horde(prompt, use_anything_diffusion, ctx):
     sanitized = ""
     forbidden = ['"', "'", "`", "\\", "$"]
 
@@ -105,32 +90,62 @@ async def imagine(ctx, *, prompt: str):
               f" --api_key '{api_key}' -n 4 -f {current_time}.png {'--anything' if use_anything_diffusion else ''}")
 
     for i in range(4):
-        with open(f'{i}_{current_time}.png', 'rb') as file:
+        with open(f"{i}_{current_time}.png", "rb") as file:
             picture = discord.File(file)
             await ctx.send(file=picture)
         os.remove(f"{i}_{current_time}.png")
+        
+        
+@bot.event
+async def on_message(message):
+    if not is_replit:
+        if message.author == bot.user:
+            return
+        try:
+            async with message.channel.typing():
+                msg = generate_message(message.content)
+                print("Assistant said:", msg)
+                await message.channel.send(msg)
+        except:  # NOQA
+            await message.channel.send("I had an error.")
+
+
+@bot.hybrid_command(name="imagine", description="Generate an image with Stable Diffusion")
+@app_commands.choices(
+    model=[
+        app_commands.Choice(name="Stable Diffusion", value="stable_diffusion"),
+        app_commands.Choice(name="Anything Diffusion", value="anything_diffusion")
+    ]
+)
+async def imagine(ctx, *, prompt: str, model: app_commands.Choice[str]):
+    if model.value == "stable_diffusion":
+        await generate_with_stable_horde(prompt, False, ctx)
+    elif model.value == "anything_diffusion":
+        await generate_with_stable_horde(prompt, True, ctx)
+    else:
+        print("This shouldn't happen, why did this happen?")
 
         
-@bot.hybrid_command(name="polygen", description="Generate image using pollinations")
-async def polygen(ctx, *, prompt: str):
+@bot.hybrid_command(name="pollgen", description="Generate image using pollinations")
+async def pollgen(ctx, *, prompt: str):
     encoded_prompt = urllib.parse.quote(prompt)
     images = []
 
-    temp_message = await ctx.send("Generating images...")  # Send a temporary message
+    temp_message = await ctx.send(f"{ctx.author.mention} is generating {prompt}...")  # Send a temporary message
 
     # Generate four images with the given prompt
     i = 0
     while len(images) < 4:
         seed = random.randint(1, 100000)  # Generate a random seed
-        image_url = f'https://image.pollinations.ai/prompt/{encoded_prompt}{seed}'
+        image_url = f"https://image.pollinations.ai/prompt/{encoded_prompt}{seed}"
         response = requests.get(image_url)
 
         try:
             image_data = response.content
 
             # Generate a unique filename for each image
-            filename = f'{ctx.author.id}_{ctx.message.id}_{i}.png'
-            with open(filename, 'wb') as f:
+            filename = f"{ctx.author.id}_{ctx.message.id}_{i}.png"
+            with open(filename, "wb") as f:
                 f.write(image_data)
 
             images.append(filename)
@@ -155,43 +170,43 @@ async def polygen(ctx, *, prompt: str):
     
 @bot.hybrid_command(name="imaginepy", description="Generate image with imaginepy")
 @app_commands.choices(style=[
-    app_commands.Choice(name='Imagine V4 Beta', value='IMAGINE_V4_Beta'),
-    app_commands.Choice(name='Realistic', value='REALISTIC'),
-    app_commands.Choice(name='Anime', value='ANIME_V2'),
-    app_commands.Choice(name='Disney', value='DISNEY'),
-    app_commands.Choice(name='Studio Ghibli', value='STUDIO_GHIBLI'),
-    app_commands.Choice(name='Graffiti', value='GRAFFITI'),
-    app_commands.Choice(name='Medieval', value='MEDIEVAL'),
-    app_commands.Choice(name='Fantasy', value='FANTASY'),
-    app_commands.Choice(name='Neon', value='NEON'),
-    app_commands.Choice(name='Cyberpunk', value='CYBERPUNK'),
-    app_commands.Choice(name='Landscape', value='LANDSCAPE'),
-    app_commands.Choice(name='Japanese Art', value='JAPANESE_ART'),
-    app_commands.Choice(name='Steampunk', value='STEAMPUNK'),
-    app_commands.Choice(name='Sketch', value='SKETCH'),
-    app_commands.Choice(name='Comic Book', value='COMIC_BOOK'),
-    app_commands.Choice(name='Imagine V4 creative', value='V4_CREATIVE'),
-    app_commands.Choice(name='Imagine V3', value='IMAGINE_V3'),
-    app_commands.Choice(name='Cosmic', value='COMIC_V2'),
-    app_commands.Choice(name='Logo', value='LOGO'),
-    app_commands.Choice(name='Pixel art', value='PIXEL_ART'),
-    app_commands.Choice(name='Interior', value='INTERIOR'),
-    app_commands.Choice(name='Mystical', value='MYSTICAL'),
-    app_commands.Choice(name='Super realism', value='SURREALISM'),
-    app_commands.Choice(name='Minecraft', value='MINECRAFT'),
-    app_commands.Choice(name='Dystopian', value='DYSTOPIAN')
+    app_commands.Choice(name="Imagine V4 Beta", value="IMAGINE_V4_Beta"),
+    app_commands.Choice(name="Realistic", value="REALISTIC"),
+    app_commands.Choice(name="Anime", value="ANIME_V2"),
+    app_commands.Choice(name="Disney", value="DISNEY"),
+    app_commands.Choice(name="Studio Ghibli", value="STUDIO_GHIBLI"),
+    app_commands.Choice(name="Graffiti", value="GRAFFITI"),
+    app_commands.Choice(name="Medieval", value="MEDIEVAL"),
+    app_commands.Choice(name="Fantasy", value="FANTASY"),
+    app_commands.Choice(name="Neon", value="NEON"),
+    app_commands.Choice(name="Cyberpunk", value="CYBERPUNK"),
+    app_commands.Choice(name="Landscape", value="LANDSCAPE"),
+    app_commands.Choice(name="Japanese Art", value="JAPANESE_ART"),
+    app_commands.Choice(name="Steampunk", value="STEAMPUNK"),
+    app_commands.Choice(name="Sketch", value="SKETCH"),
+    app_commands.Choice(name="Comic Book", value="COMIC_BOOK"),
+    app_commands.Choice(name="Imagine V4 creative", value="V4_CREATIVE"),
+    app_commands.Choice(name="Imagine V3", value="IMAGINE_V3"),
+    app_commands.Choice(name="Cosmic", value="COMIC_V2"),
+    app_commands.Choice(name="Logo", value="LOGO"),
+    app_commands.Choice(name="Pixel art", value="PIXEL_ART"),
+    app_commands.Choice(name="Interior", value="INTERIOR"),
+    app_commands.Choice(name="Mystical", value="MYSTICAL"),
+    app_commands.Choice(name="Super realism", value="SURREALISM"),
+    app_commands.Choice(name="Minecraft", value="MINECRAFT"),
+    app_commands.Choice(name="Dystopian", value="DYSTOPIAN")
 ])
 @app_commands.choices(ratio=[
-    app_commands.Choice(name='1x1', value='RATIO_1X1'),
-    app_commands.Choice(name='9x16', value='RATIO_9X16'),
-    app_commands.Choice(name='16x9', value='RATIO_16X9'),
-    app_commands.Choice(name='4x3', value='RATIO_4X3'),
-    app_commands.Choice(name='3x2', value='RATIO_3X2')
+    app_commands.Choice(name="1x1", value="RATIO_1X1"),
+    app_commands.Choice(name="9x16", value="RATIO_9X16"),
+    app_commands.Choice(name="16x9", value="RATIO_16X9"),
+    app_commands.Choice(name="4x3", value="RATIO_4X3"),
+    app_commands.Choice(name="3x2", value="RATIO_3X2")
 ])
 async def imaginepy(ctx, prompt: str, style: app_commands.Choice[str], ratio: app_commands.Choice[str]):
     temp_message = await ctx.send("https://cdn.discordapp.com/emojis/1075796965515853955.gif?size=96&quality=lossless")
     filename = await generate_image(prompt, style.value, ratio.value)
-    await ctx.send(content=f"Here is the generated image for {ctx.author.mention} \n- Prompt: `{prompt}`\n- Style: `"
+    await ctx.send(content=f"Here is the generated image for {ctx.author.mention}.\n- Prompt: `{prompt}`\n- Style: `"
                            f"{style.name}`", file=discord.File(filename))
     os.remove(filename)
     await temp_message.edit(content=f"Finished Image Generation")

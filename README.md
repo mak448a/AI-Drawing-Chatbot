@@ -3,12 +3,16 @@
 ![](https://img.shields.io/github/repo-size/mak448a/Stable-Diffusion-Bot)
 ![](https://img.shields.io/github/contributors/mak448a/Stable-Diffusion-Bot)
 
-This is an AI image generator written in Python.
+This is an AI image generator discord bot written in Python.
 
 Image providers:
 - Imaginepy
 - Stable Horde
 - Pollination
+
+Stable Horde Models:
+- Stable Diffusion
+- Anything Diffusion
 
 All of these are online providers.
 As a result, you will not need a powerful computer!
@@ -36,7 +40,6 @@ This project assumes that:
 ```
 API_KEY=0000000000
 BOT_TOKEN=abc132
-ANYTHING_DIFFUSION=False
 ```
 2. Get a bot token from the [Discord Developer Portal](https://discord.com/developers/applications) and place it in `bot_token.txt`.
 Make sure to switch on Message Content Intent in the Bot tab of the Developer Portal.
@@ -59,11 +62,8 @@ venv\Scripts\activate.bat
 pip install -r requirements.txt
 ```
 5. Run the bot and invite it with the link it provides.
-5. Type / in the message box and start messing around with the commands!
-6. [**OPTIONAL**] If you want Anything Diffusion, set the `ANYTHING_DIFFUSION` value to `True`. It should look something like this:
-```
-ANYTHING_DIFFUSION=True
-```
+6. Type / in the message box and start messing around with the commands!
+
 
 ## Generate images faster
 Stable Horde uses Kudos to rank users on a queue. The more Kudos you have, the higher you are on the generation queue.
