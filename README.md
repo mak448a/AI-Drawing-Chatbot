@@ -5,28 +5,34 @@
 
 This is a Stable Diffusion Bot written in Python. It uses Stable Horde to generate the images.
 As a result, you will not need a powerful computer!
-All generated images will be sent back to LAION to train Stable Diffusion. If you don't want this, get an api key from [here](https://stablehorde.net/register) and place it in `api_key.txt`. Please note that your prompts are still sent to Stable Horde, as listed in their [privacy policy](https://stablehorde.net/privacy).
+Please note that your prompts are sent to Stable Horde, as listed in their [privacy policy](https://stablehorde.net/privacy).
 
 ![](demo.png)
 
 ## Prerequisites
 This project assumes that:
-- Python 3.8+ is installed and on your path variable
+- Python 3.8+ is installed and is on your PATH
 - Pip is installed
 - Git is installed
 - You know how to create a Discord Bot account
 
 
 ## Setup
-
-1. Get an API key from Stable Horde [at their register page](https://stablehorde.net/register) and place it in `api_key.txt`.
+1. Create a Discord Bot and grab the token. Make sure to switch on Message Content Intent in the `Bot` tab of the [Developer Portal](https://discord.com/developers/applications).
+2. Grab an API key from Stable Horde [at their register page](https://stablehorde.net/register).
+3. Rename `example.env` to `.env` and place your bot token and your API key in. It should look something like this:
+```
+API_KEY=0000000000
+BOT_TOKEN=abc132
+ANYTHING_DIFFUSION=False
+```
 2. Get a bot token from the [Discord Developer Portal](https://discord.com/developers/applications) and place it in `bot_token.txt`.
 Make sure to switch on Message Content Intent in the Bot tab of the Developer Portal.
 3. Clone the Stable Horde CLI repository:
 ```shell
 git clone 'https://github.com/mak448a/AI-Horde-With-Cli' --depth=1
 ```
-4. Install dependencies:
+4. Create venv and install dependencies:
 
 Linux or MacOS
 ```shell
@@ -40,8 +46,14 @@ python -m venv venv
 venv\Scripts\activate.bat
 pip install -r requirements.txt
 ```
+5. Run the bot and invite it with the link it provides.
 5. Use /imagine to start generating pictures!
-6. [**OPTIONAL**] If you want to use Anything Diffusion, create the file `anything_diffusion_enable.txt`.
+6. [**OPTIONAL**] If you want Anything Diffusion, set the `ANYTHING_DIFFUSION` value to `True`. It should look something like this:
+```
+API_KEY=0000000000
+BOT_TOKEN=abc132
+ANYTHING_DIFFUSION=True
+```
 
 ## Generate images faster
 Stable Horde uses Kudos to rank users on a queue. The more Kudos you have, the higher you are on the generation queue.
