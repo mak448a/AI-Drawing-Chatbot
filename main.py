@@ -89,13 +89,21 @@ async def generate_with_stable_horde(prompt, use_anything_diffusion, ctx):
               f"AI-Horde-With-Cli/cli_request.py --prompt '{sanitized}'"
               f" --api_key '{api_key}' -n 4 -f {current_time}.png {'--anything' if use_anything_diffusion else ''}")
 
+    images = []
+
+    # Grab all the filenames
     for i in range(4):
-        with open(f"{i}_{current_time}.png", "rb") as file:
-            picture = discord.File(file)
-            await ctx.send(file=picture)
+        images.append(f"{i}_{current_time}.png")
+
+    image_files = [discord.File(image) for image in images]
+
+    await ctx.send(files=image_files)
+
+    # Remove all the files
+    for i in range(4):
         os.remove(f"{i}_{current_time}.png")
-        
-        
+
+
 @bot.event
 async def on_message(message):
     if not is_replit:
