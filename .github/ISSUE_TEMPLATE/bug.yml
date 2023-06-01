@@ -1,0 +1,13 @@
+name: Bug Report
+labels: ["bug"]
+assignees:
+  - mak448a
+description:
+  File a bug report
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **What is the issue? Do you know what is causing this issue? Write it here.**
+        
+        **Additional Information (workarounds, screenshots, etc.)**
