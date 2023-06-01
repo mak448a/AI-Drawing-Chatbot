@@ -3,6 +3,7 @@ from gpt_utils import generate_message
 import discord
 from discord.ext import commands
 import platform
+from replit_detector import is_replit
 import time
 import os
 
@@ -26,15 +27,16 @@ async def on_ready():
 
 @bot.event
 async def on_message(message):
-    if message.author == bot.user:
-        return
-    try:
-        async with message.channel.typing():
-            msg = generate_message(message.content)
-            print("Assistant said:", msg)
-            await message.channel.send(msg)
-    except:  # NOQA
-        await message.channel.send("I had an error.")
+    if not is_replit:
+        if message.author == bot.user:
+            return
+        try:
+            async with message.channel.typing():
+                msg = generate_message(message.content)
+                print("Assistant said:", msg)
+                await message.channel.send(msg)
+        except:  # NOQA
+            await message.channel.send("I had an error.")
 
 
 @bot.hybrid_command(name="imagine", description="Generate an image")
