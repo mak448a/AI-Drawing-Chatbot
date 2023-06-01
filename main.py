@@ -1,36 +1,14 @@
+from utils import api_key, use_anything_diffusion, check_generated_images, bot_token
+from gpt_utils import generate_message
 import discord
 from discord.ext import commands
 import platform
-import os
 import time
-import asyncio
+import os
 
-bot = commands.Bot(command_prefix="!", intents=discord.Intents.default())
-
-# Load api key
-try:
-    with open("api_key.txt") as f:
-        api_key = f.read()
-except FileNotFoundError:
-    api_key = "0000000000"
-    print("No API key selected. Using anonymous account.")
-
-# Check if enable anything_diffusion_enable.txt.txt exists
-if os.path.exists("anything_diffusion_enable.txt"):
-    use_anything_diffusion = True
-    print("Using Anything Diffusion")
-else:
-    print("Using Stable Diffusion")
-    use_anything_diffusion = False
-
-
-async def check_generated_images(gen_time: float):
-    while True:
-        if os.path.exists(f"0_{gen_time}.png"):
-            return
-        else:
-            await asyncio.sleep(0.8)
-            continue
+intents = discord.Intents.default()
+intents.message_content = True
+bot = commands.Bot(command_prefix="!", intents=intents)
 
 
 @bot.event
@@ -46,7 +24,20 @@ async def on_ready():
     print(f"Invite link: {invite_link}")
 
 
-@bot.hybrid_command(name="imagine", description="Generate an image with Stable Diffusion")
+@bot.event
+async def on_message(message):
+    if message.author == bot.user:
+        return
+    try:
+        async with message.channel.typing():
+            msg = generate_message(message.content)
+            print("Assistant said:", msg)
+            await message.channel.send(msg)
+    except:  # NOQA
+        await message.channel.send("I had an error.")
+
+
+@bot.hybrid_command(name="imagine", description="Generate an image")
 async def imagine(ctx, *, prompt: str):
     sanitized = ""
     forbidden = ['"', "'", "`", "\\", "$"]
@@ -76,11 +67,5 @@ async def imagine(ctx, *, prompt: str):
             await ctx.send(file=picture)
         os.remove(f"{i}_{current_time}.png")
 
-
-try:
-    with open("bot_token.txt") as f:
-        bot_token = f.read()
-except FileNotFoundError:
-    print("BOT TOKEN NOT FOUND! PLACE YOUR BOT TOKEN IN `bot_token.txt`.")
 
 bot.run(bot_token)

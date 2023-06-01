@@ -1,3 +1,4 @@
 discord
 requests
 loguru
+gpt4all
