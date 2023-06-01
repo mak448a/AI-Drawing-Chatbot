@@ -19,9 +19,6 @@ Assistant: Hello!"""
 
 remove_text = copy.copy(prompt)
 
-# Clear the terminal output
-os.system("clear")
-
 
 def generate_message(user_input):
     global prompt, remove_text
