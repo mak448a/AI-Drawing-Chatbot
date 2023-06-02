@@ -1,3 +1,5 @@
+import asyncio
+
 from utils import api_key, bot_token
 from gpt_utils import generate_message
 from replit_detector import is_replit
@@ -99,15 +101,24 @@ async def generate_with_stable_horde(prompt, use_anything_diffusion, ctx):
         else:
             sanitized += char
 
-    await ctx.send(f"{ctx.message.author.mention} is generating \"{sanitized}\"")
+    await ctx.send(f"{ctx.message.author.mention} is generating \"{sanitized}\" with "
+                   f"{'Anything Diffusion' if use_anything_diffusion else 'Stable Diffusion'}")
 
-    print(f"{ctx.message.author.name} is generating \"{sanitized}\"")
+    print(f"{ctx.message.author.name} is generating \"{sanitized}\" with "
+          f"{'Anything Diffusion' if use_anything_diffusion else 'Stable Diffusion'}")
 
     current_time = time.time()
+    anything_diffusion_string = "--model 'Anything Diffusion'"
 
     os.system(f"python{'3' if platform.system() != 'Windows' else ''} "
-              f"AI-Horde-With-Cli/cli_request.py --prompt '{sanitized}'"
-              f" --api_key '{api_key}' -n 4 -f {current_time}.png {'--anything' if use_anything_diffusion else ''}")
+              f"AI-Horde-CLI/cli_request_dream.py --prompt '{sanitized}'"
+              f" --api_key '{api_key}' -n 4 -f {current_time}.png "
+              f"{anything_diffusion_string if use_anything_diffusion else '--model stable_diffusion_2.1'}")
+
+    while True:
+        if os.path.exists(f"0_{current_time}.png"):
+            break
+        await asyncio.sleep(0.8)
 
     images = []
 
