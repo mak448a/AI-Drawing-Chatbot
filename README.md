@@ -1,7 +1,8 @@
 # Stable Diffusion Bot
 
-![](https://img.shields.io/github/repo-size/mak448a/Stable-Diffusion-Bot)
+![](https://img.shields.io/github/license/mak448a/Stable-Diffusion-Bot)
 ![](https://img.shields.io/github/contributors/mak448a/Stable-Diffusion-Bot)
+![](https://img.shields.io/github/repo-size/mak448a/Stable-Diffusion-Bot)
 
 This is an AI image generator discord bot written in Python.
 
