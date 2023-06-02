@@ -19,7 +19,7 @@ Assistant: Hello! What can I assist you with today?"""
 remove_text = copy.copy(prompt)
 
 
-def generate_message(user_input):
+async def generate_message(user_input):
     global prompt, remove_text
     constructed = f"\nHuman: {user_input}\nAssistant: "
     prompt += constructed

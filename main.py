@@ -48,7 +48,7 @@ async def on_message(message):
             return
         try:
             async with message.channel.typing():
-                msg = generate_message(cleaned_message)
+                msg = await generate_message(cleaned_message)
                 print("Assistant said:", msg)
                 await message.channel.send(msg)
         except:  # NOQA
