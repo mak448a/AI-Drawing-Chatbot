@@ -16,14 +16,47 @@ import urllib.parse
 import requests
 import httpx
 
-
 intents = discord.Intents.default()
 intents.message_content = True
 bot = commands.Bot(command_prefix="!", intents=intents)
 
 
+@bot.event
+async def on_ready():
+    await bot.tree.sync()
+    await bot.change_presence(activity=discord.Game(name="Try /imagine"))
+    print(f"{bot.user.name} has connected to Discord!")
+    invite_link = discord.utils.oauth_url(
+        bot.user.id,
+        permissions=discord.Permissions(administrator=False),
+        scopes=("bot", "applications.commands")
+    )
+    print(f"Invite link: {invite_link}")
+
+
+@bot.event
+async def on_message(message):
+    if not str(bot.user.id) in message.content:
+        # No one pinged us, just ignore them.
+        return
+    else:
+        # Remove ping in the prompt
+        cleaned_message = message.content.replace(f"<@{bot.user.id}>", "")
+
+    if not is_replit:
+        if message.author == bot.user:
+            return
+        try:
+            async with message.channel.typing():
+                msg = generate_message(cleaned_message)
+                print("Assistant said:", msg)
+                await message.channel.send(msg)
+        except:  # NOQA
+            await message.channel.send("I had an error.")
+
+
 # Imaginepy function
-async def generate_image(image_prompt, style_value, ratio_value):
+async def generate_image_with_imaginepy(image_prompt, style_value, ratio_value):
     async_imagine = AsyncImagine()
     filename = str(uuid.uuid4()) + ".png"
     style_enum = Style[style_value]
@@ -43,26 +76,13 @@ async def generate_image(image_prompt, style_value, ratio_value):
     except Exception as e:
         print(f"An error occurred while writing the image to file: {e}")
         return None
-    
+
     await async_imagine.close()
 
     return filename
 
 
-@bot.event
-async def on_ready():
-    await bot.tree.sync()
-    await bot.change_presence(activity=discord.Game(name="Try /imagine"))
-    print(f"{bot.user.name} has connected to Discord!")
-    invite_link = discord.utils.oauth_url(
-        bot.user.id,
-        permissions=discord.Permissions(administrator=False),
-        scopes=("bot", "applications.commands")
-    )
-    print(f"Invite link: {invite_link}")
-
-
-async def download_image(image_url, save_as):
+async def download_imaginepy_image(image_url, save_as):
     async with httpx.AsyncClient() as client:
         response = await client.get(image_url)
     with open(save_as, "wb") as f:
@@ -104,27 +124,6 @@ async def generate_with_stable_horde(prompt, use_anything_diffusion, ctx):
         os.remove(f"{i}_{current_time}.png")
 
 
-@bot.event
-async def on_message(message):
-    if not str(bot.user.id) in message.content:
-        # No one pinged us, just ignore them.
-        return
-    else:
-        # Remove ping in the prompt
-        cleaned_message = message.content.replace(f"<@{bot.user.id}>", "")
-
-    if not is_replit:
-        if message.author == bot.user:
-            return
-        try:
-            async with message.channel.typing():
-                msg = generate_message(cleaned_message)
-                print("Assistant said:", msg)
-                await message.channel.send(msg)
-        except:  # NOQA
-            await message.channel.send("I had an error.")
-
-
 @bot.hybrid_command(name="imagine", description="Generate an image with Stable Diffusion")
 @app_commands.choices(
     model=[
@@ -140,7 +139,7 @@ async def imagine(ctx, *, prompt: str, model: app_commands.Choice[str]):
     else:
         print("This shouldn't happen, why did this happen?")
 
-        
+
 @bot.hybrid_command(name="pollgen", description="Generate image using pollinations")
 async def pollgen(ctx, *, prompt: str):
     encoded_prompt = urllib.parse.quote(prompt)
@@ -182,7 +181,7 @@ async def pollgen(ctx, *, prompt: str):
     else:
         await ctx.send("Error generating images. Please try again later.")
 
-    
+
 @bot.hybrid_command(name="imaginepy", description="Generate image with imaginepy")
 @app_commands.choices(style=[
     app_commands.Choice(name="Imagine V4 Beta", value="IMAGINE_V4_Beta"),
@@ -220,7 +219,7 @@ async def pollgen(ctx, *, prompt: str):
 ])
 async def imaginepy(ctx, prompt: str, style: app_commands.Choice[str], ratio: app_commands.Choice[str]):
     temp_message = await ctx.send("https://cdn.discordapp.com/emojis/1075796965515853955.gif?size=96&quality=lossless")
-    filename = await generate_image(prompt, style.value, ratio.value)
+    filename = await generate_image_with_imaginepy(prompt, style.value, ratio.value)
     await ctx.send(content=f"Here is the generated image for {ctx.author.mention}.\n- Prompt: `{prompt}`\n- Style: `"
                            f"{style.name}`", file=discord.File(filename))
     os.remove(filename)
