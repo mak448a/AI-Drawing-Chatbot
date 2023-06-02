@@ -110,8 +110,8 @@ async def on_message(message):
         # No one pinged us, just ignore them.
         return
     else:
-        # Replace bot id in ping with @Assistant in the prompt
-        cleaned_message = message.content.replace(f"<@{bot.user.id}>", "@Assistant")
+        # Remove ping in the prompt
+        cleaned_message = message.content.replace(f"<@{bot.user.id}>", "")
 
     if not is_replit:
         if message.author == bot.user:
