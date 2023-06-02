@@ -19,17 +19,17 @@ Assistant: Hello! What can I assist you with today?"""
 remove_text = copy.copy(prompt)
 
 
-def generate_message(user_input):
+def generate_message(user_input, first_time=True):
     global prompt, remove_text
-
-    constructed = f"\nHuman: {user_input}\nAssistant: "
-    prompt += constructed
+    if first_time:
+        constructed = f"\nHuman: {user_input}\nAssistant: "
+        prompt += constructed
 
     output_of_text = llm.generate(prompt)
 
     if "Human: " in output_of_text:
-        print("Uh oh, generated extraneous text. Removing and sending cleaned output.")
-        output_of_text = output_of_text.split("Human: ")[1]
+        print("Uh oh, generated human response. Retrying...")
+        return generate_message(user_input, first_time=False)
 
     # Solution taken from: https://groups.google.com/g/comp.lang.python/c/Rq40dmwLfMQ?pli=1
     if len(prompt) > 1000:
