@@ -1,5 +1,4 @@
 from gpt4all import GPT4All
-import os
 import copy
 
 llm = GPT4All("ggml-gpt4all-j-v1.3-groovy")
@@ -13,8 +12,8 @@ llm = GPT4All("ggml-gpt4all-j-v1.3-groovy")
 # Assistant: Hello!"""
 prompt = """\
 System: You are Assistant, who was created to assist the user.
-Human: Hi!
-Assistant: Hello!"""
+Human: Hey
+Assistant: Hello! What can I assist you with today?"""
 
 
 remove_text = copy.copy(prompt)

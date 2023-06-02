@@ -51,7 +51,7 @@ async def generate_image(image_prompt, style_value, ratio_value):
 
 @bot.event
 async def on_ready():
-    await bot.tree.sync()
+    # await bot.tree.sync()
     await bot.change_presence(activity=discord.Game(name="Try /imagine"))
     print(f"{bot.user.name} has connected to Discord!")
     invite_link = discord.utils.oauth_url(
@@ -106,12 +106,19 @@ async def generate_with_stable_horde(prompt, use_anything_diffusion, ctx):
 
 @bot.event
 async def on_message(message):
+    if not str(bot.user.id) in message.content:
+        # No one pinged us, just ignore them.
+        return
+    else:
+        # Replace bot id in ping with @Assistant in the prompt
+        cleaned_message = message.content.replace(f"<@{bot.user.id}>", "@Assistant")
+
     if not is_replit:
         if message.author == bot.user:
             return
         try:
             async with message.channel.typing():
-                msg = generate_message(message.content)
+                msg = generate_message(cleaned_message)
                 print("Assistant said:", msg)
                 await message.channel.send(msg)
         except:  # NOQA
