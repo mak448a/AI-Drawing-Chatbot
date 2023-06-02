@@ -51,7 +51,7 @@ async def generate_image(image_prompt, style_value, ratio_value):
 
 @bot.event
 async def on_ready():
-    # await bot.tree.sync()
+    await bot.tree.sync()
     await bot.change_presence(activity=discord.Game(name="Try /imagine"))
     print(f"{bot.user.name} has connected to Discord!")
     invite_link = discord.utils.oauth_url(
