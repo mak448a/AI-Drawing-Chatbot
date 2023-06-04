@@ -66,7 +66,7 @@ pip install -r requirements.txt
 6. Type / in the message box and start messing around with the commands!
 
 
-## Generate images faster
+## Generate images faster (only applicable to Stable Horde)
 Stable Horde uses Kudos to rank users on a queue. The more Kudos you have, the higher you are on the generation queue.
 You get Kudos by rating images and/or generating images for Stable Horde
 on your local hardware.
