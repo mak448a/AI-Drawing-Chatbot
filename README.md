@@ -46,7 +46,7 @@ BOT_TOKEN=abc132
 Make sure to switch on Message Content Intent in the Bot tab of the Developer Portal.
 3. Clone the Stable Horde CLI repository:
 ```shell
-git clone 'https://github.com/Haidra-Org/AI-Horde-CLI' --depth=1
+git clone 'https://github.com/mak448a/horde_module' --depth=1
 ```
 4. Create venv and install dependencies:
 

@@ -1,15 +1,13 @@
-import asyncio
-
 from utils import api_key, bot_token
 from gpt_utils import generate_message
 from replit_detector import is_replit
+from horde_module import Generator
 import discord
 from discord.ext import commands
 from discord import app_commands
 
-import platform
+import asyncio
 import random
-import time
 import uuid
 import os
 
@@ -21,6 +19,7 @@ import httpx
 intents = discord.Intents.default()
 intents.message_content = True
 bot = commands.Bot(command_prefix="!", intents=intents)
+horde_generator = Generator()
 
 
 @bot.event
@@ -92,31 +91,19 @@ async def download_imaginepy_image(image_url, save_as):
 
 
 async def generate_with_stable_horde(prompt, use_anything_diffusion, ctx):
-    sanitized = ""
-    forbidden = ['"', "'", "`", "\\", "$"]
-
-    for char in prompt:
-        if char in forbidden:
-            continue
-        else:
-            sanitized += char
-
-    await ctx.send(f"{ctx.message.author.mention} is generating \"{sanitized}\" with "
+    await ctx.send(f"{ctx.message.author.mention} is generating \"{prompt}\" with "
                    f"{'Anything Diffusion' if use_anything_diffusion else 'Stable Diffusion'}")
 
-    print(f"{ctx.message.author.name} is generating \"{sanitized}\" with "
+    print(f"{ctx.message.author.name} is generating \"{prompt}\" with "
           f"{'Anything Diffusion' if use_anything_diffusion else 'Stable Diffusion'}")
 
-    current_time = time.time()
-    anything_diffusion_string = "--model 'Anything Diffusion'"
+    file_uuid = uuid.uuid1()
+    await horde_generator.generate(prompt, api_key, f"{file_uuid}.png", 4,
+                                   f"{'Anything Diffusion' if use_anything_diffusion else 'stable_diffusion_2.1'}")
 
-    os.system(f"python{'3' if platform.system() != 'Windows' else ''} "
-              f"AI-Horde-CLI/cli_request_dream.py --prompt '{sanitized}'"
-              f" --api_key '{api_key}' -n 4 -f {current_time}.png "
-              f"{anything_diffusion_string if use_anything_diffusion else '--model stable_diffusion_2.1'}")
-
+    # Loop until the images generate. We check for the fourth image.
     while True:
-        if os.path.exists(f"0_{current_time}.png"):
+        if os.path.exists(f"3_{file_uuid}.png"):
             break
         await asyncio.sleep(0.8)
 
@@ -124,7 +111,7 @@ async def generate_with_stable_horde(prompt, use_anything_diffusion, ctx):
 
     # Grab all the filenames
     for i in range(4):
-        images.append(f"{i}_{current_time}.png")
+        images.append(f"{i}_{file_uuid}.png")
 
     image_files = [discord.File(image) for image in images]
 
@@ -132,7 +119,7 @@ async def generate_with_stable_horde(prompt, use_anything_diffusion, ctx):
 
     # Remove all the files
     for i in range(4):
-        os.remove(f"{i}_{current_time}.png")
+        os.remove(f"{i}_{file_uuid}.png")
 
 
 @bot.hybrid_command(name="imagine", description="Generate an image with Stable Diffusion")
