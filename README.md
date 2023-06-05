@@ -24,6 +24,8 @@ Please note that when you use Stable Horde to generate the images, your prompts 
 
 [![Replit](https://img.shields.io/badge/replit-667881?style=for-the-badge&logo=replit&logoColor=red)](https://replit.com/new/github/mak448a/Stable-Diffusion-Bot)
 
+Note that there will be no chatbot running on Replit.
+
 ![](demo.png)
 
 ## Prerequisites
