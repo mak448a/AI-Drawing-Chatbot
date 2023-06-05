@@ -15,10 +15,14 @@ Stable Horde Models:
 - Stable Diffusion
 - Anything Diffusion
 
-All of these are online providers.
+All of these are online proviwithders.
 As a result, you will not need a powerful computer!
 
-Please note that when you use Stable Horde to generate the images, your prompts are sent to Stable Horde, as listed in their [privacy policy](https://stablehorde.net/privacy).
+**Notes**
+
+When you use Stable Horde to generate the images, your prompts are sent to Stable Horde, as listed in their [privacy policy](https://stablehorde.net/privacy).
+
+The chatbot should only be used by one person and one server at a time.
 
 **Run on**
 
@@ -68,7 +72,7 @@ pip install -r requirements.txt
 6. Type / in the message box and start messing around with the commands!
 
 
-## Generate images faster (only applicable to Stable Horde)
+## Generate images faster with Stable Horde
 Stable Horde uses Kudos to rank users on a queue. The more Kudos you have, the higher you are on the generation queue.
 You get Kudos by rating images and/or generating images for Stable Horde
 on your local hardware.
