@@ -1,4 +1,4 @@
-Add multiple request support (the bot currently just doesn't respond to anything when busy)
+Add multiple request support (the bot currently just doesn't respond to anything when busy) but we could try doing async stuff to solve that
 Add negative prompts
 Make chatbot optional
 Use logging
