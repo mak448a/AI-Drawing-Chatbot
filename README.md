@@ -15,7 +15,7 @@ Stable Horde Models:
 - Stable Diffusion
 - Anything Diffusion
 
-All of these are online proviwithders.
+All of these are online providers.
 As a result, you will not need a powerful computer!
 
 **Notes**
