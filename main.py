@@ -67,11 +67,11 @@ async def on_message(message):
 async def imagine(ctx, *, prompt: str, model: app_commands.Choice[str]):
     model_name = 'Anything Diffusion' if model.value == 'Anything Diffusion' else 'Stable Diffusion'
 
-    temp_message = await ctx.send(f"{ctx.message.author.mention} is generating \"{prompt}\" with "
+    temp_message = await ctx.send(f"{ctx.message.author.mention} is generating `{prompt}` with "
                                   f"{model_name}! "
                                   f"{line_junk}https://tenor.com/view/loading-gif-9212724")
 
-    print(f"{ctx.message.author.mention} is generating \"{prompt}\" with "
+    print(f"{ctx.message.author.mention} is generating `{prompt}` with "
           f"{model_name}!")
 
     if model.value == "stable_diffusion":
@@ -98,7 +98,7 @@ async def pollgen(ctx, *, prompt: str):
     encoded_prompt = urllib.parse.quote(prompt)
     images = []
 
-    temp_message = await ctx.send(f"{ctx.author.mention} is generating \"{prompt}\" with Pollinations! {line_junk}"
+    temp_message = await ctx.send(f"{ctx.author.mention} is generating `{prompt}` with Pollinations! {line_junk}"
                                   f"https://tenor.com/view/loading-gif-9212724")
 
     # Generate four images with the given prompt
@@ -176,7 +176,7 @@ async def pollgen(ctx, *, prompt: str):
 async def imaginepy(ctx, prompt: str, style: app_commands.Choice[str], ratio: app_commands.Choice[str]):
     # temp_message =
     # await ctx.send("https://cdn.discordapp.com/emojis/1075796965515853955.gif?size=96&quality=lossless")
-    temp_message = await ctx.send(f"{ctx.author.mention} is generating \"{prompt}\"! {line_junk}"
+    temp_message = await ctx.send(f"{ctx.author.mention} is generating `{prompt}` with `Imaginepy`! {line_junk}"
                                   f"https://tenor.com/view/loading-gif-9212724")
     filename = await generate_image_with_imaginepy(prompt, style.value, ratio.value)
     await ctx.send(content=f"Here is the generated image for {ctx.author.mention}.\n- Prompt: `{prompt}`\n- Style: `"
