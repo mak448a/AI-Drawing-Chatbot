@@ -6,4 +6,4 @@ if "REPL_OWNER" in environ:
 else:
     is_replit = False
 
-print("We're replit" if is_replit else "We're on a normal machine")
+print("We're on Replit!" if is_replit else "We're not on Replit.")
