@@ -13,10 +13,14 @@ import requests
 import random
 import os
 
-
 intents = discord.Intents.default()
 intents.message_content = True
 bot = commands.Bot(command_prefix="!", intents=intents)
+
+# Line junk is some stuff that makes Discord hide links.
+# See https://www.youtube.com/watch?v=9OgpQHSP5qE (by Ntts)
+with open("line_junk.txt") as f:
+    line_junk = f.read()
 
 
 @bot.event
@@ -61,12 +65,32 @@ async def on_message(message):
     ]
 )
 async def imagine(ctx, *, prompt: str, model: app_commands.Choice[str]):
+    model_name = 'Anything Diffusion' if model.value == 'Anything Diffusion' else 'Stable Diffusion'
+
+    temp_message = await ctx.send(f"{ctx.message.author.mention} is generating \"{prompt}\" with "
+                                  f"{model_name}! "
+                                  f"{line_junk}https://tenor.com/view/loading-gif-9212724")
+
+    print(f"{ctx.message.author.mention} is generating \"{prompt}\" with "
+          f"{model_name}!")
+
     if model.value == "stable_diffusion":
-        await generate_with_stable_horde(prompt, False, ctx)
+        image_files, file_uuid = await generate_with_stable_horde(prompt, False, ctx)
     elif model.value == "anything_diffusion":
-        await generate_with_stable_horde(prompt, True, ctx)
+        image_files, file_uuid = await generate_with_stable_horde(prompt, True, ctx)
     else:
         print("This shouldn't happen, why did this happen?")
+        return
+
+    # await ctx.send(files=image_files)
+    await ctx.send(content=f"Here are the generated images for {ctx.author.mention}.\n- Prompt: `{prompt}`\n- Model: `"
+                           f"{model_name}`", files=image_files)
+
+    # Cleanup
+    await temp_message.delete()
+
+    for i in range(4):
+        os.remove(f"{i}_{file_uuid}.png")
 
 
 @bot.hybrid_command(name="pollgen", description="Generate image using pollinations")
@@ -74,7 +98,8 @@ async def pollgen(ctx, *, prompt: str):
     encoded_prompt = urllib.parse.quote(prompt)
     images = []
 
-    temp_message = await ctx.send(f"{ctx.author.mention} is generating {prompt}...")  # Send a temporary message
+    temp_message = await ctx.send(f"{ctx.author.mention} is generating \"{prompt}\" with Pollinations! {line_junk}"
+                                  f"https://tenor.com/view/loading-gif-9212724")
 
     # Generate four images with the given prompt
     i = 0
@@ -102,7 +127,9 @@ async def pollgen(ctx, *, prompt: str):
     if images:
         # Send all image files as attachments in a single message
         image_files = [discord.File(image) for image in images]
-        await ctx.send(files=image_files)
+        await ctx.send(
+            content=f"Here are the generated images for {ctx.author.mention}.\n- Prompt: `{prompt}`\n- Model: `"
+                    f"Pollinations`", files=image_files)
 
         # Delete the local image files
         for image in image_files:
@@ -147,12 +174,16 @@ async def pollgen(ctx, *, prompt: str):
     app_commands.Choice(name="3x2", value="RATIO_3X2")
 ])
 async def imaginepy(ctx, prompt: str, style: app_commands.Choice[str], ratio: app_commands.Choice[str]):
-    temp_message = await ctx.send("https://cdn.discordapp.com/emojis/1075796965515853955.gif?size=96&quality=lossless")
+    # temp_message =
+    # await ctx.send("https://cdn.discordapp.com/emojis/1075796965515853955.gif?size=96&quality=lossless")
+    temp_message = await ctx.send(f"{ctx.author.mention} is generating \"{prompt}\"! {line_junk}"
+                                  f"https://tenor.com/view/loading-gif-9212724")
     filename = await generate_image_with_imaginepy(prompt, style.value, ratio.value)
     await ctx.send(content=f"Here is the generated image for {ctx.author.mention}.\n- Prompt: `{prompt}`\n- Style: `"
                            f"{style.name}`", file=discord.File(filename))
     os.remove(filename)
-    await temp_message.edit(content=f"Finished Image Generation")
+    await temp_message.edit(content=f"Finished image generation!")
+    await temp_message.delete()
 
 
 bot.run(bot_token)

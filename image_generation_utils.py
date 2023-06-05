@@ -10,12 +10,6 @@ horde_generator = Generator()
 
 
 async def generate_with_stable_horde(prompt, use_anything_diffusion, ctx):
-    await ctx.send(f"{ctx.message.author.mention} is generating \"{prompt}\" with "
-                   f"{'Anything Diffusion' if use_anything_diffusion else 'Stable Diffusion'}")
-
-    print(f"{ctx.message.author.name} is generating \"{prompt}\" with "
-          f"{'Anything Diffusion' if use_anything_diffusion else 'Stable Diffusion'}")
-
     file_uuid = uuid.uuid1()
     await horde_generator.generate(prompt, api_key, f"{file_uuid}.png", 4,
                                    f"{'Anything Diffusion' if use_anything_diffusion else 'stable_diffusion_2.1'}")
@@ -34,11 +28,7 @@ async def generate_with_stable_horde(prompt, use_anything_diffusion, ctx):
 
     image_files = [discord.File(image) for image in images]
 
-    await ctx.send(files=image_files)
-
-    # Remove all the files
-    for i in range(4):
-        os.remove(f"{i}_{file_uuid}.png")
+    return image_files, file_uuid
 
 
 # Imaginepy function
