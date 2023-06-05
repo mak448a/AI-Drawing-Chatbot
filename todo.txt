@@ -2,3 +2,4 @@ Add negative prompts
 Make chatbot optional
 Use logging
 Add drawing capabilities to chatbot
+Add config
