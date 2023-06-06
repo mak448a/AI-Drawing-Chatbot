@@ -28,7 +28,7 @@ The chatbot should only be used by one person and one server at a time.
 
 [![Replit](https://img.shields.io/badge/replit-667881?style=for-the-badge&logo=replit&logoColor=red)](https://replit.com/new/github/mak448a/Stable-Diffusion-Bot)
 
-Note that there will be no chatbot running on Replit.
+Note that there will be no chatbot when it is running on Replit.
 
 ![](demo.png)
 
