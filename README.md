@@ -4,7 +4,7 @@
 ![](https://img.shields.io/github/contributors/mak448a/Stable-Diffusion-Bot)
 ![](https://img.shields.io/github/repo-size/mak448a/Stable-Diffusion-Bot)
 
-This is an AI image generator Discord bot written in Python.
+This is an AI image generator Discord bot written in Python. It has a chatbot that uses GPT4All that you can talk to by pinging your bot!
 
 Image providers:
 - Imaginepy
@@ -20,15 +20,15 @@ As a result, you will not need a powerful computer!
 
 **Notes**
 
-When you use Stable Horde to generate the images, your prompts are sent to Stable Horde, as listed in their [privacy policy](https://stablehorde.net/privacy).
+When you use Stable Horde to generate images, your prompts are sent to Stable Horde, as listed in their [privacy policy](https://stablehorde.net/privacy).
 
-The chatbot should only be used by one person and one server at a time.
+The chatbot may not work as expected if multiple users are chatting with it at once.
 
 **Run on**
 
 [![Replit](https://img.shields.io/badge/replit-667881?style=for-the-badge&logo=replit&logoColor=red)](https://replit.com/new/github/mak448a/Stable-Diffusion-Bot)
 
-Note that there will be no chatbot when it is running on Replit.
+Note that there will be no chatbot when running on Replit, due to the GPT4All model going over the storage limit.
 
 ![](demo.png)
 
