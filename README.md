@@ -48,7 +48,7 @@ This project assumes that:
 API_KEY=0000000000
 BOT_TOKEN=abc132
 ```
-2. Get a bot token from the [Discord Developer Portal](https://discord.com/developers/applications) and place it in `bot_token.txt`.
+2. Get a bot token from the [Discord Developer Portal](https://discord.com/developers/applications) and place it in `BOT_TOKEN` in your `.env` file.
 Make sure to switch on Message Content Intent in the Bot tab of the Developer Portal.
 3. Clone the Stable Horde CLI repository:
 ```shell
