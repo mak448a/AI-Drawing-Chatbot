@@ -52,16 +52,19 @@ async def on_message(message):
         # Remove ping in the prompt
         cleaned_message = message.content.replace(f"<@{bot.user.id}>", "")
 
-    if not is_replit:
-        if message.author == bot.user:
-            return
-        try:
-            async with message.channel.typing():
-                msg = await generate_message(cleaned_message)
-                print("Assistant said:", msg)
-                await message.channel.send(msg)
-        except:  # NOQA
-            await message.channel.send("I had an error.")
+    if is_replit and config["model"] == "GPT4All":
+        print("You cannot use GPT4All with Replit.")
+        return
+
+    if message.author == bot.user:
+        return
+    try:
+        async with message.channel.typing():
+            msg = await generate_message(cleaned_message)
+            print("Assistant said:", msg)
+            await message.channel.send(msg)
+    except:  # NOQA
+        await message.channel.send("I had an error.")
 
 
 @bot.hybrid_command(name="imagine", description="Generate an image with Stable Diffusion")
