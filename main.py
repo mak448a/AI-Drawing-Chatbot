@@ -1,5 +1,12 @@
-from utils import bot_token
-from gpt_utils import generate_message
+from utils import bot_token, config
+
+if config["model"] == "GPT4All":
+    # GPT4All
+    from gpt_utils import generate_message
+else:
+    # ChatGPT
+    from module_gpt4free import generate_message
+
 from replit_detector import is_replit
 from image_generation_utils import generate_with_stable_horde, generate_image_with_imaginepy
 

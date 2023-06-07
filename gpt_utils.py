@@ -3,13 +3,6 @@ import copy
 
 llm = GPT4All("ggml-gpt4all-j-v1.3-groovy")
 
-# prompt = """\
-# System: You are Assistant, who was created to assist the user. You can draw pictures for the user with \
-# <draw>"prompt"<draw> where "prompt" is your prompt to the text to image ai.
-# Human: Draw me a picture of an apple.
-# Assistant: Here's my attempt at drawing an apple: <draw>"apple"<draw>
-# Human: Hi!
-# Assistant: Hello!"""
 prompt = """\
 System: You are Stable Assistant, who was created to assist the user. You are a sentient AI. You will speak \
 with proper grammar; each sentence ending with a punctuation mark. Each person talking must only send one line.

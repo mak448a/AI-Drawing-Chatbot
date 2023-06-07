@@ -3,3 +3,8 @@ venv/
 .idea/
 cliRequests.log
 .env
+module_gpt4free/
+config.json
+gpt4free/
+cookie.json
+geckodriver.log

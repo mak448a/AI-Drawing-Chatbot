@@ -4,7 +4,8 @@
 ![](https://img.shields.io/github/contributors/mak448a/Stable-Diffusion-Bot)
 ![](https://img.shields.io/github/repo-size/mak448a/Stable-Diffusion-Bot)
 
-This is an AI image generator Discord bot written in Python. It has a chatbot that uses GPT4All that you can talk to by pinging your bot!
+This is an AI image generator Discord bot written in Python. It has a chatbot that uses ChatGPT or GPT4All
+that you can talk to by pinging your bot!
 
 Image providers:
 - Imaginepy
@@ -38,6 +39,7 @@ This project assumes that:
 - Pip is installed
 - Git is installed
 - You know how to create a Discord Bot account
+- You know JSON syntax (It's basically a Python Dictionary)
 
 
 ## Setup
@@ -50,9 +52,11 @@ BOT_TOKEN=abc132
 ```
 2. Get a bot token from the [Discord Developer Portal](https://discord.com/developers/applications) and place it in `BOT_TOKEN` in your `.env` file.
 Make sure to switch on Message Content Intent in the Bot tab of the Developer Portal.
-3. Clone the Stable Horde CLI repository:
+3. Clone some repositories:
 ```shell
 git clone 'https://github.com/mak448a/horde_module' --depth=1
+git clone 'https://github.com/mak448a/module_gpt4free/' --depth=1
+git clone 'https://github.com/mak448a/gpt4free' --depth=1
 ```
 4. Create venv and install dependencies:
 
@@ -61,15 +65,18 @@ Linux or MacOS
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
+pip install -r module_gpt4free/requirements.txt
 ```
 Windows
 ```shell
 python -m venv venv
 venv\Scripts\activate.bat
 pip install -r requirements.txt
+pip install -r module_gpt4free/requirements.txt
 ```
-5. Run the bot and invite it with the link it provides.
-6. Type / in the message box and start messing around with the commands!
+5. Configure your bot by renaming `example_config.json` to `config.json` and edit as necessary. To change the bot to GPT4All, set `"model"` to `"GPT4All"`
+6. Run the bot and invite it with the link it provides.
+7. Type / in the message box and start messing around with the commands!
 
 
 ## Generate images faster with Stable Horde
