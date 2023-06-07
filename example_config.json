@@ -1,4 +1,4 @@
 {
   "chatbot": true,
-  "model": "ChatGPT"
+  "model": "GPT4All"
 }
