@@ -1,5 +1,6 @@
-discord
-requests
-gpt4all
-python-dotenv
-imaginepy
+discord~=2.2.3
+requests~=2.28.2
+gpt4all~=0.2.1
+python-dotenv~=1.0.0
+imaginepy~=1.1.0
+pyyaml~=6.0
