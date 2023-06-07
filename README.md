@@ -29,7 +29,7 @@ The chatbot may not work as expected if multiple users are chatting with it at o
 
 [![Replit](https://img.shields.io/badge/replit-667881?style=for-the-badge&logo=replit&logoColor=red)](https://replit.com/new/github/mak448a/Stable-Diffusion-Bot)
 
-Note that there will be no chatbot when running on Replit, due to the GPT4All model going over the storage limit.
+Note that when running on Replit, GPT4All cannot be used.
 
 ![](demo.png)
 
