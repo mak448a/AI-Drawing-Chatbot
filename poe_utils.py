@@ -1,4 +1,4 @@
-from config import poe_key
+from utils import poe_key
 import poe
 
 # We use poe's built in bot builder for this.

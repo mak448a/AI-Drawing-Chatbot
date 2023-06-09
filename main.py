@@ -1,10 +1,14 @@
-from config import bot_token, config
+from utils import bot_token, config, line_junk, FakeCtx
 
+# Figure out which model the user specified
 if config["model"] == "GPT4All":
     # GPT4All
     from gpt_utils import generate_message
-else:
+elif config["model"] == "ChatGPT":
     # ChatGPT
+    from poe_utils import generate_message
+else:
+    # Fallback on ChatGPT
     from poe_utils import generate_message
 
 from replit_detector import is_replit
@@ -24,16 +28,9 @@ intents = discord.Intents.default()
 intents.message_content = True
 bot = commands.Bot(command_prefix="!", intents=intents)
 
-# Line junk is some stuff that makes Discord hide links.
-# See https://www.youtube.com/watch?v=9OgpQHSP5qE (by Ntts)
-with open("line_junk.txt") as f:
-    line_junk = f.read()
-
 
 @bot.event
 async def on_ready():
-    # await bot.tree.sync()
-    # await bot.change_presence(activity=discord.Game(name="Try /imagine"))
     print(f"{bot.user.name} has connected to Discord!")
     invite_link = discord.utils.oauth_url(
         bot.user.id,
@@ -45,43 +42,34 @@ async def on_ready():
 
 @bot.event
 async def on_message(message):
-    if not str(bot.user.id) in message.content:
-        # No one pinged us, just ignore them.
+    await bot.tree.sync()
+    await bot.change_presence(activity=discord.Game(name="Try /imagine"))
+
+    if message.author == bot.user:
         return
-    else:
-        # Remove ping in the prompt
-        cleaned_message = message.content.replace(f"<@{bot.user.id}>", "")
-    class fake_ctx:
-        def __init__(self, message):
-            self.author = message.author
-
-        async def send(self, content, file=None):
-            return await message.channel.send(content, file=file)
-    cleaned_message = message.content
-
     if is_replit and config["model"] == "GPT4All":
         print("You cannot use GPT4All with Replit.")
         return
 
-    if message.author == bot.user:
-        return
-    # try:
+    cleaned_message = message.content.replace(f"<@{bot.user.id}>", "")
+
     async with message.channel.typing():
         msg = await generate_message(cleaned_message)
 
     msg1 = msg.split("<draw>")[0]
+
+    # Check if the model wants to draw something
     if "<draw>" in msg:
         await message.channel.send(msg1)
     else:
         await message.channel.send(msg)
-    print("Assistant said:", msg1)
+
     if "<draw>" in msg and "</draw>" in msg:
-        print("We have a draw tag!")
+        # Parse the draw tag
         prompt = msg.split("<draw>")[1].split("</draw>")[0]
-        print(prompt)
-        await imaginepy(fake_ctx(message), prompt, app_commands.Choice(name="Realistic", value="REALISTIC"), app_commands.Choice(name="1x1", value="RATIO_1X1"))
-    # except:  # NOQA
-    #     await message.channel.send("I had an error.")
+        # print(prompt)
+        await imaginepy(FakeCtx(message), prompt, app_commands.Choice(name="Realistic", value="REALISTIC"), # NOQA
+                        app_commands.Choice(name="1x1", value="RATIO_1X1"))
 
 
 @bot.hybrid_command(name="imagine", description="Generate an image with Stable Diffusion")
@@ -111,7 +99,7 @@ async def imagine(ctx, *, prompt: str, model: app_commands.Choice[str]):
 
     # await ctx.send(files=image_files)
     await ctx.send(f"Here are the generated images for {ctx.author.mention}.\n- Prompt: `{prompt}`\n- Model: `"
-                           f"{model_name}`", files=image_files)
+                   f"{model_name}`", files=image_files)
 
     # Cleanup
     await temp_message.delete()

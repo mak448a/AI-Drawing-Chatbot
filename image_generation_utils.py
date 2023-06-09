@@ -1,5 +1,5 @@
 from horde_module import Generator
-from config import api_key
+from utils import api_key
 import uuid
 import asyncio
 import os
