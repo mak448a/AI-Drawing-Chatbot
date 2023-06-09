@@ -1,12 +1,18 @@
+from replit_detector import is_replit
 from dotenv import load_dotenv
 import json
 import os
 
-# Load .env file
-load_dotenv(".env")
-bot_token: str = os.getenv("BOT_TOKEN")
-api_key: str = os.getenv("API_KEY")
-poe_key: str = os.getenv("POE_TOKEN")
+if is_replit:
+    bot_token: str = os.environ["BOT_TOKEN"]
+    api_key: str = os.environ["API_KEY"]
+    poe_key: str = os.environ["POE_TOKEN"]
+else:
+    # Load .env file
+    load_dotenv(".env")
+    bot_token: str = os.getenv("BOT_TOKEN")
+    api_key: str = os.getenv("API_KEY")
+    poe_key: str = os.getenv("POE_TOKEN")
 
 if api_key == "0000000000":
     print("[WARNING] Default API key selected. Generating images will be slower. "
