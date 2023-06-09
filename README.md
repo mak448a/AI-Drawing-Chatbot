@@ -58,14 +58,12 @@ Linux or MacOS
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
-pip install -r module_gpt4free/requirements.txt
 ```
 Windows
 ```shell
 python -m venv venv
 venv\Scripts\activate.bat
 pip install -r requirements.txt
-pip install -r module_gpt4free/requirements.txt
 ```
 8. Rename `example_config.json` to `config.json` and edit as necessary. To change the bot to GPT4All, set `"model"` to `"GPT4All"`.
 9. Run the bot and invite it with the link it provides.
