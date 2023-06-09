@@ -8,6 +8,16 @@ This is an AI image generator Discord bot written in Python. It has a chatbot th
 
 This project uses lots of APIs. As a result, you will not need a powerful computer!
 
+![](demo.png)
+
+
+## Table of Contents
+1. [Features](#Features)
+2. [Notes](#Notes)
+3. [Prerequisites](#Prerequisites)
+4. [Setup](#Setup)
+5. [Generate images faster with Stable Horde](#Generate-images-faster-with-Stable-Horde)
+
 
 ## Features
 - ChatGPT chatbot that is integrated with Imaginepy
@@ -16,12 +26,6 @@ This project uses lots of APIs. As a result, you will not need a powerful comput
 - Anything Diffusion
 - Pollinations
 
-
-![](demo.png)
-
-## Run on Replit
-
-[![Replit](https://img.shields.io/badge/replit-667881?style=for-the-badge&logo=replit&logoColor=red)](https://replit.com/new/github/mak448a/Stable-Diffusion-Bot)
 
 ## Notes
 
