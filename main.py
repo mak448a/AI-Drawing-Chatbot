@@ -12,6 +12,9 @@ else:
     from poe_utils import generate_message
 
 from replit_detector import is_replit
+if is_replit:
+    from keep_alive import keep_alive
+
 from image_generation_utils import generate_with_stable_horde, generate_image_with_imaginepy, upscale_image
 
 import discord
@@ -209,5 +212,8 @@ async def upscale(ctx, file: discord.Attachment):
     image_filename = await upscale_image(file)
 
     await ctx.send(file=discord.File(f"{image_filename}"))
+
+if is_replit:
+    keep_alive()
 
 bot.run(bot_token)
