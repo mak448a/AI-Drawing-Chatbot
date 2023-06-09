@@ -31,6 +31,8 @@ bot = commands.Bot(command_prefix="!", intents=intents)
 
 @bot.event
 async def on_ready():
+    await bot.tree.sync()
+    await bot.change_presence(activity=discord.Game(name="Try /imagine"))
     print(f"{bot.user.name} has connected to Discord!")
     invite_link = discord.utils.oauth_url(
         bot.user.id,
@@ -42,8 +44,8 @@ async def on_ready():
 
 @bot.event
 async def on_message(message):
-    await bot.tree.sync()
-    await bot.change_presence(activity=discord.Game(name="Try /imagine"))
+    if str(bot.user.id) not in message.content:
+        return
 
     if message.author == bot.user:
         return
@@ -68,7 +70,7 @@ async def on_message(message):
         # Parse the draw tag
         prompt = msg.split("<draw>")[1].split("</draw>")[0]
         # print(prompt)
-        await imaginepy(FakeCtx(message), prompt, app_commands.Choice(name="Realistic", value="REALISTIC"), # NOQA
+        await imaginepy(FakeCtx(message), prompt, app_commands.Choice(name="Realistic", value="REALISTIC"),  # NOQA
                         app_commands.Choice(name="1x1", value="RATIO_1X1"))
 
 
