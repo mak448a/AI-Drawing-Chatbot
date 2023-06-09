@@ -1,11 +1,11 @@
-from utils import bot_token, config
+from config import bot_token, config
 
 if config["model"] == "GPT4All":
     # GPT4All
     from gpt_utils import generate_message
 else:
     # ChatGPT
-    from module_gpt4free import generate_message
+    from poe_utils import generate_message
 
 from replit_detector import is_replit
 from image_generation_utils import generate_with_stable_horde, generate_image_with_imaginepy
@@ -32,8 +32,8 @@ with open("line_junk.txt") as f:
 
 @bot.event
 async def on_ready():
-    await bot.tree.sync()
-    await bot.change_presence(activity=discord.Game(name="Try /imagine"))
+    # await bot.tree.sync()
+    # await bot.change_presence(activity=discord.Game(name="Try /imagine"))
     print(f"{bot.user.name} has connected to Discord!")
     invite_link = discord.utils.oauth_url(
         bot.user.id,
@@ -51,6 +51,13 @@ async def on_message(message):
     else:
         # Remove ping in the prompt
         cleaned_message = message.content.replace(f"<@{bot.user.id}>", "")
+    class fake_ctx:
+        def __init__(self, message):
+            self.author = message.author
+
+        async def send(self, content, file=None):
+            return await message.channel.send(content, file=file)
+    cleaned_message = message.content
 
     if is_replit and config["model"] == "GPT4All":
         print("You cannot use GPT4All with Replit.")
@@ -58,13 +65,23 @@ async def on_message(message):
 
     if message.author == bot.user:
         return
-    try:
-        async with message.channel.typing():
-            msg = await generate_message(cleaned_message)
-            print("Assistant said:", msg)
-            await message.channel.send(msg)
-    except:  # NOQA
-        await message.channel.send("I had an error.")
+    # try:
+    async with message.channel.typing():
+        msg = await generate_message(cleaned_message)
+
+    msg1 = msg.split("<draw>")[0]
+    if "<draw>" in msg:
+        await message.channel.send(msg1)
+    else:
+        await message.channel.send(msg)
+    print("Assistant said:", msg1)
+    if "<draw>" in msg and "</draw>" in msg:
+        print("We have a draw tag!")
+        prompt = msg.split("<draw>")[1].split("</draw>")[0]
+        print(prompt)
+        await imaginepy(fake_ctx(message), prompt, app_commands.Choice(name="Realistic", value="REALISTIC"), app_commands.Choice(name="1x1", value="RATIO_1X1"))
+    # except:  # NOQA
+    #     await message.channel.send("I had an error.")
 
 
 @bot.hybrid_command(name="imagine", description="Generate an image with Stable Diffusion")
@@ -93,7 +110,7 @@ async def imagine(ctx, *, prompt: str, model: app_commands.Choice[str]):
         return
 
     # await ctx.send(files=image_files)
-    await ctx.send(content=f"Here are the generated images for {ctx.author.mention}.\n- Prompt: `{prompt}`\n- Model: `"
+    await ctx.send(f"Here are the generated images for {ctx.author.mention}.\n- Prompt: `{prompt}`\n- Model: `"
                            f"{model_name}`", files=image_files)
 
     # Cleanup

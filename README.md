@@ -5,33 +5,23 @@
 ![](https://img.shields.io/github/repo-size/mak448a/Stable-Diffusion-Bot)
 
 This is an AI image generator Discord bot written in Python. It has a chatbot that uses ChatGPT or GPT4All
-that you can talk to by pinging your bot!
+that you can talk to by pinging your bot! You can use Stable Diffusion, Pollinations, Anything Diffusion, and Imaginepy!
 
-Image providers:
-- Imaginepy
-- Stable Horde
-- Pollination
+This project uses lots of APIs. As a result, you will not need a powerful computer!
 
-Stable Horde Models:
-- Stable Diffusion
-- Anything Diffusion
+![](demo.png)
 
-All of these are online providers.
-As a result, you will not need a powerful computer!
-
-**Notes**
-
-When you use Stable Horde to generate images, your prompts are sent to Stable Horde, as listed in their [privacy policy](https://stablehorde.net/privacy).
-
-The chatbot may not work as expected if multiple users are chatting with it at once.
-
-**Run on**
+## Run on Replit
 
 [![Replit](https://img.shields.io/badge/replit-667881?style=for-the-badge&logo=replit&logoColor=red)](https://replit.com/new/github/mak448a/Stable-Diffusion-Bot)
 
-Note that when running on Replit, GPT4All cannot be used.
+## Notes
 
-![](demo.png)
+- ChatGPT is the fastest model that you can use.
+- When you use Stable Horde to generate images, your prompts are sent to Stable Horde, as listed in their [privacy policy](https://stablehorde.net/privacy). 
+- The chatbot may not work as expected if multiple users are chatting with it at once. 
+- When running on Replit, GPT4All cannot be used.
+
 
 ## Prerequisites
 This project assumes that:
@@ -44,21 +34,15 @@ This project assumes that:
 
 ## Setup
 1. Create a Discord Bot and grab the token. Make sure to switch on Message Content Intent in the `Bot` tab of the [Developer Portal](https://discord.com/developers/applications).
-2. Grab an API key from Stable Horde [at their register page](https://stablehorde.net/register).
-3. Rename `example.env` to `.env` and place your bot token and your API key in. It should look something like this:
-```
-API_KEY=0000000000
-BOT_TOKEN=abc132
-```
-2. Get a bot token from the [Discord Developer Portal](https://discord.com/developers/applications) and place it in `BOT_TOKEN` in your `.env` file.
 Make sure to switch on Message Content Intent in the Bot tab of the Developer Portal.
-3. Clone some repositories:
+2. Grab an API key from Stable Horde [at their register page](https://stablehorde.net/register).
+3. Rename `example.env` to `.env` and place your bot token and your API key in under `API_KEY`.
+4. Place your bot token under `BOT_TOKEN` in your `.env` file.
+5. Clone the Stable Horde module:
 ```shell
 git clone 'https://github.com/mak448a/horde_module' --depth=1
-git clone 'https://github.com/mak448a/module_gpt4free/' --depth=1
-git clone 'https://github.com/mak448a/gpt4free' --depth=1
 ```
-4. Create venv and install dependencies:
+6. Create venv and install dependencies:
 
 Linux or MacOS
 ```shell
@@ -74,9 +58,9 @@ venv\Scripts\activate.bat
 pip install -r requirements.txt
 pip install -r module_gpt4free/requirements.txt
 ```
-5. Configure your bot by renaming `example_config.json` to `config.json` and edit as necessary. To change the bot to GPT4All, set `"model"` to `"GPT4All"`
-6. Run the bot and invite it with the link it provides.
-7. Type / in the message box and start messing around with the commands!
+7. Rename `example_config.json` to `config.json` and edit as necessary. To change the bot to GPT4All, set `"model"` to `"GPT4All"`.
+8. Run the bot and invite it with the link it provides.
+9. Type / in the message box and start messing around with the commands!
 
 
 ## Generate images faster with Stable Horde

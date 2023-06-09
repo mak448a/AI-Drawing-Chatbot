@@ -1,6 +1,9 @@
 discord~=2.2.3
 requests~=2.28.2
-gpt4all~=0.2.1
 python-dotenv~=1.0.0
 imaginepy~=1.1.0
 pyyaml~=6.0
+
+# Language models
+poe-api~=0.4.5 # For ChatGPT
+gpt4all~=0.2.1 # For GPT4All
