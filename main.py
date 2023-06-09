@@ -82,7 +82,7 @@ async def on_message(message):
     ]
 )
 async def imagine(ctx, *, prompt: str, model: app_commands.Choice[str]):
-    model_name = 'Anything Diffusion' if model.value == 'Anything Diffusion' else 'Stable Diffusion'
+    model_name = 'Anything Diffusion' if model.value == 'anything_diffusion' else 'Stable Diffusion'
 
     temp_message = await ctx.send(f"{ctx.message.author.mention} is generating `{prompt}` with "
                                   f"{model_name}! "
