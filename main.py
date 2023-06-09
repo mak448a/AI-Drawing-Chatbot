@@ -212,6 +212,7 @@ async def upscale(ctx, file: discord.Attachment):
     image_filename = await upscale_image(file)
 
     await ctx.send(file=discord.File(f"{image_filename}"))
+    os.remove(image_filename)
 
 if is_replit:
     keep_alive()
