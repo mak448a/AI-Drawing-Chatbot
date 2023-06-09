@@ -8,3 +8,8 @@ config.json
 gpt4free/
 cookie.json
 geckodriver.log
+.replit
+replit.nix
+poetry.lock
+pyproject.toml
+__pycache__
