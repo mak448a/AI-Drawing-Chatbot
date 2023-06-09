@@ -4,10 +4,18 @@
 ![](https://img.shields.io/github/contributors/mak448a/Stable-Diffusion-Bot)
 ![](https://img.shields.io/github/repo-size/mak448a/Stable-Diffusion-Bot)
 
-This is an AI image generator Discord bot written in Python. It has a chatbot that uses ChatGPT or GPT4All
-that you can talk to by pinging your bot! You can use Stable Diffusion, Pollinations, Anything Diffusion, and Imaginepy!
+This is an AI image generator Discord bot written in Python. It has a chatbot that uses ChatGPT!
 
 This project uses lots of APIs. As a result, you will not need a powerful computer!
+
+
+## Features
+- ChatGPT chatbot that is integrated with Imaginepy
+- 3 slash commands for generating images
+- Stable Diffusion
+- Anything Diffusion
+- Pollinations
+
 
 ![](demo.png)
 
@@ -37,12 +45,13 @@ This project assumes that:
 Make sure to switch on Message Content Intent in the Bot tab of the Developer Portal.
 2. Grab an API key from Stable Horde [at their register page](https://stablehorde.net/register).
 3. Rename `example.env` to `.env` and place your bot token and your API key in under `API_KEY`.
-4. Place your bot token under `BOT_TOKEN` in your `.env` file.
-5. Clone the Stable Horde module:
+4. [Register](https://poe.com) for Poe and open inspect tool. [Find your token](https://github.com/ading2210/poe-api#finding-your-token) and place it under `POE_TOKEN` in your `.env` file.
+5. Place your Discord bot token under `BOT_TOKEN`.
+6. Clone the Stable Horde module:
 ```shell
 git clone 'https://github.com/mak448a/horde_module' --depth=1
 ```
-6. Create venv and install dependencies:
+7. Create venv and install dependencies:
 
 Linux or MacOS
 ```shell
@@ -58,9 +67,9 @@ venv\Scripts\activate.bat
 pip install -r requirements.txt
 pip install -r module_gpt4free/requirements.txt
 ```
-7. Rename `example_config.json` to `config.json` and edit as necessary. To change the bot to GPT4All, set `"model"` to `"GPT4All"`.
-8. Run the bot and invite it with the link it provides.
-9. Type / in the message box and start messing around with the commands!
+8. Rename `example_config.json` to `config.json` and edit as necessary. To change the bot to GPT4All, set `"model"` to `"GPT4All"`.
+9. Run the bot and invite it with the link it provides.
+10. Type / in the message box and start messing around with the commands!
 
 
 ## Generate images faster with Stable Horde
