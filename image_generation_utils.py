@@ -56,3 +56,15 @@ async def generate_image_with_imaginepy(image_prompt, style_value, ratio_value):
     await async_imagine.close()
 
     return filename
+
+
+async def upscale_image(image):
+    temp_id = uuid.uuid1()
+    await image.save(f"{temp_id}.png")
+    async_imagine = AsyncImagine()
+    original_image = open(f"{temp_id}.png", "rb").read()
+    upscaled_image = await async_imagine.upscale(original_image)
+
+    with open(f"{temp_id}.png", "wb") as f:
+        f.write(upscaled_image)
+    return f"{temp_id}.png"

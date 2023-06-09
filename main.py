@@ -12,7 +12,7 @@ else:
     from poe_utils import generate_message
 
 from replit_detector import is_replit
-from image_generation_utils import generate_with_stable_horde, generate_image_with_imaginepy
+from image_generation_utils import generate_with_stable_horde, generate_image_with_imaginepy, upscale_image
 
 import discord
 from discord.ext import commands
@@ -202,5 +202,12 @@ async def imaginepy(ctx, prompt: str, style: app_commands.Choice[str], ratio: ap
     await temp_message.edit(content=f"Finished image generation!")
     await temp_message.delete()
 
+
+@bot.hybrid_command(name="upscale", description="Upscale an image with imaginepy")
+async def upscale(ctx, file: discord.Attachment):
+    await ctx.defer()
+    image_filename = await upscale_image(file)
+
+    await ctx.send(file=discord.File(f"{image_filename}"))
 
 bot.run(bot_token)
