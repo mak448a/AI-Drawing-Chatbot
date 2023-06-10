@@ -1,10 +1,11 @@
 # Taken from https://replit.com/@AllAwesome497's Replit template
-import os 
+import os
 from flask import Flask
 from threading import Thread
 import random
 
 app = Flask('')
+
 
 @app.route('/')
 def home():
