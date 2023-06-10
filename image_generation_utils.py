@@ -47,15 +47,14 @@ async def generate_image_with_imaginepy(image_prompt, style_value, ratio_value):
         return
 
     try:
-        with open(filename, mode="wb") as img_file:
-            img_file.write(img_data)
+        img_file = io.BytesIO(img_data)
     except Exception as e:
-        print(f"An error occurred while writing the image to file: {e}")
+        print(f"An error occurred while creating the in-memory image file: {e}")
         return None
 
     await async_imagine.close()
 
-    return filename
+    return img_file
 
 
 async def upscale_image(image):
