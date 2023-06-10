@@ -76,13 +76,11 @@ async def on_message(message):
         # print(prompt)
         await imaginepy(
             FakeCtx(message),
-            prompt,
-            app_commands.Choice(name="Realistic", value="REALISTIC"),  # NOQA
+            prompt, app_commands.Choice(name="Realistic", value="REALISTIC"),  # NOQA
             app_commands.Choice(name="1x1", value="RATIO_1X1"))
 
 
-@bot.hybrid_command(name="imagine",
-                    description="Generate an image with Stable Diffusion")
+@bot.hybrid_command(name="imagine", description="Generate an image with Stable Diffusion")
 @app_commands.choices(model=[
     app_commands.Choice(name="Stable Diffusion", value="stable_diffusion"),
     app_commands.Choice(name="Anything Diffusion", value="anything_diffusion")
@@ -121,8 +119,7 @@ async def imagine(ctx, *, prompt: str, model: app_commands.Choice[str]):
         os.remove(f"{i}_{file_uuid}.png")
 
 
-@bot.hybrid_command(name="pollgen",
-                    description="Generate image using pollinations")
+@bot.hybrid_command(name="pollgen", description="Generate image using pollinations")
 async def pollgen(ctx, *, prompt: str):
     encoded_prompt = urllib.parse.quote(prompt)
     images = []
@@ -158,10 +155,8 @@ async def pollgen(ctx, *, prompt: str):
         # Send all image files as attachments in a single message
         image_files = [discord.File(image) for image in images]
         await ctx.send(
-            content=
-            f"Here are the generated images for {ctx.author.mention}.\n- Prompt: `{prompt}`\n- Model: `"
-            f"Pollinations`",
-            files=image_files)
+            content=f"Here are the generated images for {ctx.author.mention}.\n- Prompt: `{prompt}`\n- Model: `"
+            f"Pollinations`", files=image_files)
 
         # Delete the local image files
         for image in image_files:
@@ -170,8 +165,7 @@ async def pollgen(ctx, *, prompt: str):
         await ctx.send("Error generating images. Please try again later.")
 
 
-@bot.hybrid_command(name="imaginepy",
-                    description="Generate image with imaginepy")
+@bot.hybrid_command(name="imaginepy", description="Generate image with imaginepy")
 @app_commands.choices(style=[
     app_commands.Choice(name="Imagine V4 Beta", value="IMAGINE_V4_Beta"),
     app_commands.Choice(name="Realistic", value="REALISTIC"),
@@ -225,8 +219,7 @@ async def imaginepy(ctx, prompt: str, style: app_commands.Choice[str],
     await temp_message.delete()
 
 
-@bot.hybrid_command(name="upscale",
-                    description="Upscale an image with imaginepy")
+@bot.hybrid_command(name="upscale", description="Upscale an image with imaginepy")
 async def upscale(ctx, file: discord.Attachment):
     await ctx.defer()
     image_filename = await upscale_image(file)
