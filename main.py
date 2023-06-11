@@ -90,11 +90,11 @@ async def imagine(ctx, *, prompt: str, model: app_commands.Choice[str]):
     model_name = 'Anything Diffusion' if model.value == 'anything_diffusion' else 'Stable Diffusion'
 
     temp_message = await ctx.send(
-        f"{ctx.message.author.mention} is generating `{prompt}` with "
+        f"{ctx.message.author.mention} is generating ```{prompt}``` with "
         f"{model_name}! "
         f"{line_junk}https://tenor.com/view/loading-gif-9212724")
 
-    print(f"{ctx.message.author.mention} is generating `{prompt}` with "
+    print(f"{ctx.message.author.mention} is generating ```{prompt}``` with "
           f"{model_name}!")
 
     if model.value == "stable_diffusion":
@@ -109,7 +109,7 @@ async def imagine(ctx, *, prompt: str, model: app_commands.Choice[str]):
 
     # await ctx.send(files=image_files)
     await ctx.send(
-        f"Here are the generated images for {ctx.author.mention}.\n- Prompt: `{prompt}`\n- Model: `"
+        f"Here are the generated images for {ctx.author.mention}.\n- Prompt: ```{prompt}```\n- Model: `"
         f"{model_name}`",
         files=image_files)
 
@@ -126,7 +126,7 @@ async def pollgen(ctx, *, prompt: str):
     images = []
 
     temp_message = await ctx.send(
-        f"{ctx.author.mention} is generating `{prompt}` with Pollinations! {line_junk}"
+        f"{ctx.author.mention} is generating ```{prompt}``` with Pollinations! {line_junk}"
         f"https://tenor.com/view/loading-gif-9212724")
 
     # Generate four images with the given prompt
@@ -156,7 +156,7 @@ async def pollgen(ctx, *, prompt: str):
         # Send all image files as attachments in a single message
         image_files = [discord.File(image) for image in images]
         await ctx.send(
-            content=f"Here are the generated images for {ctx.author.mention}.\n- Prompt: `{prompt}`\n- Model: `"
+            content=f"Here are the generated images for {ctx.author.mention}.\n- Prompt: ```{prompt}```\n- Model: `"
             f"Pollinations`", files=image_files)
 
         # Delete the local image files
@@ -204,13 +204,13 @@ async def pollgen(ctx, *, prompt: str):
 async def imaginepy(ctx, prompt: str, style: app_commands.Choice[str],
                     ratio: app_commands.Choice[str]):
     temp_message = await ctx.send(
-        f"{ctx.author.mention} is generating `{prompt}` with `Imaginepy`! {line_junk}"
+        f"{ctx.author.mention} is generating ```{prompt}``` with `Imaginepy`! {line_junk}"
         f"https://tenor.com/view/loading-gif-9212724")
     filename = await generate_image_with_imaginepy(prompt, style.value,
                                                    ratio.value)
     await ctx.send(
         content=
-        f"Here is the generated image for {ctx.author.mention}.\n- Prompt: `{prompt}`\n- Style: `"
+        f"Here is the generated image for {ctx.author.mention}.\n- Prompt: ```{prompt}```\n- Style: `"
         f"{style.name}`",
         file=discord.File(filename))
     os.remove(filename)
