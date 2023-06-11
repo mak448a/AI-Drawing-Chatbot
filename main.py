@@ -35,7 +35,7 @@ bot = commands.Bot(command_prefix="!", intents=intents)
 
 @bot.event
 async def on_ready():
-    await bot.tree.sync()
+    # await bot.tree.sync()
     await bot.change_presence(activity=discord.Game(
         name="Type / to see commands"))
     print(f"{bot.user.name} has connected to Discord!")
@@ -53,6 +53,7 @@ async def on_message(message):
 
     if message.author == bot.user:
         return
+
     if is_replit and config["model"] == "GPT4All":
         print("You cannot use GPT4All with Replit.")
         return
@@ -202,8 +203,6 @@ async def pollgen(ctx, *, prompt: str):
 ])
 async def imaginepy(ctx, prompt: str, style: app_commands.Choice[str],
                     ratio: app_commands.Choice[str]):
-    # temp_message =
-    # await ctx.send("https://cdn.discordapp.com/emojis/1075796965515853955.gif?size=96&quality=lossless")
     temp_message = await ctx.send(
         f"{ctx.author.mention} is generating `{prompt}` with `Imaginepy`! {line_junk}"
         f"https://tenor.com/view/loading-gif-9212724")
@@ -226,6 +225,13 @@ async def upscale(ctx, file: discord.Attachment):
 
     await ctx.send(file=discord.File(f"{image_filename}"))
     os.remove(image_filename)
+
+
+@bot.hybrid_command(name="sync", description="Sync commands")
+async def sync(ctx):
+    await ctx.defer()
+    await bot.tree.sync()
+    await ctx.send("Successfully synced commands!")
 
 
 if is_replit:
