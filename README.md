@@ -70,7 +70,7 @@ python -m venv venv
 venv\Scripts\activate.bat
 pip install -r requirements.txt
 ```
-8. Rename `example_config.json` to `config.json` and edit as necessary. To change the bot to GPT4All, set `"model"` to `"GPT4All"`.
+8. Rename `example_config.json` to `config.json`. Edit this file however you like. See [Configuration](#Configuration).
 9. Run the bot and invite it with the link it provides.
 10. Type / in the message box and start messing around with the commands!
 
