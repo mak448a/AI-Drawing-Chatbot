@@ -10,7 +10,7 @@ app = Flask('')
 @app.route('/')
 def home():
     repl_owner = os.environ.get('REPL_OWNER')
-    return f'{repl_owner} is you!'
+    return f'{repl_owner} is the repl owner!'
 
 
 def run():
