@@ -1,15 +1,16 @@
 from utils import bot_token, config, line_junk, FakeCtx
 
-# Figure out which model the user specified
-if config["model"] == "GPT4All":
-    # GPT4All
-    from gpt_utils import generate_message
-elif config["model"] == "ChatGPT":
-    # ChatGPT
-    from poe_utils import generate_message
-else:
-    # Fallback on ChatGPT
-    from poe_utils import generate_message
+if not config["chatbot"]:
+    # Figure out which model the user specified
+    if config["model"] == "GPT4All":
+        # GPT4All
+        from gpt_utils import generate_message
+    elif config["model"] == "ChatGPT":
+        # ChatGPT
+        from poe_utils import generate_message
+    else:
+        # Fallback on ChatGPT
+        from poe_utils import generate_message
 
 from replit_detector import is_replit
 
@@ -50,12 +51,12 @@ async def on_ready():
 async def on_message(message):
     if str(bot.user.id) not in message.content:
         return
-
-    if message.author == bot.user:
+    if not config["chatbot"]:
         return
-
     if is_replit and config["model"] == "GPT4All":
         print("You cannot use GPT4All with Replit.")
+        return
+    if message.author == bot.user:
         return
 
     cleaned_message = message.content.replace(f"<@{bot.user.id}>", "")
