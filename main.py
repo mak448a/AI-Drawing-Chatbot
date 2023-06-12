@@ -94,7 +94,7 @@ async def imagine(ctx, *, prompt: str, model: app_commands.Choice[str]):
     temp_message = await ctx.send(
         f"{ctx.message.author.mention} is generating ```{prompt}``` with "
         f"{model_name}! "
-        f"{line_junk}https://tenor.com/view/loading-gif-9212724")
+        f"{line_junk}{config['loading_gif']}")
 
     print(f"{ctx.message.author.mention} is generating ```{prompt}``` with "
           f"{model_name}!")
@@ -129,7 +129,7 @@ async def imaginepoly(ctx, *, prompt: str):
 
     temp_message = await ctx.send(
         f"{ctx.author.mention} is generating ```{prompt}``` with Pollinations! {line_junk}"
-        f"https://tenor.com/view/loading-gif-9212724")
+        f"{config['loading_gif']}")
 
     # Generate four images with the given prompt
     i = 0
@@ -207,7 +207,7 @@ async def imaginepy(ctx, prompt: str, style: app_commands.Choice[str],
                     ratio: app_commands.Choice[str]):
     temp_message = await ctx.send(
         f"{ctx.author.mention} is generating ```{prompt}``` with `Imaginepy`! {line_junk}"
-        f"https://tenor.com/view/loading-gif-9212724")
+        f"{config['loading_gif']}")
     filename = await generate_image_with_imaginepy(prompt, style.value,
                                                    ratio.value)
     await ctx.send(

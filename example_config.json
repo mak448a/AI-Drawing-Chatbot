@@ -1,4 +1,5 @@
 {
   "chatbot": true,
-  "model": "ChatGPT"
+  "model": "ChatGPT",
+  "loading_gif": "https://tenor.com/view/loading-gif-9212724"
 }
