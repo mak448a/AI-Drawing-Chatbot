@@ -76,6 +76,10 @@ async def on_message(message):
         # Parse the draw tag
         prompt = msg.split("<draw>")[1].split("</draw>")[0]
         # print(prompt)
+
+        print(f"{message.author.mention} is generating ```{prompt}``` with "
+              f"`Imaginepy`!")
+
         await imaginepy(
             FakeCtx(message),
             prompt,
@@ -86,6 +90,8 @@ async def on_message(message):
 @bot.hybrid_command(name="imagine_horde", description="Generate an image with Stable Horde")
 @app_commands.choices(model=[
     app_commands.Choice(name="Stable Diffusion", value="stable_diffusion_2.1"),
+    app_commands.Choice(name="Deliberate", value="Deliberate"),
+    app_commands.Choice(name="Original Stable Diffusion", value="stable_diffusion"),
     app_commands.Choice(name="Anything Diffusion", value="Anything Diffusion"),
     app_commands.Choice(name="Realistic Vision", value="Realistic Vision")
 ])
