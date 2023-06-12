@@ -16,7 +16,8 @@ This project uses lots of APIs. As a result, you will not need a powerful comput
 2. [Notes](#Notes)
 3. [Prerequisites](#Prerequisites)
 4. [Setup](#Setup)
-5. [Generate images faster with Stable Horde](#Generate-images-faster-with-Stable-Horde)
+5. [Configuration](#Configuration)
+6. [Generate images faster with Stable Horde](#Generate-images-faster-with-Stable-Horde)
 
 
 ## Features
@@ -32,7 +33,7 @@ This project uses lots of APIs. As a result, you will not need a powerful comput
 - ChatGPT is the fastest model that you can use.
 - When you use Stable Horde to generate images, your prompts are sent to Stable Horde, as listed in their [privacy policy](https://stablehorde.net/privacy). 
 - The chatbot may not work as expected if multiple users are chatting with it at once. 
-- When usnig Replit, GPT4All cannot be used.
+- When using Replit, GPT4All cannot be used.
 - When using Replit, you must input your .env variables in the `Secrets` button on Replit.
 
 
@@ -73,6 +74,36 @@ pip install -r requirements.txt
 8. Rename `example_config.json` to `config.json` and edit as necessary. To change the bot to GPT4All, set `"model"` to `"GPT4All"`.
 9. Run the bot and invite it with the link it provides.
 10. Type / in the message box and start messing around with the commands!
+
+
+## Configuration
+<details><summary>Configuring chat model</summary>
+Go to <code>config.json</code> and set the key <code>"model"</code> to the model you want.
+
+**Available Models**
+- ChatGPT
+- GPT4All
+
+When you are done, the edited line should look like this:
+
+<code>"model": "ChatGPT",</code>
+</details>
+<details><summary>Disable chatbot</summary>
+Go to <code>config.json</code> and set the key <code>"chatbot"</code> to false.
+
+It should look like this:
+
+<code>"chatbot": false,</code>
+</details>
+<details><summary>Change loading GIF</summary>
+Go to <code>config.json</code> and set the key <code>"loading_gif"</code> to any GIF on Tenor you want!
+
+It should look like this:
+
+<code>"loading_gif": "https://tenor.com/your/favorite/loading/gif"
+</code>
+</details>
+
 
 
 ## Generate images faster with Stable Horde
