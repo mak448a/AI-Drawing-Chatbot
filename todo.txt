@@ -1,3 +1,2 @@
 Add negative prompts
 Use logging
-Add config
