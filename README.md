@@ -48,7 +48,6 @@ This project assumes that:
 
 ## Setup
 1. Create a Discord Bot and grab the token. Make sure to switch on Message Content Intent in the `Bot` tab of the [Developer Portal](https://discord.com/developers/applications).
-Make sure to switch on Message Content Intent in the Bot tab of the Developer Portal.
 2. Grab an API key from Stable Horde [at their register page](https://stablehorde.net/register).
 3. Rename `example.env` to `.env` and place your bot token and your API key in under `API_KEY`.
 4. [Register](https://poe.com) for Poe and open inspect tool. [Find your token](https://github.com/ading2210/poe-api#finding-your-token) and place it under `POE_TOKEN` in your `.env` file.
