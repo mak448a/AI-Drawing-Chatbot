@@ -88,7 +88,7 @@ async def on_message(message):
     app_commands.Choice(name="Stable Diffusion", value="stable_diffusion"),
     app_commands.Choice(name="Anything Diffusion", value="anything_diffusion")
 ])
-async def imagine(ctx, *, prompt: str, model: app_commands.Choice[str]):
+async def imagine_horde(ctx, *, prompt: str, model: app_commands.Choice[str]):
     reply = await ctx.send(
         f"{ctx.message.author.mention} is generating ```{prompt}``` with "
         f"{model.name}! "
@@ -98,26 +98,26 @@ async def imagine(ctx, *, prompt: str, model: app_commands.Choice[str]):
           f"{model.name}!")
 
     if model.value == "stable_diffusion":
-        image_files, file_uuid = await generate_with_stable_horde(
+        image_files, images = await generate_with_stable_horde(
             prompt, False, ctx)
     elif model.value == "anything_diffusion":
-        image_files, file_uuid = await generate_with_stable_horde(
+        image_files, images = await generate_with_stable_horde(
             prompt, True, ctx)
     else:
         print("This shouldn't happen, why did this happen?")
         return
 
     await reply.edit(
-        f"Here are the generated images for {ctx.author.mention}.\n- Prompt: ```{prompt}```\n- Model: `"
+        content=f"Here are the generated images for {ctx.author.mention}.\n- Prompt: ```{prompt}```\n- Model: `"
         f"{model.name}`",
         attachments=image_files)
 
-    for i in range(4):
-        os.remove(f"{i}_{file_uuid}.png")
+    for image in images:
+        os.remove(image)
 
 
 @bot.hybrid_command(name="imagine_poly", description="Generate image using pollinations")
-async def imaginepoly(ctx, *, prompt: str):
+async def imagine_poly(ctx, *, prompt: str):
     encoded_prompt = urllib.parse.quote(prompt)
     images = []
 

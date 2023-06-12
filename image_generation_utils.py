@@ -11,6 +11,7 @@ horde_generator = Generator()
 
 async def generate_with_stable_horde(prompt, use_anything_diffusion, ctx):
     file_uuid = uuid.uuid1()
+
     await horde_generator.generate(prompt, api_key, f"{file_uuid}.png", 4,
                                    f"{'Anything Diffusion' if use_anything_diffusion else 'stable_diffusion_2.1'}")
 
@@ -28,7 +29,7 @@ async def generate_with_stable_horde(prompt, use_anything_diffusion, ctx):
 
     image_files = [discord.File(image) for image in images]
 
-    return image_files, file_uuid
+    return image_files, images
 
 
 # Imaginepy function
