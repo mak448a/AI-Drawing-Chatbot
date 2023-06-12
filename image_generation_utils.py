@@ -9,11 +9,11 @@ from imaginepy import AsyncImagine, Style, Ratio
 horde_generator = Generator()
 
 
-async def generate_with_stable_horde(prompt, use_anything_diffusion, ctx):
+async def generate_with_stable_horde(prompt: str, model: str):
     file_uuid = uuid.uuid1()
 
     await horde_generator.generate(prompt, api_key, f"{file_uuid}.png", 4,
-                                   f"{'Anything Diffusion' if use_anything_diffusion else 'stable_diffusion_2.1'}")
+                                   f"{model}")
 
     # Loop until the images generate. We check for the fourth image.
     while True:

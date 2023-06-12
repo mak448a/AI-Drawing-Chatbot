@@ -85,8 +85,9 @@ async def on_message(message):
 
 @bot.hybrid_command(name="imagine_horde", description="Generate an image with Stable Diffusion")
 @app_commands.choices(model=[
-    app_commands.Choice(name="Stable Diffusion", value="stable_diffusion"),
-    app_commands.Choice(name="Anything Diffusion", value="anything_diffusion")
+    app_commands.Choice(name="Stable Diffusion", value="stable_diffusion_2.1"),
+    app_commands.Choice(name="Anything Diffusion", value="Anything Diffusion"),
+    app_commands.Choice(name="Realistic Vision", value="Realistic Vision")
 ])
 async def imagine_horde(ctx, *, prompt: str, model: app_commands.Choice[str]):
     reply = await ctx.send(
@@ -97,15 +98,8 @@ async def imagine_horde(ctx, *, prompt: str, model: app_commands.Choice[str]):
     print(f"{ctx.message.author.mention} is generating ```{prompt}``` with "
           f"{model.name}!")
 
-    if model.value == "stable_diffusion":
-        image_files, images = await generate_with_stable_horde(
-            prompt, False, ctx)
-    elif model.value == "anything_diffusion":
-        image_files, images = await generate_with_stable_horde(
-            prompt, True, ctx)
-    else:
-        print("This shouldn't happen, why did this happen?")
-        return
+    image_files, images = await generate_with_stable_horde(
+        prompt, model.value)
 
     await reply.edit(
         content=f"Here are the generated images for {ctx.author.mention}.\n- Prompt: ```{prompt}```\n- Model: `"
@@ -223,6 +217,7 @@ async def sync(ctx):
     await ctx.defer()
     await bot.tree.sync()
     await ctx.send("Successfully synced commands!")
+    print("Synced commands!")
 
 
 if is_replit:
