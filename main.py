@@ -83,7 +83,7 @@ async def on_message(message):
             app_commands.Choice(name="1x1", value="RATIO_1X1"))
 
 
-@bot.hybrid_command(name="imagine_horde", description="Generate an image with Stable Diffusion")
+@bot.hybrid_command(name="imagine_horde", description="Generate an image with Stable Horde")
 @app_commands.choices(model=[
     app_commands.Choice(name="Stable Diffusion", value="stable_diffusion_2.1"),
     app_commands.Choice(name="Anything Diffusion", value="Anything Diffusion"),
