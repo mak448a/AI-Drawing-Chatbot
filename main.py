@@ -122,8 +122,8 @@ async def imagine(ctx, *, prompt: str, model: app_commands.Choice[str]):
         os.remove(f"{i}_{file_uuid}.png")
 
 
-@bot.hybrid_command(name="pollgen", description="Generate image using pollinations")
-async def pollgen(ctx, *, prompt: str):
+@bot.hybrid_command(name="imaginepoly", description="Generate image using pollinations")
+async def imaginepoly(ctx, *, prompt: str):
     encoded_prompt = urllib.parse.quote(prompt)
     images = []
 
