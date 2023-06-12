@@ -77,7 +77,9 @@ async def on_message(message):
         # print(prompt)
         await imaginepy(
             FakeCtx(message),
-            prompt, app_commands.Choice(name="Realistic", value="REALISTIC"),  # NOQA
+            prompt,
+            # app_commands.Choice(name="Realistic", value="REALISTIC"),  # NOQA
+            app_commands.Choice(name="Imagine V4 Beta", value="IMAGINE_V4_Beta"),
             app_commands.Choice(name="1x1", value="RATIO_1X1"))
 
 
