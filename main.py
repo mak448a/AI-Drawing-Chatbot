@@ -1,6 +1,6 @@
 from utils import bot_token, config, line_junk, FakeCtx
 
-if not config["chatbot"]:
+if config["chatbot"]:
     # Figure out which model the user specified
     if config["model"] == "GPT4All":
         # GPT4All
