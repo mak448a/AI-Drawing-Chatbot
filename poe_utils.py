@@ -1,10 +1,8 @@
 from utils import poe_key
 import poe
 
-# We use poe's built in bot builder for this.
 
 client = poe.Client(poe_key)
-# client.send_message("chinchilla", f)
 
 
 async def generate_message(prompt: str) -> str:
