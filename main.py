@@ -79,26 +79,23 @@ async def on_message(message):
         await imaginepy(
             FakeCtx(message),
             prompt,
-            # app_commands.Choice(name="Realistic", value="REALISTIC"),  # NOQA
             app_commands.Choice(name="Imagine V4 Beta", value="IMAGINE_V4_Beta"),
             app_commands.Choice(name="1x1", value="RATIO_1X1"))
 
 
-@bot.hybrid_command(name="imagine", description="Generate an image with Stable Diffusion")
+@bot.hybrid_command(name="imagine_horde", description="Generate an image with Stable Diffusion")
 @app_commands.choices(model=[
     app_commands.Choice(name="Stable Diffusion", value="stable_diffusion"),
     app_commands.Choice(name="Anything Diffusion", value="anything_diffusion")
 ])
 async def imagine(ctx, *, prompt: str, model: app_commands.Choice[str]):
-    model_name = 'Anything Diffusion' if model.value == 'anything_diffusion' else 'Stable Diffusion'
-
-    temp_message = await ctx.send(
+    reply = await ctx.send(
         f"{ctx.message.author.mention} is generating ```{prompt}``` with "
-        f"{model_name}! "
+        f"{model.name}! "
         f"{line_junk}{config['loading_gif']}")
 
     print(f"{ctx.message.author.mention} is generating ```{prompt}``` with "
-          f"{model_name}!")
+          f"{model.name}!")
 
     if model.value == "stable_diffusion":
         image_files, file_uuid = await generate_with_stable_horde(
@@ -110,25 +107,21 @@ async def imagine(ctx, *, prompt: str, model: app_commands.Choice[str]):
         print("This shouldn't happen, why did this happen?")
         return
 
-    # await ctx.send(files=image_files)
-    await ctx.send(
+    await reply.edit(
         f"Here are the generated images for {ctx.author.mention}.\n- Prompt: ```{prompt}```\n- Model: `"
-        f"{model_name}`",
-        files=image_files)
-
-    # Cleanup
-    await temp_message.delete()
+        f"{model.name}`",
+        attachments=image_files)
 
     for i in range(4):
         os.remove(f"{i}_{file_uuid}.png")
 
 
-@bot.hybrid_command(name="imaginepoly", description="Generate image using pollinations")
+@bot.hybrid_command(name="imagine_poly", description="Generate image using pollinations")
 async def imaginepoly(ctx, *, prompt: str):
     encoded_prompt = urllib.parse.quote(prompt)
     images = []
 
-    temp_message = await ctx.send(
+    reply = await ctx.send(
         f"{ctx.author.mention} is generating ```{prompt}``` with Pollinations! {line_junk}"
         f"{config['loading_gif']}")
 
@@ -152,21 +145,18 @@ async def imaginepoly(ctx, *, prompt: str):
         except (requests.exceptions.RequestException, ValueError, KeyError) as e:
             print(f"Error generating image: {e}")
 
-    # Delete the temporary message
-    await temp_message.delete()
-
     if images:
         # Send all image files as attachments in a single message
         image_files = [discord.File(image) for image in images]
-        await ctx.send(
+        await reply.edit(
             content=f"Here are the generated images for {ctx.author.mention}.\n- Prompt: ```{prompt}```\n- Model: `"
-            f"Pollinations`", files=image_files)
+            f"Pollinations`", attachments=image_files)
 
         # Delete the local image files
         for image in image_files:
             os.remove(image.filename)
     else:
-        await ctx.send("Error generating images. Please try again later.")
+        await reply.edit("Error generating images. Please try again later.")
 
 
 @bot.hybrid_command(name="imaginepy", description="Generate image with imaginepy")
@@ -206,19 +196,17 @@ async def imaginepoly(ctx, *, prompt: str):
 ])
 async def imaginepy(ctx, prompt: str, style: app_commands.Choice[str],
                     ratio: app_commands.Choice[str]):
-    temp_message = await ctx.send(
+    reply = await ctx.send(
         f"{ctx.author.mention} is generating ```{prompt}``` with `Imaginepy`! {line_junk}"
         f"{config['loading_gif']}")
     filename = await generate_image_with_imaginepy(prompt, style.value,
                                                    ratio.value)
-    await ctx.send(
+    await reply.edit(
         content=
         f"Here is the generated image for {ctx.author.mention}.\n- Prompt: ```{prompt}```\n- Style: `"
         f"{style.name}`",
-        file=discord.File(filename))
+        attachments=[discord.File(filename)])
     os.remove(filename)
-    await temp_message.edit(content=f"Finished image generation!")
-    await temp_message.delete()
 
 
 @bot.hybrid_command(name="upscale", description="Upscale an image with imaginepy")
