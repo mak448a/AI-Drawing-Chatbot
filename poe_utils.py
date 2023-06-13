@@ -11,3 +11,7 @@ async def generate_message(prompt: str) -> str:
         pass
     print(chunk["text"])
     return chunk["text"]
+
+
+async def clear_context() -> None:
+    client.send_chat_break("StableAssistant")

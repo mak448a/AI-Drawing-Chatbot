@@ -7,10 +7,10 @@ if config["chatbot"]:
         from gpt_utils import generate_message
     elif config["model"] == "ChatGPT":
         # ChatGPT
-        from poe_utils import generate_message
+        from poe_utils import generate_message, clear_context
     else:
         # Fallback on ChatGPT
-        from poe_utils import generate_message
+        from poe_utils import generate_message, clear_context
 
 from replit_detector import is_replit
 
@@ -224,6 +224,16 @@ async def sync(ctx):
     await bot.tree.sync()
     await ctx.send("Successfully synced commands!")
     print("Synced commands!")
+
+
+@bot.hybrid_command(name="clear_context", description="Clear the chat")
+async def clear(ctx):
+    await ctx.defer()
+    try:
+        await clear_context()
+        await ctx.send("Cleared the chat context!")
+    except:
+        pass
 
 
 if is_replit:
