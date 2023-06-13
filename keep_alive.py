@@ -4,17 +4,17 @@ from flask import Flask
 from threading import Thread
 import random
 
-app = Flask('')
+app = Flask("")
 
 
-@app.route('/')
+@app.route("/")
 def home():
-    repl_owner = os.environ.get('REPL_OWNER')
-    return f'{repl_owner} is the repl owner!'
+    repl_owner = os.environ.get("REPL_OWNER")
+    return f"{repl_owner} is the repl owner!"
 
 
 def run():
-    app.run(host='0.0.0.0', port=random.randint(2000, 9000))
+    app.run(host="0.0.0.0", port=random.randint(2000, 9000))
 
 
 def keep_alive():
