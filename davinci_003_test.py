@@ -9,8 +9,8 @@ bot = commands.Bot(command_prefix="!", intents=intents)
 
 
 async def generate_response(prompt):
-    base_url = "https://gpt4.gravityengine.cc/api/openai/"
-    error_base_url = "https://askgpt.cn/api/openai/"
+    base_url = "http://chat.darkflow.top/api/openai/"
+    error_base_url = "https://a.z-pt.com/api/openai/"
     arguments = "/v1/engines/text-davinci-003/completions"
     endpoint = base_url + arguments
 
