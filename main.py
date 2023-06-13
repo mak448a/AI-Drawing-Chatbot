@@ -81,7 +81,7 @@ async def on_message(message):
               f"`Imaginepy`!")
 
         await imaginepy(
-            FakeCtx(message),
+            FakeCtx(message),  # NOQA
             prompt,
             app_commands.Choice(name="Imagine V4 Beta", value="IMAGINE_V4_Beta"),
             app_commands.Choice(name="1x1", value="RATIO_1X1"))
