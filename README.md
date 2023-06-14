@@ -31,6 +31,7 @@ This project uses lots of APIs. As a result, you will not need a powerful comput
 ## Notes
 
 - ChatGPT is the fastest model that you can use.
+- Integrated drawing is only available for ChatGPT.
 - When you use Stable Horde to generate images, your prompts are sent to Stable Horde, as listed in their [privacy policy](https://stablehorde.net/privacy). 
 - The chatbot may not work as expected if multiple users are chatting with it at once. 
 - When using Replit, GPT4All cannot be used.
