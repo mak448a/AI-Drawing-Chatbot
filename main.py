@@ -8,6 +8,8 @@ if config["chatbot"]:
     elif config["model"] == "ChatGPT":
         # ChatGPT
         from poe_utils import generate_message, clear_context
+    elif config["model"] == "text-davinci-003":
+        from davinci_003_utils import generate_message, clear_context
     else:
         # Fallback on ChatGPT
         from poe_utils import generate_message, clear_context

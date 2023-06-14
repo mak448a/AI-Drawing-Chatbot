@@ -31,7 +31,7 @@ This project uses lots of APIs. As a result, you will not need a powerful comput
 ## Notes
 
 - ChatGPT is the fastest model that you can use.
-- Integrated drawing is only available for ChatGPT.
+- Integrated drawing is not available for GPT4All.
 - Please do not enter any personal information in the Chatbot or in the image generators,
 because your prompts are sent to various providers.
 - When you use Stable Horde to generate images, your prompts are sent to Stable Horde, as listed in their [privacy policy](https://stablehorde.net/privacy). 
@@ -85,7 +85,9 @@ Go to <code>config.json</code> and set the key <code>"model"</code> to the model
 **Available Models**
 - ChatGPT
 - GPT4All
+- text-davinci-003
 
+You must write the model exactly as it is written here.
 When you are done, the edited line should look like this:
 
 <code>"model": "ChatGPT",</code>

@@ -1,11 +1,5 @@
-from utils import bot_token
-import discord
 import aiohttp
-from discord.ext import commands
-
-intents = discord.Intents.default()
-intents.message_content = True
-bot = commands.Bot(command_prefix="!", intents=intents)
+import copy
 
 
 original_prompt = """You are Stable Assistant, a bot that is made to assist the users with various tasks, such as \
@@ -24,8 +18,10 @@ Hi, how can I assist you today?
 User: What's your name?
 My name is Stable Assistant and I'm here you help you out with whatever you want me to!"""
 
+original_prompt_backup = copy.copy(original_prompt)
 
-async def generate_response(prompt):
+
+async def generate_message(prompt):
     global original_prompt
     base_url = "http://chat.darkflow.top/api/openai/"
     error_base_url = "https://a.z-pt.com/api/openai/"
@@ -65,13 +61,6 @@ async def generate_response(prompt):
                 return response_data["choices"][0]["text"]
 
 
-@bot.event
-async def on_message(message):
-    if message.author == bot.user:
-        return
-    print("Generating from API...")
-    async with message.channel.typing():
-        await message.channel.send(await generate_response(message.content))
-
-
-bot.run(bot_token)
+async def clear_context() -> None:
+    global original_prompt
+    original_prompt = copy.copy(original_prompt_backup)
