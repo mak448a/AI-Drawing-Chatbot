@@ -197,7 +197,7 @@ async def imagine_poly(ctx, *, prompt: str):
 async def imaginepy(ctx, prompt: str, style: app_commands.Choice[str],
                     ratio: app_commands.Choice[str]):
     reply = await ctx.send(
-        f"{ctx.author.mention} is generating ```{prompt}``` with `Imaginepy`! {line_junk}"
+        f"{ctx.author.mention} is generating ```{prompt}``` with `Imaginepy` and `{style.value}`! {line_junk}"
         f"{config['loading_gif']}")
     filename = await generate_image_with_imaginepy(prompt, style.value,
                                                    ratio.value)
