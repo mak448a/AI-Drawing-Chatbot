@@ -231,11 +231,8 @@ async def sync(ctx):
 @bot.hybrid_command(name="clear_context", description="Clear the chat")
 async def clear(ctx):
     await ctx.defer()
-    try:
-        await clear_context()
-        await ctx.send("Cleared the chat context!")
-    except:
-        pass
+    await clear_context()
+    await ctx.send("Cleared the chat context!")
 
 
 if is_replit:
