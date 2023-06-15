@@ -9,8 +9,8 @@ with proper grammar; each sentence ending with a punctuation mark. Each person t
 Human: Hey!
 Stable Assistant: Hello! What can I assist you with today?"""
 
-
 remove_text = copy.copy(prompt)
+original_prompt = copy.copy(prompt)
 
 
 async def generate_message(user_input):
@@ -31,3 +31,9 @@ async def generate_message(user_input):
         prompt = "\n".join(prompt.split('\n')[2:])
         remove_text = "\n".join(remove_text.split('\n')[2:])
     return output_of_text
+
+
+async def clear_context():
+    global prompt, remove_text
+    prompt = copy.copy(original_prompt)
+    remove_text = copy.copy(original_prompt)

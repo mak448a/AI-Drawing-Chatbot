@@ -4,7 +4,7 @@ if config["chatbot"]:
     # Figure out which model the user specified
     if config["model"] == "GPT4All":
         # GPT4All
-        from gpt_utils import generate_message
+        from gpt_utils import generate_message, clear_context
     elif config["model"] == "ChatGPT":
         # ChatGPT
         from poe_utils import generate_message, clear_context
