@@ -88,6 +88,8 @@ Go to <code>config.json</code> and set the key <code>"model"</code> to the model
 - text-davinci-003
 
 You must write the model exactly as it is written here.
+When using ChatGPT, you must sign up for a Poe account.
+
 When you are done, the edited line should look like this:
 
 <code>"model": "ChatGPT",</code>
