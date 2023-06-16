@@ -4,15 +4,16 @@ if config["chatbot"]:
     # Figure out which model the user specified
     if config["model"] == "GPT4All":
         # GPT4All
-        from gpt_utils import generate_message, clear_context
+        from gpt_utils.gpt4all import generate_message, clear_context
     elif config["model"] == "ChatGPT":
         # ChatGPT
-        from poe_utils import generate_message, clear_context
+        from gpt_utils.poe_utils import generate_message, clear_context
     elif config["model"] == "text-davinci-003":
-        from davinci_003_utils import generate_message, clear_context
+        from gpt_utils.davinci_003_utils import generate_message, clear_context
     else:
         # Fallback on ChatGPT
-        from poe_utils import generate_message, clear_context
+        print("Configured model improperly!!!")
+        from gpt_utils.poe_utils import generate_message, clear_context
 
 from replit_detector import is_replit
 
