@@ -112,7 +112,7 @@ async def imagine_horde(ctx, *, prompt: str, model: app_commands.Choice[str]):
 
     await reply.edit(
         content=f"Here are the generated images for {ctx.author.mention}.\n- Prompt: ```{prompt}```\n- Model: `"
-        f"{model.name}`",
+                f"{model.name}`",
         attachments=image_files)
 
     for image in images:
@@ -153,7 +153,7 @@ async def imagine_poly(ctx, *, prompt: str):
         image_files = [discord.File(image) for image in images]
         await reply.edit(
             content=f"Here are the generated images for {ctx.author.mention}.\n- Prompt: ```{prompt}```\n- Model: `"
-            f"Pollinations`", attachments=image_files)
+                    f"Pollinations`", attachments=image_files)
 
         # Delete the local image files
         for image in image_files:
@@ -202,14 +202,16 @@ async def imaginepy(ctx, prompt: str, style: app_commands.Choice[str],
     reply = await ctx.send(
         f"{ctx.author.mention} is generating ```{prompt}``` with `Imaginepy` and `{style.value}`! {line_junk}"
         f"{config['loading_gif']}")
-    filename = await generate_image_with_imaginepy(prompt, style.value,
-                                                   ratio.value)
+    files = await generate_image_with_imaginepy(prompt, style.value,
+                                                ratio.value)
     await reply.edit(
         content=
         f"Here is the generated image for {ctx.author.mention}.\n- Prompt: ```{prompt}```\n- Style: `"
         f"{style.name}`",
-        attachments=[discord.File(filename)])
-    os.remove(filename)
+        attachments=files)
+
+    for image in files:
+        os.remove(image.filename)
 
 
 @bot.hybrid_command(name="upscale", description="Upscale an image with imaginepy")

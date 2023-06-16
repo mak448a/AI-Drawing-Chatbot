@@ -35,28 +35,39 @@ async def generate_with_stable_horde(prompt: str, model: str):
 # Imaginepy function
 async def generate_image_with_imaginepy(image_prompt, style_value, ratio_value):
     async_imagine = AsyncImagine()
-    filename = str(uuid.uuid4()) + ".png"
+
+    filenames = []
+    images = []
+
     style_enum = Style[style_value]
     ratio_enum = Ratio[ratio_value]
-    img_data = await async_imagine.sdprem(
-        prompt=image_prompt,
-        style=style_enum,
-        ratio=ratio_enum
-    )
-    if img_data is None:
-        print("An error occurred while generating the image.")
-        return
 
-    try:
-        with open(filename, mode="wb") as img_file:
-            img_file.write(img_data)
-    except Exception as e:
-        print(f"An error occurred while writing the image to file: {e}")
-        return None
+    for _ in range(4):
+        filenames.append(str(uuid.uuid4()) + ".png")
+        img_data = await async_imagine.sdprem(
+            prompt=image_prompt,
+            style=style_enum,
+            ratio=ratio_enum
+        )
+        images.append(img_data)
+
+    for i in images:
+        if i is None:
+            print("An error occurred while generating the images.")
+            return
+    for index, filename in enumerate(filenames):
+        try:
+            with open(filename, mode="wb") as img_file:
+                img_file.write(images[index])
+        except Exception as e:
+            print(f"An error occurred while writing the image to file: {e}")
+            return None
 
     await async_imagine.close()
 
-    return filename
+    image_files = [discord.File(file) for file in filenames]
+
+    return image_files
 
 
 async def upscale_image(image):
