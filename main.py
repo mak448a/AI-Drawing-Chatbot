@@ -12,7 +12,7 @@ if config["chatbot"]:
         from gpt_utils.davinci_003_utils import generate_message, clear_context
     else:
         # Fallback on ChatGPT
-        print("Configured model improperly!!!")
+        print("WARNING: Configured model improperly! Check config.json!")
         from gpt_utils.poe_utils import generate_message, clear_context
 
 from replit_detector import is_replit
