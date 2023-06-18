@@ -94,9 +94,11 @@ async def on_message(message):
 @app_commands.choices(model=[
     app_commands.Choice(name="Stable Diffusion", value="stable_diffusion_2.1"),
     app_commands.Choice(name="Deliberate", value="Deliberate"),
-    app_commands.Choice(name="Original Stable Diffusion", value="stable_diffusion"),
     app_commands.Choice(name="Anything Diffusion", value="Anything Diffusion"),
-    app_commands.Choice(name="Realistic Vision", value="Realistic Vision")
+    app_commands.Choice(name="Realistic Vision", value="Realistic Vision"),
+    app_commands.Choice(name="Dreamshaper", value="Dreamshaper"),
+    app_commands.Choice(name="Abyss OrangeMix", value="Abyss OrangeMix"),
+    app_commands.Choice(name="Original Stable Diffusion", value="stable_diffusion"),
 ],
 
 )
