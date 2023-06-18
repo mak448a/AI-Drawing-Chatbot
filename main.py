@@ -116,7 +116,7 @@ async def imagine_horde(ctx, *, prompt: str, model: app_commands.Choice[str], ne
 
     await reply.edit(
         content=f"Here are the generated images for {ctx.author.mention}.\n- Prompt: ```{prompt}```\n- Model: `"
-                f"{model.name}`\nNegative Prompt: ```{negative}```",
+                f"{model.name}`\n- Negative Prompt: ```{negative}```",
         attachments=image_files)
 
     for image in images:
