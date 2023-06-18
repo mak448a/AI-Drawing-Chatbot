@@ -97,8 +97,10 @@ async def on_message(message):
     app_commands.Choice(name="Original Stable Diffusion", value="stable_diffusion"),
     app_commands.Choice(name="Anything Diffusion", value="Anything Diffusion"),
     app_commands.Choice(name="Realistic Vision", value="Realistic Vision")
-])
-async def imagine_horde(ctx, *, prompt: str, model: app_commands.Choice[str]):
+],
+
+)
+async def imagine_horde(ctx, *, prompt: str, model: app_commands.Choice[str], negative: str = None):
     reply = await ctx.send(
         f"{ctx.message.author.mention} is generating ```{prompt}``` with "
         f"{model.name}! "
@@ -108,11 +110,11 @@ async def imagine_horde(ctx, *, prompt: str, model: app_commands.Choice[str]):
           f"{model.name}!")
 
     image_files, images = await generate_with_stable_horde(
-        prompt, model.value)
+        f"{prompt}{'###' if negative else ''}{negative}", model.value)
 
     await reply.edit(
         content=f"Here are the generated images for {ctx.author.mention}.\n- Prompt: ```{prompt}```\n- Model: `"
-                f"{model.name}`",
+                f"{model.name}`\nNegative Prompt: ```{negative}```",
         attachments=image_files)
 
     for image in images:
