@@ -98,6 +98,7 @@ async def on_message(message):
     app_commands.Choice(name="Realistic Vision", value="Realistic Vision"),
     app_commands.Choice(name="Dreamshaper", value="Dreamshaper"),
     app_commands.Choice(name="Abyss OrangeMix", value="Abyss OrangeMix"),
+    app_commands.Choice(name="OpenJourney Diffusion", value="OpenJourney Diffusion"),
     app_commands.Choice(name="Original Stable Diffusion", value="stable_diffusion"),
 ],
 
