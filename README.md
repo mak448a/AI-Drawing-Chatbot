@@ -35,6 +35,8 @@ I am not responsible if your Poe account gets banned, since using Poe in program
 
 - ChatGPT is the fastest model that you can use.
 - Integrated drawing is not available for GPT4All.
+- Do not input any personal information on the `/imagine_poly` command because your generated image will be displayed
+on their official frontpage.
 - Please do not enter any personal information in the Chatbot or in the image generators,
 because your prompts are sent to various providers.
 - When you use Stable Horde to generate images, your prompts are sent to Stable Horde, as listed in their [privacy policy](https://stablehorde.net/privacy). 
