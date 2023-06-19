@@ -1,4 +1,4 @@
-# Stable Diffusion Bot
+# AI Drawing ChatBot
 
 ![](https://img.shields.io/github/license/mak448a/Stable-Diffusion-Bot)
 ![](https://img.shields.io/github/contributors/mak448a/Stable-Diffusion-Bot)
