@@ -126,7 +126,7 @@ async def imagine_horde(ctx, *, prompt: str, model: app_commands.Choice[str], ne
         os.remove(image)
 
 
-@bot.hybrid_command(name="imagine_poly", description="Generate image using pollinations")
+@bot.hybrid_command(name="imagine_poly", description="Generate image using Pollinations")
 async def imagine_poly(ctx, *, prompt: str):
     encoded_prompt = urllib.parse.quote(prompt)
     images = []
