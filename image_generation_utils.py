@@ -1,8 +1,11 @@
 from horde_module import Generator
 from utils import api_key
+
 import uuid
 import asyncio
+import logging
 import os
+
 import discord
 from imaginepy import AsyncImagine, Style, Ratio
 
@@ -53,14 +56,14 @@ async def generate_image_with_imaginepy(image_prompt, style_value, ratio_value):
 
     for i in images:
         if i is None:
-            print("An error occurred while generating the images.")
+            logging.error("An error occurred while generating the images.")
             return
     for index, filename in enumerate(filenames):
         try:
             with open(filename, mode="wb") as img_file:
                 img_file.write(images[index])
         except Exception as e:
-            print(f"An error occurred while writing the image to file: {e}")
+            logging.error(f"An error occurred while writing the image to file: {e}")
             return None
 
     await async_imagine.close()

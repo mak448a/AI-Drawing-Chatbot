@@ -1,4 +1,5 @@
 from utils import bot_token, config, line_junk, FakeCtx
+import logging
 
 if config["chatbot"]:
     # Figure out which model the user specified
@@ -12,7 +13,7 @@ if config["chatbot"]:
         from gpt_utils.davinci_003_utils import generate_message, clear_context
     else:
         # Fallback on ChatGPT
-        print("WARNING: Configured model improperly! Check config.json!")
+        logging.warning("Configured model improperly! Check config.json!")
         from gpt_utils.poe_utils import generate_message, clear_context
 
 from replit_detector import is_replit
@@ -39,6 +40,8 @@ bot = commands.Bot(command_prefix="!", intents=intents)
 
 @bot.event
 async def on_ready():
+    # Uncomment on first run
+    logging.info("On first run, uncomment bot.tree.sync in on_ready function (main.py).")
     # await bot.tree.sync()
     await bot.change_presence(activity=discord.Game(
         name="Type / to see commands"))
@@ -57,7 +60,7 @@ async def on_message(message):
     if not config["chatbot"]:
         return
     if is_replit and config["model"] == "GPT4All":
-        print("You cannot use GPT4All with Replit.")
+        logging.error("You cannot use GPT4All with Replit.")
         return
     if message.author == bot.user:
         return
@@ -78,10 +81,9 @@ async def on_message(message):
     if "<draw>" in msg and "</draw>" in msg:
         # Parse the draw tag
         prompt = msg.split("<draw>")[1].split("</draw>")[0]
-        # print(prompt)
 
-        print(f"{message.author.mention} is generating ```{prompt}``` with "
-              f"`Imaginepy`!")
+        logging.debug(f"{message.author.mention} is generating ```{prompt}``` with "
+                      f"`Imaginepy`!")
 
         await imaginepy(
             FakeCtx(message),  # NOQA
@@ -109,8 +111,8 @@ async def imagine_horde(ctx, *, prompt: str, model: app_commands.Choice[str], ne
         f"{model.name}! "
         f"{line_junk}{config['loading_gif']}")
 
-    print(f"{ctx.message.author.mention} is generating ```{prompt}``` with "
-          f"{model.name}!")
+    logging.debug(f"{ctx.message.author.mention} is generating ```{prompt}``` with "
+                  f"{model.name}!")
 
     image_files, images = await generate_with_stable_horde(
         f"{prompt}{'###' if negative else ''}{negative}", model.value)
