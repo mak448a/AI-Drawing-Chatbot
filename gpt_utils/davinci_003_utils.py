@@ -1,5 +1,8 @@
 import aiohttp
 import copy
+import logging
+
+logging.warning("You configured the model as text-davinci-003 which doesn't work!")
 
 
 original_prompt = """You are Stable Assistant, a bot that is made to assist the users with various tasks, such as \

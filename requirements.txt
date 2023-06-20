@@ -5,10 +5,11 @@ imaginepy~=1.1.0
 pyyaml~=6.0
 Pillow~=9.5.0
 urllib3~=1.26.16
+aiohttp~=3.8.4
 
 # Language models
 poe-api~=0.4.6 # For ChatGPT
 gpt4all~=0.2.1 # For GPT4All
 
 # Only for Replit keep_alive
-flask
+flask~=2.3.2
