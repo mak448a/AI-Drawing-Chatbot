@@ -67,7 +67,7 @@ This project assumes that:
 5. Place your Discord bot token under `BOT_TOKEN`.
 6. Clone the Stable Horde module:
 ```shell
-git clone 'https://github.com/mak448a/horde_module' --depth=1
+git clone https://github.com/mak448a/horde_module --depth=1
 ```
 7. Create venv and install dependencies:
 
