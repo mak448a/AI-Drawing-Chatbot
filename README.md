@@ -13,6 +13,10 @@ I am not responsible if your Poe account gets banned, since using Poe in program
 
 ![](demo.png)
 
+## Broken stuff
+- Using text-davinci-003 as the chatbot model
+- Using Imaginepy
+- Using chatbot with image generation (hopefully will be fixed soon)
 
 ## Table of Contents
 1. [Features](#Features)
@@ -82,6 +86,7 @@ pip install -r requirements.txt
 8. Rename `example_config.json` to `config.json`. Edit this file however you like. See [Configuration](#Configuration).
 9. Run the bot and invite it with the link it provides.
 10. Type / in the message box and try out the commands!
+11. You can chat with the bot by @pinging the bot and typing your message.
 
 
 ## Configuration
