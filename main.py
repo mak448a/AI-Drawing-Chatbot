@@ -40,9 +40,12 @@ bot = commands.Bot(command_prefix="!", intents=intents)
 
 @bot.event
 async def on_ready():
-    # Uncomment on first run
-    logging.info("On first run, uncomment bot.tree.sync in on_ready function (main.py).")
-    # await bot.tree.sync()
+    if config["sync"]:
+        logging.info("Syncing bot commands, please be patient!")
+        await bot.tree.sync()
+    else:
+        logging.info("Not syncing bot commands")
+
     await bot.change_presence(activity=discord.Game(
         name="Type / to see commands"))
     print(f"{bot.user.name} has connected to Discord!")

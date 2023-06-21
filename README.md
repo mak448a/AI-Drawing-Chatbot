@@ -81,7 +81,7 @@ pip install -r requirements.txt
 ```
 8. Rename `example_config.json` to `config.json`. Edit this file however you like. See [Configuration](#Configuration).
 9. Run the bot and invite it with the link it provides.
-10. Type / in the message box and start messing around with the commands!
+10. Type / in the message box and try out the commands!
 
 
 ## Configuration
@@ -112,7 +112,7 @@ Go to <code>config.json</code> and set the key <code>"loading_gif"</code> to any
 
 It should look like this:
 
-<code>"loading_gif": "https://tenor.com/your/favorite/loading/gif"
+<code>"loading_gif": "https://tenor.com/your/favorite/loading/gif",
 </code>
 </details>
 
