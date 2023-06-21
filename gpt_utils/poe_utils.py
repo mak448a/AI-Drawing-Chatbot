@@ -9,7 +9,6 @@ async def generate_message(prompt: str) -> str:
     chunk = None
     for chunk in client.send_message("StableAssistant", prompt):
         pass
-    print(chunk["text"])
     return chunk["text"]
 
 
