@@ -120,6 +120,13 @@ It should look like this:
 <code>"loading_gif": "https://tenor.com/your/favorite/loading/gif",
 </code>
 </details>
+<details><summary>Turn off command syncing (makes bot load faster)</summary>
+Go to <code>config.json</code> and set the key <code>"sync"</code> to `false`.
+
+It should look like this:
+
+<code>"sync": false</code>
+</details>
 
 
 
