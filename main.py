@@ -48,12 +48,12 @@ async def on_ready():
 
     await bot.change_presence(activity=discord.Game(
         name="Type / to see commands"))
-    print(f"{bot.user.name} has connected to Discord!")
+    logging.debug(f"{bot.user.name} has connected to Discord!")
     invite_link = discord.utils.oauth_url(
         bot.user.id,
         permissions=discord.Permissions(administrator=False),
         scopes=("bot", "applications.commands"))
-    print(f"Invite link: {invite_link}")
+    logging.info(f"Invite link: {invite_link}")
 
 
 @bot.event
@@ -88,11 +88,11 @@ async def on_message(message):
         logging.debug(f"{message.author.mention} is generating ```{prompt}``` with "
                       f"`Imaginepy`!")
 
-        await imaginepy(
+        await imagine_horde(
             FakeCtx(message),  # NOQA
-            prompt,
-            app_commands.Choice(name="Imagine V4 Beta", value="IMAGINE_V4_Beta"),
-            app_commands.Choice(name="1x1", value="RATIO_1X1"))
+            prompt=prompt,
+            model=app_commands.Choice(name="Stable Diffusion", value="stable_diffusion_2.1")
+        )
 
 
 @bot.hybrid_command(name="imagine_horde", description="Generate an image with Stable Horde")
