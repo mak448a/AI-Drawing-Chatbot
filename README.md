@@ -120,7 +120,7 @@ It should look like this:
 </code>
 </details>
 <details><summary>Turn off command syncing (makes bot load faster)</summary>
-Go to <code>config.json</code> and set the key <code>"sync"</code> to `false`.
+Go to <code>config.json</code> and set the key <code>"sync"</code> to <code>false</code>.
 
 It should look like this:
 
