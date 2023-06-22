@@ -4,7 +4,7 @@ import json
 import logging
 import os
 
-logging.basicConfig(level=logging.DEBUG,
+logging.basicConfig(level=logging.INFO,
                     format="[%(levelname)s] %(message)s")
 
 if is_replit:
