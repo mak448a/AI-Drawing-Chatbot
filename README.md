@@ -15,6 +15,7 @@ I am not responsible if your Poe account gets banned, since using Poe in program
 
 ## Broken stuff
 - Using text-davinci-003 as the chatbot model
+- Using Imaginepy
 
 ## Table of Contents
 1. [Features](#Features)
