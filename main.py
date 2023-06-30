@@ -118,7 +118,7 @@ async def imagine_horde(ctx, *, prompt: str, model: app_commands.Choice[str], ne
                   f"{model.name}!")
 
     image_files, images = await generate_with_stable_horde(
-        f"{prompt}{'###' if negative else ''}{negative}", model.value)
+        f"{prompt}{'###' if negative else ''}{negative if negative else ''}", model.value)
 
     if negative:
         negative_string = f"\n- Negative Prompt: ```{negative}```"
