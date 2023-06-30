@@ -37,13 +37,13 @@ I am not responsible if your Poe account gets banned, since using Poe in program
 ## Notes
 
 - ChatGPT is the fastest model that you can use.
-- Integrated drawing is not available for GPT4All.
+- While generating a response with GPT4All, the program locks up.
 - Do not input any personal information on the `/imagine_poly` command because your generated image will be displayed
 on their official frontpage.
 - Please do not enter any personal information in the Chatbot or in the image generators,
 because your prompts are sent to various providers.
 - When you use Stable Horde to generate images, your prompts are sent to Stable Horde, as listed in their [privacy policy](https://stablehorde.net/privacy). 
-- The chatbot may not work as expected if multiple users are chatting with it at once. 
+- The chatbot may not work as expected if multiple users are chatting with it at once.
 - When using Replit, GPT4All cannot be used.
 - When using Replit, you must input your .env variables in the `Secrets` button on Replit.
 
