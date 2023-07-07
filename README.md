@@ -25,7 +25,7 @@ This project uses various APIs, allowing it to run efficiently on less powerful 
 6. [Generate images faster with Stable Horde](#Generate-images-faster-with-Stable-Horde)
 
 ## Features
-- ChatGPT chatbot that is integrated with Imaginepy
+- ChatGPT/GPT4All chatbot that is integrated with Stable Diffusion
 - 3 slash commands for generating images
 - Stable Diffusion
 - Anything Diffusion
