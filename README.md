@@ -23,7 +23,6 @@ This project uses various APIs, allowing it to run efficiently on less powerful 
 4. [Setup](#Setup)
 5. [Configuration](#Configuration)
 6. [Generate images faster with Stable Horde](#Generate-images-faster-with-Stable-Horde)
-7. [Docker Method](#Docker-Method)
 
 ## Features
 - ChatGPT chatbot that is integrated with Imaginepy
