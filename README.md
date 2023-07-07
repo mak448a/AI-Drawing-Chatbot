@@ -98,6 +98,7 @@ Please note that you need to replace the environment variable values in the `.en
 
 ## Configuration
 <details><summary>Configuring chat model</summary>
+
 Go to `config.json` and set the value of the key `"model"` to the desired model.
 
 **Available Models**
@@ -114,6 +115,7 @@ When you are done, the edited line should look like this:
 ```
 </details>
 <details><summary>Disable chatbot</summary>
+
 Go to `config.json` and set the value of the key `"chatbot"` to `false`.
 
 It should look like this:
@@ -122,6 +124,7 @@ It should look like this:
 ```
 </details>
 <details><summary>Change loading GIF</summary>
+
 Go to `config.json` and set the value of the key `"loading_gif"` to the URL of your preferred GIF from Tenor.
 
 It should look like this:
@@ -130,6 +133,7 @@ It should look like this:
 ```
 </details>
 <details><summary>Turn off command syncing (makes bot load faster)</summary>
+
 Go to `config.json` and set the value of the key `"sync"` to `false`.
 
 It should look like this:
