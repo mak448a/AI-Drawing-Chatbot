@@ -1,8 +1,4 @@
-# Use the official Python image as the base
-FROM python:3.12.0b3
-
-# Install necessary packages
-RUN apt-get update && apt-get install -y gcc libpq-dev
+FROM python:bullseye
 
 # Set the working directory inside the container
 WORKDIR /app
