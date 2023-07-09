@@ -52,7 +52,7 @@ because your prompts are sent to various providers.
 This project assumes that:
 - Python 3.8+ is installed and is on your PATH
 - Pip is installed
-- Python-venv is installed (only for Linux distros)
+- Python-venv is installed (only for certain Linux distros)
 - Git is installed
 - You know how to create a Discord Bot account
 - You know JSON syntax (It's basically a Python Dictionary)
