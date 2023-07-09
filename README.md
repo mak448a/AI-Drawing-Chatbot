@@ -27,7 +27,7 @@ I am not responsible if your Poe account gets banned, since using Poe in program
 
 
 ## Features
-- ChatGPT chatbot that is integrated with Imaginepy
+- ChatGPT chatbot that is integrated with Stable Diffusion
 - 3 slash commands for generating images
 - Stable Diffusion
 - Anything Diffusion
