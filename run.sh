@@ -3,19 +3,20 @@ FILE=venv/bin/activate
 
 if [ -d "horde_module" ]
 then
-  echo "Already setup."
+  pass
 else
-  echo "Not ready!"
   git clone https://github.com/mak448a/horde_module --depth=1
 fi
 
 
 if test -f "$FILE";
 then
-  echo "Already setup! Let's get running!"
+  # We're setup
   source venv/bin/activate
   python3 main.py
 else
+  # Not setup, let's get the tokens and API keys from the user
+  # Let's also install dependencies
   cp "example_config.json" "config.json"
   touch .env
   python3 -m venv venv
