@@ -1,3 +1,4 @@
+#! /bin/sh
 FILE=venv/bin/activate
 if test -f "$FILE";
 then
