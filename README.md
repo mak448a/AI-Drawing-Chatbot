@@ -21,9 +21,10 @@ I am not responsible if your Poe account gets banned, since using Poe in program
 1. [Features](#Features)
 2. [Notes](#Notes)
 3. [Prerequisites](#Prerequisites)
-4. [Setup](#Setup)
-5. [Configuration](#Configuration)
-6. [Generate images faster with Stable Horde](#Generate-images-faster-with-Stable-Horde)
+4. [Windows Setup](#windows-setup)
+5. [Linux/macOS Setup](#linux-and-macos-setup)
+6. [Configuration](#Configuration)
+7. [Generate images faster with Stable Horde](#Generate-images-faster-with-Stable-Horde)
 
 
 ## Features
@@ -58,7 +59,7 @@ This project assumes that:
 - You know JSON syntax (It's basically a Python Dictionary)
 
 
-## Setup
+## Windows Setup
 1. Create a Discord Bot and grab the token. Make sure to switch on Message Content Intent in the `Bot` tab of the [Developer Portal](https://discord.com/developers/applications).
 2. Grab an API key from Stable Horde [at their register page](https://stablehorde.net/register).
 3. Rename `example.env` to `.env` and place your bot token and your API key in under `API_KEY`.
@@ -69,23 +70,31 @@ This project assumes that:
 git clone https://github.com/mak448a/horde_module --depth=1
 ```
 7. Create venv and install dependencies:
-
-Linux or MacOS
-```shell
-python3 -m venv venv
-source venv/bin/activate
-pip install -r requirements.txt
-```
-Windows
 ```shell
 python -m venv venv
+```
+```shell
 venv\Scripts\activate.bat
+```
+```shell
 pip install -r requirements.txt
 ```
-8. Rename `example_config.json` to `config.json`. Edit this file however you like. See [Configuration](#Configuration).
-9. Run the bot and invite it with the link it provides.
-10. Type / in the message box and try out the commands!
-11. You can chat with the bot by @pinging the bot and typing your message.
+8. Invite the bot with the link it provides!
+9. You can chat with the bot by mentioning it and typing your message. 
+10. Edit `config.json` file however you like. See [Configuration](#Configuration).
+
+## Linux and macOS Setup
+1. Create a Discord Bot and grab the token. Make sure to switch on Message Content Intent in the `Bot` tab of the [Developer Portal](https://discord.com/developers/applications).
+2. Grab an API key from Stable Horde [at their register page](https://stablehorde.net/register).
+3. Rename `example.env` to `.env` and place your bot token and your API key in under `API_KEY`.
+4. [Register](https://poe.com) for Poe and open inspect tool. [Find your token](https://github.com/ading2210/poe-api#finding-your-token).
+5. Run the script!
+```shell
+sh run.sh
+```
+6. Invite the bot with the link it provides!
+7. You can chat with the bot by mentioning it and typing your message.
+8. Edit `config.json` file however you like. See [Configuration](#Configuration).
 
 
 ## Configuration

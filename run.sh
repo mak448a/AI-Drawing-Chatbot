@@ -1,5 +1,15 @@
 #! /bin/sh
 FILE=venv/bin/activate
+
+if [ -d "horde_module" ]
+then
+  echo "Already setup."
+else
+  echo "Not ready!"
+  git clone https://github.com/mak448a/horde_module --depth=1
+fi
+
+
 if test -f "$FILE";
 then
   echo "Already setup! Let's get running!"
