@@ -9,8 +9,6 @@ if config["chatbot"]:
     elif config["model"] == "ChatGPT":
         # ChatGPT
         from gpt_utils.poe_utils import generate_message, clear_context
-    elif config["model"] == "text-davinci-003":
-        from gpt_utils.davinci_003_utils import generate_message, clear_context
     else:
         # Fallback on ChatGPT
         logging.warning("Configured model improperly! Check config.json!")
