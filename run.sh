@@ -3,7 +3,7 @@ FILE=venv/bin/activate
 
 if [ -d "horde_module" ]
 then
-  pass
+  :
 else
   git clone https://github.com/mak448a/horde_module --depth=1
 fi
