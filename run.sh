@@ -15,7 +15,7 @@ then
   source venv/bin/activate
   python3 main.py
 else
-  # Not setup, let's get the tokens and API keys from the user
+  # We're not setup, let's get the tokens and API keys from the user
   # Let's also install dependencies
   cp "example_config.json" "config.json"
   touch .env
