@@ -21,9 +21,10 @@ I am not responsible if your Poe account gets banned, since using Poe in program
 2. [Notes](#Notes)
 3. [Prerequisites](#Prerequisites)
 4. [Windows Setup](#windows-setup)
-5. [Linux/macOS Setup](#linux-and-macos-setup)
-6. [Configuration](#Configuration)
-7. [Generate images faster with Stable Horde](#Generate-images-faster-with-Stable-Horde)
+5. [Docker Setup](#docker-setup)
+6. [Linux/macOS Setup](#linux-and-macos-setup)
+7. [Configuration](#Configuration)
+8. [Generate images faster with Stable Horde](#Generate-images-faster-with-Stable-Horde)
 
 
 ## Features
