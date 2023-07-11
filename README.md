@@ -39,6 +39,7 @@ I am not responsible if your Poe account gets banned, since using Poe in program
 ## Notes
 
 - ChatGPT is the fastest model that you can use.
+- GPT4All isn't nearly as smart as ChatGPT.
 - While generating a response with GPT4All, the Discord bot will lock up.
 No commands can be run until the bot finishes writing.
 - Do not input any personal information on the `/imagine_poly` command because your generated image will be displayed
