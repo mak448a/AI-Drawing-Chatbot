@@ -24,7 +24,8 @@ else
   pip install -r requirements.txt
   echo -n "Enter your bot token: "
   read TOKEN
-  echo "BOT_TOKEN=$TOKEN" >> .env
+  # Overwrite existing file if it exists
+  echo "BOT_TOKEN=$TOKEN" > .env
   echo -n "Enter your Poe token: "
   read POE_TOKEN
   echo "POE_TOKEN=$POE_TOKEN" >> .env
