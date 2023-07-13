@@ -1,6 +1,5 @@
 from utils import poe_key
 import poe
-import logging
 
 
 client = poe.Client(poe_key)
