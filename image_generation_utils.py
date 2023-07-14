@@ -15,8 +15,8 @@ horde_generator = Generator()
 async def generate_with_stable_horde(prompt: str, model: str):
     file_uuid = uuid.uuid1()
 
-    await horde_generator.generate(prompt, api_key, f"{file_uuid}.png", 4,
-                                   f"{model}")
+    await horde_generator.async_generate(prompt, api_key, f"{file_uuid}.png", 4,
+                                         f"{model}")
 
     # Loop until the images generate. We check for the fourth image.
     while True:
