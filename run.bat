@@ -27,5 +27,21 @@ if exist %FILE% (
   echo POE_TOKEN=%POE_TOKEN% >> .env
   set /p API_KEY=Enter your API Key: 
   echo API_KEY=%API_KEY% >> .env
+  if [%TOKEN%]==[] (
+    goto fail
+  )
+  if [%TOKEN%]==[] (
+    goto fail
+  )
+  if [%POE_TOKEN%]==[] (
+    goto fail
+  )
+  if [%API_KEY%]==[] (
+    goto fail
+  )
   python main.py
 )
+
+:fail
+echo ERROR! YOU DIDN'T ENTER ALL YOUR CREDENTIALS!
+EXIT /b 1
