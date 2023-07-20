@@ -24,13 +24,22 @@ else
   pip install -r requirements.txt
   echo -n "Enter your bot token: "
   read TOKEN
-  # Overwrite existing file if it exists
-  echo "BOT_TOKEN=$TOKEN" > .env
+
   echo -n "Enter your Poe token: "
   read POE_TOKEN
-  echo "POE_TOKEN=$POE_TOKEN" >> .env
+
   echo -n "Enter your API Key: "
   read API_KEY
+  # If token is none exit
+  if [ -z $POE_TOKEN ] || [-z $TOKEN] || [-z $API_KEY]
+  then
+    echo "ERROR! YOU DIDN'T ENTER ALL YOUR CREDENTIALS!"
+    exit 1
+  fi
+
+  # Overwrite existing file if it exists
+  echo "BOT_TOKEN=$TOKEN" > .env
+  echo "POE_TOKEN=$POE_TOKEN" >> .env
   echo "API_KEY=$API_KEY" >> .env
   python3 main.py
 fi
