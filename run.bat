@@ -21,11 +21,11 @@ if exist %FILE% (
   python -m venv venv
   call venv\Scripts\activate
   pip install -r requirements.txt
-  set /p TOKEN=Enter your bot token:
+  set /p TOKEN=Enter your bot token: 
   echo BOT_TOKEN=%TOKEN% > .env
-  set /p POE_TOKEN=Enter your Poe token:
+  set /p POE_TOKEN=Enter your Poe token: 
   echo POE_TOKEN=%POE_TOKEN% >> .env
-  set /p API_KEY=Enter your API Key:
+  set /p API_KEY=Enter your API Key: 
   echo API_KEY=%API_KEY% >> .env
   python main.py
 )
