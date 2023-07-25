@@ -157,6 +157,7 @@ It should look like this:
 
 <details><summary>Turn off command syncing (makes bot load faster)</summary>
 
+Please note that this will break the bot if you haven't run it for the first time.
 Go to `config.json` and set the key `"sync"` to `false`.
 
 It should look like this:
