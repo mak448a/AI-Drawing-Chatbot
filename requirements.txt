@@ -11,6 +11,7 @@ httpx~=0.24.1
 # Language models
 poe-api~=0.4.6 # For ChatGPT
 gpt4all~=0.2.1 # For GPT4All
+inquirerpy~=0.3.4
 
 # Only for Replit keep_alive
 flask~=2.3.2
