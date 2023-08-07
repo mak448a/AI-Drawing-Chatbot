@@ -96,6 +96,8 @@ async def on_message(message):
 @bot.hybrid_command(name="imagine_horde", description="Generate an image with Stable Horde")
 @app_commands.choices(model=[
     app_commands.Choice(name="Stable Diffusion", value="stable_diffusion_2.1"),
+    app_commands.Choice(name="SDXL Beta (WILL BE SHARED FOR IMPROVEMENT OF THE MODELS)",
+                        value="SDXL_beta::stability.ai#6901"),
     app_commands.Choice(name="Deliberate", value="Deliberate"),
     app_commands.Choice(name="Anything Diffusion", value="Anything Diffusion"),
     app_commands.Choice(name="Realistic Vision", value="Realistic Vision"),
