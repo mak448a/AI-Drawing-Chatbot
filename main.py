@@ -117,6 +117,7 @@ async def imagine_horde(ctx, *, prompt: str, model: app_commands.Choice[str], ne
     logging.debug(f"{ctx.message.author.mention} is generating ```{prompt}``` with "
                   f"{model.name}!")
 
+    # `###` tells Stable Horde we want a negative prompt.
     image_files, images = await generate_with_stable_horde(
         f"{prompt}{'###' if negative else ''}{negative if negative else ''}", model.value)
 
@@ -246,7 +247,7 @@ async def sync(ctx):
     print("Synced commands!")
 
 
-@bot.hybrid_command(name="clear_context", description="Clear the chat")
+@bot.hybrid_command(name="clear_context", description="Clear the chat context")
 async def clear(ctx):
     await ctx.defer()
     await clear_context()
