@@ -10,10 +10,6 @@ This project uses various APIs, which allows it to run on less powerful computer
 
 ![Demo picture](demo.png)
 
-## Broken stuff
-- Using Imaginepy
-- ChatGPT
-
 ## Table of Contents
 1. [Features](#Features)
 2. [Notes](#Notes)
@@ -26,8 +22,8 @@ This project uses various APIs, which allows it to run on less powerful computer
 
 
 ## Features
-- ChatGPT/GPT4All chatbot that is integrated with Stable Diffusion
-- 3 slash commands for generating images
+- GPT-3.5-Turbo/GPT4All chatbot which is integrated with Stable Diffusion
+- 2 slash commands for generating images
 - Stable Diffusion
 - SDXL Beta
 - Pollinations
@@ -37,9 +33,9 @@ This project uses various APIs, which allows it to run on less powerful computer
 
 ## Notes
 
-- ChatGPT is the fastest model that you can use.
+- GPT-3.5-Turbo is the fastest model that you can use.
 - GPT4All isn't nearly as "smart" as ChatGPT.
-- Using SDXL sends your generated images to improve the model.
+- When using SDXL it sends your generated images to improve the model.
 - While generating a response with GPT4All, the Discord bot will lock up.
 No commands can be run until the bot finishes writing.
 - Do not input any personal information on the `/imagine_poly` command because your generated image will be displayed
