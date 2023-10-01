@@ -2,6 +2,7 @@ from InquirerPy import inquirer
 import logging
 import json
 import os
+import replit_detector
 
 
 logging.basicConfig(level=logging.INFO,
@@ -64,6 +65,9 @@ def configure():
 
 
 def get_credentials():
+    if replit_detector.is_replit:
+        print("On replit, add credentials normally")
+        return
     while True:
         token = inquirer.text(message="Bot Token:").execute()
         key = inquirer.text(message="API Key for Stable Horde:").execute()
