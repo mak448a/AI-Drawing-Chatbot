@@ -8,11 +8,12 @@ if config["chatbot"]:
         from gpt_utils.gpt4all import generate_message, clear_context
     elif config["model"] == "ChatGPT":
         # ChatGPT
-        from gpt_utils.poe_utils import generate_message, clear_context
+        # from gpt_utils.poe_utils import generate_message, clear_context
+        from gpt_utils.vercel import generate_message, clear_context
     else:
         # Fallback on ChatGPT
         logging.warning("Configured model improperly! Check config.json!")
-        from gpt_utils.poe_utils import generate_message, clear_context
+        # from gpt_utils.poe_utils import generate_message, clear_context
 
 from replit_detector import is_replit
 

@@ -8,9 +8,6 @@ This is an AI image generator Discord bot written in Python. It has a chatbot th
 
 This project uses various APIs, which allows it to run on less powerful computers.
 
-**DISCLAIMER:** ChatGPT uses your Poe account.
-I am not responsible if your Poe account gets banned, since using Poe in programs is against their TOS.
-
 ![Demo picture](demo.png)
 
 ## Broken stuff

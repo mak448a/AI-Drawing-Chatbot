@@ -7,11 +7,11 @@ Pillow~=9.5.0
 urllib3~=1.26.16
 aiohttp~=3.8.4
 httpx~=0.24.1
+inquirerpy~=0.3.4
 
 # Language models
-poe-api # For ChatGPT
+vercel-llm-api # For ChatGPT
 gpt4all~=0.2.1 # For GPT4All
-inquirerpy~=0.3.4
 
 # Only for Replit keep_alive
 flask~=2.3.2
