@@ -13,7 +13,7 @@ if config["chatbot"]:
     else:
         # Fallback on ChatGPT
         logging.warning("Configured model improperly! Check config.json!")
-        # from gpt_utils.poe_utils import generate_message, clear_context
+        from gpt_utils.vercel import generate_message, clear_context
 
 from replit_detector import is_replit
 
