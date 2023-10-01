@@ -6,12 +6,10 @@ if config["chatbot"]:
     if config["model"] == "GPT4All":
         # GPT4All
         from gpt_utils.gpt4all import generate_message, clear_context
-    elif config["model"] == "ChatGPT":
-        # ChatGPT
-        # from gpt_utils.poe_utils import generate_message, clear_context
+    elif config["model"] == "gpt-3.5-turbo":
         from gpt_utils.vercel import generate_message, clear_context
     else:
-        # Fallback on ChatGPT
+        # Fallback on gpt-3.5-turbo
         logging.warning("Configured model improperly! Check config.json!")
         from gpt_utils.vercel import generate_message, clear_context
 
