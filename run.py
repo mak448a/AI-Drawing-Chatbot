@@ -12,7 +12,7 @@ def configure():
     print("For all options, choose the first option if unsure.")
     model = inquirer.select(
         message="Choose model:",
-        choices=["GPT4All", "ChatGPT", "None"],
+        choices=["ChatGPT", "GPT4All", "None"],
     ).execute()
     sync_commands = inquirer.select(
         message="Bot command syncing:",
@@ -82,24 +82,21 @@ API_KEY={key}"""
         f.writelines(lines)
 
 
-if not os.path.exists(".env"):
-    get_credentials()
-    configure()
-    print("Launching program...")
-    import main  # NOQA
-else:
-    option = inquirer.select(
-        message="Select Option:",
-        choices=["Run", "Configure", "Get Credentials"],
-    ).execute()
-    if option == "Run":
-        print("Launching program...")
-        import main  # NOQA
-    elif option == "Configure":
+while True:
+    if not os.path.exists(".env"):
+        get_credentials()
         configure()
         print("Launching program...")
         import main  # NOQA
-    elif option == "Get Credentials":
-        get_credentials()
-        print("Launching program...")
-        import main  # NOQA
+    else:
+        option = inquirer.select(
+            message="Select Option:",
+            choices=["Run", "Configure", "Add Credentials"],
+        ).execute()
+        if option == "Run":
+            print("Launching program...")
+            import main  # NOQA
+        elif option == "Configure":
+            configure()
+        elif option == "Add Credentials":
+            get_credentials()
