@@ -94,7 +94,7 @@ Then [find your token](https://github.com/ading2210/poe-api#finding-your-token).
 Go to `config.json` and set the key `"model"` to the model you want.
 
 **Available Models**
-- ChatGPT
+- gpt-3.5-turbo
 - GPT4All
 
 You must write the model exactly as it is written here.
@@ -103,7 +103,7 @@ When using ChatGPT, you must sign up for a Poe account.
 When you are done, the edited line should look like this:
 
 ```json
-"model": "ChatGPT",
+"model": "gpt-3.5-turbo",
 ```
 
 </details>
