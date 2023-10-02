@@ -104,6 +104,8 @@ async def on_message(message):
     app_commands.Choice(name="Abyss OrangeMix", value="Abyss OrangeMix"),
     app_commands.Choice(name="OpenJourney Diffusion", value="OpenJourney Diffusion"),
     app_commands.Choice(name="Original Stable Diffusion", value="stable_diffusion"),
+    app_commands.Choice(name="ICBINP - I Can't Believe It's Not Photography",
+                        value="ICBINP - I Can't Believe It's Not Photography"),
 ],
 
 )
