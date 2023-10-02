@@ -88,7 +88,7 @@ async def on_message(message):
         await imagine_horde(
             FakeCtx(message),  # NOQA
             prompt=prompt,
-            model=app_commands.Choice(name="Stable Diffusion", value="stable_diffusion_2.1")
+            model=app_commands.Choice(name=config["image_model"], value=config["image_model"])
         )
 
 

@@ -39,7 +39,8 @@ def configure():
         "chatbot": True,
         "model": "gpt-3.5-turbo",
         "loading_gif": "https://tenor.com/view/loading-gif-9212724",
-        "sync": True
+        "sync": True,
+        "image_model": "stable_diffusion_2.1"
     }
     # Set a variable to store new config
     config = default_config  # add .copy() if you want it to be separate

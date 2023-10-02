@@ -138,7 +138,18 @@ Go to `config.json` and set the key `"sync"` to `false`.
 It should look like this:
 
 ```json
-"sync": false
+"sync": false,
+```
+</details>
+
+<details><summary>Change chatbot drawing model</summary>
+
+Go to `config.json` and set the key `"image_model"` to a model that you find [here](https://aqualxx.github.io/stable-ui/).
+
+It should look like this:
+
+```json
+"image_model": "stable_diffusion_2.1"
 ```
 </details>
 
