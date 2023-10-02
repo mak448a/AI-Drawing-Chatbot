@@ -37,5 +37,5 @@ async def generate_message(message: str) -> str:
 
 async def clear_context() -> None:
     global prompt
-    with open("prompt.txt") as file:
+    with open("gpt_utils/prompt.txt") as file:
         prompt = file.read()
