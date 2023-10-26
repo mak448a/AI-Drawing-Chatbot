@@ -1,11 +1,11 @@
-from replit_detector import is_replit
 from dotenv import load_dotenv
+from replit_detector import is_replit
 import json
 import logging
 import os
 
-logging.basicConfig(level=logging.INFO,
-                    format="[%(levelname)s] %(message)s")
+# If you're looking for logging config here, go to replit_detector.py!!!
+
 
 if is_replit:
     bot_token: str = os.environ["BOT_TOKEN"]
@@ -39,3 +39,17 @@ class FakeCtx:
 
     async def send(self, content, file=None):
         return await self.message.channel.send(content, file=file)
+
+
+# Import functions for use in other files
+if config["chatbot"]:
+    # Figure out which model the user specified
+    if config["model"] == "GPT4All":
+        # GPT4All
+        from gpt_utils.gpt4all import generate_message, clear_context  # NOQA
+    elif config["model"] == "gpt-3.5-turbo":
+        from gpt_utils.vercel import generate_message, clear_context  # NOQA
+    else:
+        # Fallback on gpt-3.5-turbo
+        logging.warning("Configured model improperly! Check config.json!")
+        from gpt_utils.vercel import generate_message, clear_context  # NOQA
