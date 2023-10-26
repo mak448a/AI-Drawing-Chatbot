@@ -2,15 +2,12 @@ import logging
 import asyncio
 import os
 
-from utils import bot_token, config, FakeCtx, generate_message
+from helper_utils.utils import bot_token, config, FakeCtx, generate_message
 
 import discord
 from discord.ext import commands
 from discord import app_commands
-from replit_detector import is_replit
 from cogs import COMMANDS, EVENT_HANDLERS
-if is_replit:
-    from keep_alive import keep_alive
 
 from helper_utils.replit_detector import is_replit
 if is_replit:

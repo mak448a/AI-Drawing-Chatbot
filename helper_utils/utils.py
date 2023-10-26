@@ -34,7 +34,8 @@ def line_junk():
     underscores = ' _' * 6
     return bars + underscores
 
-line_junk = line_junk()
+with open("line_junk.txt") as f:
+    line_junk = line_junk()
 
 
 class FakeCtx:
