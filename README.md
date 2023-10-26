@@ -4,7 +4,8 @@
 ![](https://img.shields.io/github/contributors/mak448a/Stable-Diffusion-Bot)
 ![](https://img.shields.io/github/repo-size/mak448a/Stable-Diffusion-Bot)
 
-This is an AI image generator Discord bot written in Python. It has a chatbot that uses an AI language model!
+This is a completely free AI image generator Discord bot written in Python.
+It has a chatbot that you can ask to draw pictures which uses GPT-3.5!
 
 This project uses various APIs, which allows it to run on less powerful computers.
 
@@ -34,8 +35,8 @@ This project uses various APIs, which allows it to run on less powerful computer
 ## Notes
 
 - GPT-3.5-Turbo is the fastest model that you can use.
-- GPT4All isn't nearly as "smart" as ChatGPT.
-- When using SDXL it sends your generated images to improve the model.
+- GPT4All isn't nearly as "smart" as GPT-3.5-Turbo.
+- When using SDXL-Beta it sends your generated images to improve the model.
 - While generating a response with GPT4All, the Discord bot will lock up.
 No commands can be run until the bot finishes writing.
 - Do not input any personal information on the `/imagine_poly` command because your generated image will be displayed
@@ -52,9 +53,10 @@ because your prompts are sent to various providers.
 This project assumes that:
 - Python 3.8+ is installed and is on your PATH
 - Pip is installed
-- Python-venv is installed (only for certain Linux distros)
 - Git is installed
 - You know how to create a Discord Bot account
+- The package python-venv is installed (only for certain Linux distros)
+- The package python3-dev or python3-devel is installed (All Linux distros)
 
 
 ## Windows Setup
@@ -149,7 +151,7 @@ Go to `config.json` and set the key `"image_model"` to a model that you find [he
 It should look like this:
 
 ```json
-"image_model": "stable_diffusion_2.1"
+"image_model": "SDXL 1.0"
 ```
 </details>
 
