@@ -28,8 +28,13 @@ with open("config.json") as f:
 
 # Line junk is some stuff that makes Discord hide links.
 # See https://www.youtube.com/watch?v=9OgpQHSP5qE (by Ntts)
-with open("line_junk.txt") as f:
-    line_junk = f.read()
+
+def line_junk():
+    bars = '|' * 990
+    underscores = ' _' * 6
+    return bars + underscores
+
+line_junk = line_junk()
 
 
 class FakeCtx:

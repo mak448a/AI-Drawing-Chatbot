@@ -3,8 +3,8 @@ import os
 
 from discord.ext import commands
 from discord import app_commands
-from utils import line_junk, config
-from image_generation_utils import generate_with_stable_horde
+from helper_utils.utils import line_junk, config
+from helper_utils.image_generation_utils import generate_with_stable_horde
 
 
 class Horde(commands.Cog):
