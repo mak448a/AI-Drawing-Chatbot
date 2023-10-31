@@ -1,5 +1,5 @@
 from dotenv import load_dotenv
-from replit_detector import is_replit
+from .replit_detector import is_replit
 import json
 import logging
 import os

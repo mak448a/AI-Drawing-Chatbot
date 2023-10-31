@@ -2,7 +2,7 @@ from InquirerPy import inquirer
 import logging
 import json
 import os
-import replit_detector
+from helper_utils import replit_detector
 
 
 logging.basicConfig(level=logging.INFO,

@@ -65,7 +65,7 @@ This project assumes that:
 2. Grab an API key from Stable Horde [at their register page](https://stablehorde.net/register).
 3. [Register](https://poe.com) for Poe and open inspect tool.
 Then [find your token](https://github.com/ading2210/poe-api#finding-your-token).
-4. Clone the Stable Horde module: `git clone https://github.com/mak448a/horde_module --depth=1`
+4. Clone the Stable Horde module: `git clone https://github.com/mak448a/horde_module helper_utils/horde_module --depth=1`
 5. Create venv and install dependencies: `python -m venv venv` `venv\Scripts\activate.bat`
 `pip install -r requirements.txt`
 6. Run `python run.py` and fill in all the information it asks for.
@@ -78,9 +78,11 @@ Then [find your token](https://github.com/ading2210/poe-api#finding-your-token).
 2. Grab an API key from Stable Horde [at their register page](https://stablehorde.net/register).
 3. [Register](https://poe.com) for Poe and open inspect tool.
 Then [find your token](https://github.com/ading2210/poe-api#finding-your-token).
-4. Run `python3 run.py` and fill in all the information it asks for.
-5. Invite the bot with the link it provides!
-6. You can chat with the bot by mentioning it and typing your message.
+4. Create venv and install dependencies: `python3 -m venv venv && source venv/bin/activate && pip install -r requirements.txt`
+5. Clone the Stable Horde module: `git clone https://github.com/mak448a/horde_module helper_utils/horde_module --depth=1`
+6. Run `python3 run.py` and fill in all the information it asks for.
+7. Invite the bot with the link it provides!
+8. You can chat with the bot by mentioning it and typing your message.
 
 ## Docker Setup
 1. Make sure you have Docker installed on your machine.

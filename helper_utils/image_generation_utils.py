@@ -1,5 +1,5 @@
-from horde_module import Generator
-from utils import api_key
+from helper_utils.horde_module import Generator
+from .utils import api_key
 
 import uuid
 import asyncio
