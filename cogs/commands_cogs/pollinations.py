@@ -2,7 +2,7 @@ import os
 import random
 import requests
 from discord.ext import commands
-from utils import line_junk, config
+from helper_utils.utils import line_junk, config
 import discord
 import urllib.parse
 
@@ -24,7 +24,7 @@ class Pollinations(commands.Cog):
         i = 0
         while len(images) < 4:
             seed = random.randint(1, 100000)  # Generate a random seed
-            image_url = f"https://image.pollinations.ai/prompt/{encoded_prompt}{seed}"
+            image_url = f"https://image.pollinations.ai/prompt/{encoded_prompt}?seed={seed}"
             response = requests.get(image_url)
 
             try:

@@ -2,8 +2,8 @@ import os
 
 from discord.ext import commands
 import discord
-from image_generation_utils import upscale_image
-from utils import clear_context
+from helper_utils.image_generation_utils import upscale_image
+from helper_utils.utils import clear_context
 
 
 class Misc(commands.Cog):
