@@ -9,7 +9,7 @@ It has a chatbot that you can ask to draw pictures which uses GPT-3.5!
 
 This project uses various APIs, which allows it to run on less powerful computers.
 
-![Demo picture](demo.png)
+![Demo picture](assets/demo.png)
 
 ## Table of Contents
 1. [Features](#Features)
