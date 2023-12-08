@@ -5,7 +5,7 @@
 ![](https://img.shields.io/github/repo-size/mak448a/Stable-Diffusion-Bot)
 
 This is a completely free AI image generator Discord bot written in Python.
-It has a chatbot that you can ask to draw pictures which uses GPT-3.5!
+It has a chatbot that you can ask to draw pictures which uses GPT4All!
 
 This project uses various APIs, which allows it to run on less powerful computers.
 
@@ -23,7 +23,7 @@ This project uses various APIs, which allows it to run on less powerful computer
 
 
 ## Features
-- GPT-3.5-Turbo/GPT4All chatbot which is integrated with Stable Diffusion
+- GPT4All chatbot which is integrated with Stable Diffusion
 - 2 slash commands for generating images
 - Stable Diffusion
 - SDXL Beta
@@ -34,8 +34,7 @@ This project uses various APIs, which allows it to run on less powerful computer
 
 ## Notes
 
-- GPT-3.5-Turbo is the fastest model that you can use.
-- GPT4All isn't nearly as "smart" as GPT-3.5-Turbo.
+- GPT4All isn't very "smart"
 - When using SDXL-Beta it sends your generated images to improve the model.
 - While generating a response with GPT4All, the Discord bot will lock up.
 No commands can be run until the bot finishes writing.
@@ -43,8 +42,8 @@ No commands can be run until the bot finishes writing.
 on their official frontpage.
 - Please do not enter any personal information in the Chatbot or in the image generators,
 because your prompts are sent to various providers.
-- When you use Stable Horde to generate images, your prompts are sent to Stable Horde, as listed in their [privacy policy](https://stablehorde.net/privacy). 
-- The chatbot may not work as expected if multiple users are chatting with it at once.
+- When you use Stable Horde to generate images, your prompts are sent to Stable Horde, as listed in their [privacy policy](https://stablehorde.net/privacy).
+- The chatbot will not work as expected if multiple users are chatting with it at once.
 - When using Replit, GPT4All cannot be used.
 - When using Replit, you must input your .env variables in the `Secrets` button in the sidebar.
 
@@ -56,7 +55,6 @@ This project assumes that:
 - Git is installed
 - You know how to create a Discord Bot account
 - The package python-venv is installed (only for certain Linux distros)
-- The package python3-dev or python3-devel is installed (All Linux distros)
 
 
 ## Windows Setup
