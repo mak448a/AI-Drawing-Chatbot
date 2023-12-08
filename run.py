@@ -13,7 +13,7 @@ def configure():
     print("For all options, choose the first option if unsure.")
     model = inquirer.select(
         message="Choose model:",
-        choices=["gpt-3.5-turbo", "GPT4All", "None"],
+        choices=["GPT4All", "None"],
     ).execute()
     sync_commands = inquirer.select(
         message="Bot command syncing:",
@@ -50,7 +50,7 @@ def configure():
     elif model == "GPT4All":
         config["model"] = "GPT4All"
     else:
-        config["model"] = "gpt-3.5-turbo"
+        config["chatbot"] = False
     # GIF
     if loading_gif:
         config["loading_gif"] = loading_gif

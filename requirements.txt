@@ -9,7 +9,6 @@ httpx~=0.24.1
 inquirerpy~=0.3.4
 
 # Language models
-vercel-llm-api # For ChatGPT
 gpt4all~=0.2.1 # For GPT4All
 imaginepy # For upscaling
 
