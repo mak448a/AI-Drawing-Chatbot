@@ -51,3 +51,8 @@ if config["chatbot"]:
         # Fallback on gpt-3.5-turbo
         logging.warning("Configured model improperly! Check config.json!")
         from gpt_utils.gpt4all import generate_message, clear_context  # NOQA
+else:
+    def fake_function():
+        pass
+
+    generate_message, clear_context = fake_function, fake_function
