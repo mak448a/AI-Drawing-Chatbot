@@ -47,9 +47,7 @@ if config["chatbot"]:
     if config["model"] == "GPT4All":
         # GPT4All
         from gpt_utils.gpt4all import generate_message, clear_context  # NOQA
-    elif config["model"] == "gpt-3.5-turbo":
-        from gpt_utils.vercel import generate_message, clear_context  # NOQA
     else:
         # Fallback on gpt-3.5-turbo
         logging.warning("Configured model improperly! Check config.json!")
-        from gpt_utils.vercel import generate_message, clear_context  # NOQA
+        from gpt_utils.gpt4all import generate_message, clear_context  # NOQA
