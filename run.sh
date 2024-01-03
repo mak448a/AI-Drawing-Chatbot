@@ -1,11 +1,11 @@
 #! /bin/sh
 FILE=venv/bin/activate
 
-if [ -d "horde_module" ]
+if [ -d "helper_utils/horde_module" ]
 then
   :
 else
-  git clone https://github.com/mak448a/horde_module --depth=1
+  git clone https://github.com/mak448a/horde_module helper_utils/horde_module --depth=1
 fi
 
 
@@ -25,13 +25,13 @@ else
   echo -n "Enter your bot token: "
   read TOKEN
 
-  echo -n "Enter your Poe token: "
-  read POE_TOKEN
+  echo -n "Enter your Prodia API Key: "
+  read PRODIA_KEY
 
-  echo -n "Enter your API Key: "
+  echo -n "Enter your Stable Horde API Key: "
   read API_KEY
   # If token is none exit
-  if [ -z $POE_TOKEN ] || [-z $TOKEN] || [-z $API_KEY]
+  if [ -z $PRODIA_KEY ] || [-z $TOKEN] || [-z $API_KEY]
   then
     echo "ERROR! YOU DIDN'T ENTER ALL YOUR CREDENTIALS!"
     exit 1
@@ -39,7 +39,7 @@ else
 
   # Overwrite existing file if it exists
   echo "BOT_TOKEN=$TOKEN" > .env
-  echo "POE_TOKEN=$POE_TOKEN" >> .env
+  echo "PRODIA_KEY=$PRODIA_KEY" >> .env
   echo "API_KEY=$API_KEY" >> .env
   python3 main.py
 fi

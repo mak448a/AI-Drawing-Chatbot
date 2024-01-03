@@ -1,5 +1,5 @@
 from helper_utils.horde_module import Generator
-from .utils import api_key
+from .utils import api_key, prodia_key
 
 import uuid
 import asyncio
@@ -7,6 +7,7 @@ import logging
 import os
 
 import discord
+import requests
 from imaginepy import AsyncImagine, Style, Ratio
 
 horde_generator = Generator()
@@ -82,4 +83,49 @@ async def upscale_image(image):
 
     with open(f"{temp_id}.png", "wb") as f:
         f.write(upscaled_image)
+    return f"{temp_id}.png"
+
+
+
+async def generate_prodia(prompt: str) -> str:
+    """Generates an image and returns the path."""
+    url = "https://api.prodia.com/v1/sdxl/generate"
+
+    payload = { "prompt": prompt }
+    headers = {
+        "accept": "application/json",
+        "content-type": "application/json",
+        "X-Prodia-Key": prodia_key
+    }
+
+    response = requests.post(url, json=payload, headers=headers)
+
+    job = response.json()["job"]
+
+
+    while True:
+        await asyncio.sleep(1)
+
+        url = f"https://api.prodia.com/v1/job/{job}"
+
+        headers = {
+            "accept": "application/json",
+            # Read in api key
+            "X-Prodia-Key": prodia_key
+        }
+
+        response = requests.get(url, headers=headers)
+
+        # print(response.json()["status"])
+        if response.json()["status"] == "succeeded":
+            image_url = response.json()["imageUrl"]
+            # print(image_url)
+            break
+
+
+    r = requests.get(image_url, allow_redirects=True)
+    temp_id = uuid.uuid1()
+    with open(f"{temp_id}.png", "wb") as f:
+        f.write(r.content)
+
     return f"{temp_id}.png"

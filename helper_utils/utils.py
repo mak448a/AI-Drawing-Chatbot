@@ -10,13 +10,13 @@ import os
 if is_replit:
     bot_token: str = os.environ["BOT_TOKEN"]
     api_key: str = os.environ["API_KEY"]
-    poe_key: str = os.environ["POE_TOKEN"]
+    prodia_key: str = os.environ("PRODIA_KEY")
 else:
     # Load .env file
     load_dotenv(".env")
     bot_token: str = os.getenv("BOT_TOKEN")
     api_key: str = os.getenv("API_KEY")
-    poe_key: str = os.getenv("POE_TOKEN")
+    prodia_key: str = os.getenv("PRODIA_KEY")
 
 if api_key == "0000000000":
     logging.warning("Default API key selected. Generating images will be slower. "
@@ -52,6 +52,7 @@ if config["chatbot"]:
         logging.warning("Configured model improperly! Check config.json!")
         from gpt_utils.gpt4all import generate_message, clear_context  # NOQA
 else:
+    # Create a dummy function so that we don't error out when importing them
     def fake_function():
         pass
 

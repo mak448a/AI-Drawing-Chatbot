@@ -13,7 +13,7 @@ def configure():
     print("For all options, choose the first option if unsure.")
     model = inquirer.select(
         message="Choose model:",
-        choices=["GPT4All", "None"],
+        choices=["None", "GPT4All"],
     ).execute()
     sync_commands = inquirer.select(
         message="Bot command syncing:",
@@ -36,8 +36,8 @@ def configure():
 
     # Define default config values
     default_config = {
-        "chatbot": True,
-        "model": "gpt-3.5-turbo",
+        "chatbot": False,
+        "model": "GPT4All",
         "loading_gif": "https://tenor.com/view/loading-gif-9212724",
         "sync": True,
         "image_model": "stable_diffusion_2.1"
@@ -71,13 +71,13 @@ def get_credentials():
         return
     while True:
         token = inquirer.text(message="Bot Token:").execute()
-        key = inquirer.text(message="API Key for Stable Horde:").execute()
-        poe = inquirer.text(message="Poe Token:").execute()
+        key = inquirer.text(message="Stable Horde API Key:").execute()
+        prodia_key = inquirer.text(message="Prodia API Key:").execute()
         lines = f"""\
 BOT_TOKEN={token}
-POE_TOKEN={poe}
+PRODIA_KEY={prodia_key}
 API_KEY={key}"""
-        if token == "" or key == "" or poe == "":
+        if token == "" or key == "" or prodia_key == "":
             print("Enter valid input.")
             continue
         else:

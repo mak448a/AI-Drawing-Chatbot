@@ -27,9 +27,8 @@ class Horde(commands.Cog):
         app_commands.Choice(name="Original Stable Diffusion", value="stable_diffusion"),
         app_commands.Choice(name="ICBINP - I Can't Believe It's Not Photography",
                             value="ICBINP - I Can't Believe It's Not Photography"),
-    ],
-
-    )
+    ])
+    
     async def imagine_horde(self, ctx, *, prompt: str, model: app_commands.Choice[str], negative: str = None):
         reply = await ctx.send(
             f"{ctx.message.author.mention} is generating ```{prompt}``` with "

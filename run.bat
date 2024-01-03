@@ -7,7 +7,7 @@ if exist horde_module (
   echo Downloading horde_module repository...
   curl -LJO https://github.com/mak448a/horde_module/archive/refs/heads/main.zip
   echo Extracting repository...
-  powershell -command "Expand-Archive -Path .\main.zip -DestinationPath .\horde_module -Force"
+  powershell -command "Expand-Archive -Path .\main.zip -DestinationPath .\helper_utils\horde_module -Force"
   del main.zip
 )
 
@@ -23,8 +23,8 @@ if exist %FILE% (
   pip install -r requirements.txt
   set /p TOKEN=Enter your bot token: 
   echo BOT_TOKEN=%TOKEN% > .env
-  set /p POE_TOKEN=Enter your Poe token: 
-  echo POE_TOKEN=%POE_TOKEN% >> .env
+  set /p PRODIA_KEY=Enter your Prodia API Key: 
+  echo PRODIA_KEY=%PRODIA_KEY% >> .env
   set /p API_KEY=Enter your API Key: 
   echo API_KEY=%API_KEY% >> .env
   if [%TOKEN%]==[] (
@@ -33,7 +33,7 @@ if exist %FILE% (
   if [%TOKEN%]==[] (
     goto fail
   )
-  if [%POE_TOKEN%]==[] (
+  if [%PRODIA_KEY%]==[] (
     goto fail
   )
   if [%API_KEY%]==[] (
