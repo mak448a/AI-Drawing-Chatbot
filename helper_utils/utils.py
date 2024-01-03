@@ -10,7 +10,7 @@ import os
 if is_replit:
     bot_token: str = os.environ["BOT_TOKEN"]
     api_key: str = os.environ["API_KEY"]
-    prodia_key: str = os.environ("PRODIA_KEY")
+    prodia_key: str = os.environ["PRODIA_KEY"]
 else:
     # Load .env file
     load_dotenv(".env")
