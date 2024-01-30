@@ -23,7 +23,7 @@ This project uses various APIs, which allows it to run on less powerful computer
 
 
 ## Features
-- GPT4All chatbot which is integrated with Stable Diffusion
+- AI chatbot which is integrated with Stable Diffusion
 - 2 slash commands for generating images
 - Stable Diffusion
 - SDXL Beta
@@ -34,13 +34,14 @@ This project uses various APIs, which allows it to run on less powerful computer
 
 ## Notes
 
+- gpt4free is the recommended model.
 - GPT4All isn't very "smart"
 - When using SDXL-Beta it sends your generated images to improve the model.
 - While generating a response with GPT4All, the Discord bot will lock up.
 No commands can be run until the bot finishes writing.
 - Do not input any personal information on the `/imagine_poly` command because your generated image will be displayed
 on their official frontpage.
-- Please do not enter any personal information in the Chatbot or in the image generators,
+- Please do not enter any personal information in the chatbot or in the image generators,
 because your prompts are sent to various providers.
 - When you use Stable Horde to generate images, your prompts are sent to Stable Horde, as listed in their [privacy policy](https://stablehorde.net/privacy).
 - The chatbot will not work as expected if multiple users are chatting with it at once.
@@ -61,26 +62,22 @@ This project assumes that:
 1. Create a Discord Bot and grab the token. Make sure to switch on Message Content Intent in the `Bot` tab of the 
 [Developer Portal](https://discord.com/developers/applications).
 2. Grab an API key from Stable Horde [at their register page](https://stablehorde.net/register).
-3. [Register](https://poe.com) for Poe and open inspect tool.
-Then [find your token](https://github.com/ading2210/poe-api#finding-your-token).
-4. Clone the Stable Horde module: `git clone https://github.com/mak448a/horde_module helper_utils/horde_module --depth=1`
-5. Create venv and install dependencies: `python -m venv venv` `venv\Scripts\activate.bat`
+3. Clone the Stable Horde module: `git clone https://github.com/mak448a/horde_module helper_utils/horde_module --depth=1`
+4. Create venv and install dependencies: `python -m venv venv` `venv\Scripts\activate.bat`
 `pip install -r requirements.txt`
-6. Run `python run.py` and fill in all the information it asks for.
-7. Invite the bot with the link it provides!
-8. You can chat with the bot by mentioning it and typing your message.
+5. Run `python run.py` and fill in all the information it asks for.
+6. Invite the bot with the link it provides!
+7. You can chat with the bot by mentioning it and typing your message.
 
 ## Linux and macOS Setup
 1. Create a Discord Bot and grab the token. Make sure to switch on Message Content Intent in the `Bot` tab of the 
 [Developer Portal](https://discord.com/developers/applications).
 2. Grab an API key from Stable Horde [at their register page](https://stablehorde.net/register).
-3. [Register](https://poe.com) for Poe and open inspect tool.
-Then [find your token](https://github.com/ading2210/poe-api#finding-your-token).
-4. Create venv and install dependencies: `python3 -m venv venv && source venv/bin/activate && pip install -r requirements.txt`
-5. Clone the Stable Horde module: `git clone https://github.com/mak448a/horde_module helper_utils/horde_module --depth=1`
-6. Run `python3 run.py` and fill in all the information it asks for.
-7. Invite the bot with the link it provides!
-8. You can chat with the bot by mentioning it and typing your message.
+3. Create venv and install dependencies: `python3 -m venv venv && source venv/bin/activate && pip install -r requirements.txt`
+4. Clone the Stable Horde module: `git clone https://github.com/mak448a/horde_module helper_utils/horde_module --depth=1`
+5. Run `python3 run.py` and fill in all the information it asks for.
+6. Invite the bot with the link it provides!
+7. You can chat with the bot by mentioning it and typing your message.
 
 ## Docker Setup
 1. Make sure you have Docker installed on your machine.
@@ -96,16 +93,15 @@ Then [find your token](https://github.com/ading2210/poe-api#finding-your-token).
 Go to `config.json` and set the key `"model"` to the model you want.
 
 **Available Models**
-- gpt-3.5-turbo
+- gpt4free
 - GPT4All
 
 You must write the model exactly as it is written here.
-When using ChatGPT, you must sign up for a Poe account.
 
 When you are done, the edited line should look like this:
 
 ```json
-"model": "gpt-3.5-turbo",
+"model": "gpt4free",
 ```
 
 </details>
