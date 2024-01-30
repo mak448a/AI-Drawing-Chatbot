@@ -5,7 +5,7 @@
 ![](https://img.shields.io/github/repo-size/mak448a/Stable-Diffusion-Bot)
 
 This is a completely free AI image generator Discord bot written in Python.
-It has a chatbot that you can ask to draw pictures which uses GPT4All!
+It has a chatbot that you can ask to draw pictures which uses Llama 2!
 
 This project uses various APIs, which allows it to run on less powerful computers.
 
