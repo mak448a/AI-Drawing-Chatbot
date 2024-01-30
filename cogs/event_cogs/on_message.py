@@ -1,5 +1,6 @@
 import asyncio
 import os
+import logging
 
 from helper_utils.utils import bot_token, config, FakeCtx, generate_message
 from helper_utils.replit_detector import is_replit

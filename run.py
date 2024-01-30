@@ -13,7 +13,7 @@ def configure():
     print("For all options, choose the first option if unsure.")
     model = inquirer.select(
         message="Choose model:",
-        choices=["None", "GPT4All"],
+        choices=["gpt4free", "GPT4All", "None"],
     ).execute()
     sync_commands = inquirer.select(
         message="Bot command syncing:",
@@ -37,7 +37,7 @@ def configure():
     # Define default config values
     default_config = {
         "chatbot": False,
-        "model": "GPT4All",
+        "model": "gpt4free",
         "loading_gif": "https://tenor.com/view/loading-gif-9212724",
         "sync": True,
         "image_model": "stable_diffusion_2.1"
@@ -49,6 +49,10 @@ def configure():
         config["chatbot"] = False
     elif model == "GPT4All":
         config["model"] = "GPT4All"
+        config["chatbot"] = True
+    elif model == "gpt4free":
+        config["model"] = "gpt4free"
+        config["chatbot"] = True
     else:
         config["chatbot"] = False
     # GIF

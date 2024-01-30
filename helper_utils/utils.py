@@ -47,10 +47,13 @@ if config["chatbot"]:
     if config["model"] == "GPT4All":
         # GPT4All
         from gpt_utils.gpt4all import generate_message, clear_context  # NOQA
+    elif config["model"] == "gpt4free":
+        # GPT4All
+        from gpt_utils.gpt4free import generate_message, clear_context  # NOQA
     else:
-        # Fallback on gpt-3.5-turbo
+        # Fallback
         logging.warning("Configured model improperly! Check config.json!")
-        from gpt_utils.gpt4all import generate_message, clear_context  # NOQA
+        from gpt_utils.gpt4free import generate_message, clear_context  # NOQA
 else:
     # Create a dummy function so that we don't error out when importing them
     def fake_function():

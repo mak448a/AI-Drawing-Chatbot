@@ -1,6 +1,6 @@
 {
   "chatbot": true,
-  "model": "gpt-3.5-turbo",
+  "model": "gpt4free",
   "loading_gif": "https://tenor.com/view/loading-gif-9212724",
   "sync": true,
   "image_model": "SDXL 1.0"
