@@ -45,8 +45,7 @@ on their official frontpage.
 because your prompts are sent to various providers.
 - When you use Stable Horde to generate images, your prompts are sent to Stable Horde, as listed in their [privacy policy](https://stablehorde.net/privacy).
 - The chatbot will not work as expected if multiple users are chatting with it at once.
-- When using Replit, GPT4All cannot be used.
-- When using Replit, you must input your .env variables in the `Secrets` button in the sidebar.
+- When hosting on a low-end server, GPT4All cannot be used.
 
 
 ## Prerequisites
