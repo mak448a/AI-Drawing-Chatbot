@@ -11,7 +11,7 @@ inquirerpy~=0.3.4
 # Language models
 gpt4all~=0.2.1 # For GPT4All
 imaginepy # For upscaling
-gpt4free
+g4f
 
 # Only for Replit keep_alive
 flask~=2.3.2
