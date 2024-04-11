@@ -1,5 +1,6 @@
 import g4f
 import aiohttp
+from helper_utils.utils import chatgpt_key
 
 
 
@@ -15,9 +16,10 @@ async def generate_message(message: str) -> str:
 
     try:
         response = await g4f.ChatCompletion.create_async(
-            model="meta-llama/Llama-2-70b-chat-hf",
-            provider=g4f.Provider.HuggingChat,
+            model=g4f.models.gpt_35_turbo,
+            provider=g4f.Provider.OpenaiChat,
             messages=messages,
+            access_token=chatgpt_key,
             stream=False
         )
         messages.append({"role": "assistant", "content": response})

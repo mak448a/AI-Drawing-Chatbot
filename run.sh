@@ -30,6 +30,10 @@ else
 
   echo -n "Enter your Stable Horde API Key: "
   read API_KEY
+
+  echo -n "Enter your ChatGPT Key: "
+  read CHATGPT_KEY
+
   # If token is none exit
   if [ -z $PRODIA_KEY ] || [-z $TOKEN] || [-z $API_KEY]
   then
@@ -41,5 +45,6 @@ else
   echo "BOT_TOKEN=$TOKEN" > .env
   echo "PRODIA_KEY=$PRODIA_KEY" >> .env
   echo "API_KEY=$API_KEY" >> .env
+  echo "CHATGPT_KEY=$CHATGPT_KEY" >> .env
   python3 main.py
 fi

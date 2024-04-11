@@ -1,22 +1,15 @@
 from dotenv import load_dotenv
-from .replit_detector import is_replit
 import json
 import logging
 import os
 
-# If you're looking for logging config here, go to replit_detector.py!!!
 
-
-if is_replit:
-    bot_token: str = os.environ["BOT_TOKEN"]
-    api_key: str = os.environ["API_KEY"]
-    prodia_key: str = os.environ["PRODIA_KEY"]
-else:
-    # Load .env file
-    load_dotenv(".env")
-    bot_token: str = os.getenv("BOT_TOKEN")
-    api_key: str = os.getenv("API_KEY")
-    prodia_key: str = os.getenv("PRODIA_KEY")
+# Load .env file
+load_dotenv(".env")
+bot_token: str = os.getenv("BOT_TOKEN")
+api_key: str = os.getenv("API_KEY")
+prodia_key: str = os.getenv("PRODIA_KEY")
+chatgpt_key: str = os.getenv("CHATGPT_KEY")
 
 if api_key == "0000000000":
     logging.warning("Default API key selected. Generating images will be slower. "

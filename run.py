@@ -2,7 +2,6 @@ from InquirerPy import inquirer
 import logging
 import json
 import os
-from helper_utils import replit_detector
 
 
 logging.basicConfig(level=logging.INFO,
@@ -70,17 +69,16 @@ def configure():
 
 
 def get_credentials():
-    if replit_detector.is_replit:
-        print("On replit, add credentials normally")
-        return
     while True:
         token = inquirer.text(message="Bot Token:").execute()
         key = inquirer.text(message="Stable Horde API Key:").execute()
         prodia_key = inquirer.text(message="Prodia API Key:").execute()
+        chatgpt_key = inquirer.text(message="ChatGPT Key:").execute()
         lines = f"""\
 BOT_TOKEN={token}
 PRODIA_KEY={prodia_key}
-API_KEY={key}"""
+API_KEY={key}
+CHATGPT_KEY={chatgpt_key}"""
         if token == "" or key == "" or prodia_key == "":
             print("Enter valid input.")
             continue

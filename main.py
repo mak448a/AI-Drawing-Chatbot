@@ -9,10 +9,6 @@ from discord.ext import commands
 from discord import app_commands
 from cogs import COMMANDS, EVENT_HANDLERS
 
-from helper_utils.replit_detector import is_replit
-
-if is_replit:
-    from helper_utils.keep_alive import keep_alive
 
 
 class CogBOT(commands.Bot):
@@ -33,8 +29,5 @@ class CogBOT(commands.Bot):
 intents = discord.Intents.default()
 intents.message_content = True
 bot = CogBOT(command_prefix="/", intents=intents)
-
-if is_replit:
-    keep_alive()
 
 bot.run(bot_token, reconnect=True)

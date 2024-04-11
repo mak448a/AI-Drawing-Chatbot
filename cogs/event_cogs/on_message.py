@@ -3,7 +3,6 @@ import os
 import logging
 
 from helper_utils.utils import bot_token, config, FakeCtx, generate_message
-from helper_utils.replit_detector import is_replit
 
 import discord
 from discord.ext import commands
@@ -18,9 +17,6 @@ class OnMessage(commands.Cog):
         if str(self.bot.user.id) not in message.content:
             return
         if not config["chatbot"]:
-            return
-        if is_replit and config["model"] == "GPT4All":
-            logging.error("You cannot use GPT4All with Replit.")
             return
         if message.author == self.bot.user:
             return
