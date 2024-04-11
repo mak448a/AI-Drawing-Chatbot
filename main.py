@@ -1,12 +1,7 @@
-import logging
-import asyncio
-import os
-
-from helper_utils.utils import bot_token, config, FakeCtx, generate_message
+from helper_utils.utils import bot_token
 
 import discord
 from discord.ext import commands
-from discord import app_commands
 from cogs import COMMANDS, EVENT_HANDLERS
 
 
