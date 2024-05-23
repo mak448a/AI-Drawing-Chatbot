@@ -35,7 +35,7 @@ class GenerativeImage(commands.Cog):
     async def imagine(self, ctx) -> None:
         pass
 
-    @imagine.hybrid_command(
+    @imagine.command(
         name="poly", description="Generate image using Pollinations"
     )
     async def imagine_poly(self, ctx, *, prompt: str):
@@ -84,7 +84,7 @@ class GenerativeImage(commands.Cog):
         else:
             await reply.edit("Error generating images. Please try again later.")
 
-    @imagine.hybrid_command(name="prodia", description="Generate an image with Prodia")
+    @imagine.command(name="prodia", description="Generate an image with Prodia")
     @app_commands.choices(
         model=[app_commands.Choice(name="SDXL 1.0", value="SDXL 1.0")]
     )
@@ -106,7 +106,7 @@ class GenerativeImage(commands.Cog):
 
         os.remove(filename)
 
-    @imagine.hybrid_command(
+    @imagine.command(
         name="horde", description="Generate an image with Stable Horde"
     )
     @app_commands.choices(
