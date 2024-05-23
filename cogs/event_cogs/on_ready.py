@@ -16,13 +16,15 @@ class OnReady(commands.Cog):
         else:
             logging.info("Not syncing bot commands")
 
-        await self.bot.change_presence(activity=discord.Game(
-            name="Type / to see commands"))
+        await self.bot.change_presence(
+            activity=discord.Game(name="Type / to see commands")
+        )
         logging.debug(f"{self.bot.user.name} has connected to Discord!")
         invite_link = discord.utils.oauth_url(
             self.bot.user.id,
             permissions=discord.Permissions(administrator=False),
-            scopes=("bot", "applications.commands"))
+            scopes=("bot", "applications.commands"),
+        )
         logging.info(f"Invite link: {invite_link}")
 
 

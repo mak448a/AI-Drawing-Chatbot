@@ -12,8 +12,10 @@ prodia_key: str = os.getenv("PRODIA_KEY")
 chatgpt_key: str = os.getenv("CHATGPT_KEY")
 
 if api_key == "0000000000":
-    logging.warning("Default API key selected. Generating images will be slower. "
-                    "Generated images will be sent to LAION to improve Stable Diffusion.")
+    logging.warning(
+        "Default API key selected. Generating images will be slower. "
+        "Generated images will be sent to LAION to improve Stable Diffusion."
+    )
 
 # Load config
 with open("config.json") as f:

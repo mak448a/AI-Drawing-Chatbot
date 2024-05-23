@@ -1,17 +1,15 @@
-import asyncio
-import os
 import logging
 
-from helper_utils.utils import bot_token, config, FakeCtx, generate_message
+from helper_utils.utils import config, FakeCtx, generate_message
 
-import discord
 from discord.ext import commands
 from discord import app_commands
+
 
 class OnMessage(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-        
+
     @commands.Cog.listener()
     async def on_message(self, message):
         if str(self.bot.user.id) not in message.content:
@@ -38,14 +36,21 @@ class OnMessage(commands.Cog):
             # Parse the draw tag
             prompt = msg.split("<draw>")[1].split("</draw>")[0]
 
-            logging.debug(f"{message.author.mention} is generating ```{prompt}``` with "
-                        f"{config['image_model']}!")
+            logging.debug(
+                f"{message.author.mention} is generating ```{prompt}``` with "
+                f"{config['image_model']}!"
+            )
 
-            await self.bot.get_cog("Horde").imagine_horde(  # Get cog Horde (cogs/horde.py) and then call imagine_horde
+            await self.bot.get_cog(
+                "Horde"
+            ).imagine_horde(  # Get cog Horde (cogs/horde.py) and then call imagine_horde
                 FakeCtx(message),  # NOQA
                 prompt=prompt,
-                model=app_commands.Choice(name=config["image_model"], value=config["image_model"])
+                model=app_commands.Choice(
+                    name=config["image_model"], value=config["image_model"]
+                ),
             )
+
 
 async def setup(bot):
     await bot.add_cog(OnMessage(bot))

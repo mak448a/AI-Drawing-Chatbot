@@ -19,14 +19,17 @@ async def generate_message(user_input):
 
     if "Human: " in output_of_text:
         print("Uh oh, generated extraneous text. Removing and sending cleaned output.")
-        output_of_text = output_of_text.split("Human: ")[1] + "\n NOTE: This may be the model generating" \
-                                                              " an output for the user instead of itself."
+        output_of_text = (
+            output_of_text.split("Human: ")[1]
+            + "\n NOTE: This may be the model generating"
+            " an output for the user instead of itself."
+        )
 
     # Solution taken from: https://groups.google.com/g/comp.lang.python/c/Rq40dmwLfMQ?pli=1
     if len(prompt) > 1000:
         print("Removing first two lines of context to avoid context explosion...")
-        prompt = "\n".join(prompt.split('\n')[2:])
-        remove_text = "\n".join(remove_text.split('\n')[2:])
+        prompt = "\n".join(prompt.split("\n")[2:])
+        remove_text = "\n".join(remove_text.split("\n")[2:])
     return output_of_text
 
 

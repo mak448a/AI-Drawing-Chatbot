@@ -16,8 +16,9 @@ horde_generator = Generator()
 async def generate_with_stable_horde(prompt: str, model: str):
     file_uuid = uuid.uuid1()
 
-    await horde_generator.async_generate(prompt, api_key, f"{file_uuid}.png", 4,
-                                         f"{model}")
+    await horde_generator.async_generate(
+        prompt, api_key, f"{file_uuid}.png", 4, f"{model}"
+    )
 
     # Loop until the images generate. We check for the fourth image.
     while True:
@@ -49,9 +50,7 @@ async def generate_image_with_imaginepy(image_prompt, style_value, ratio_value):
     for _ in range(4):
         filenames.append(str(uuid.uuid4()) + ".png")
         img_data = await async_imagine.sdprem(
-            prompt=image_prompt,
-            style=style_enum,
-            ratio=ratio_enum
+            prompt=image_prompt, style=style_enum, ratio=ratio_enum
         )
         images.append(img_data)
 
@@ -86,22 +85,20 @@ async def upscale_image(image):
     return f"{temp_id}.png"
 
 
-
 async def generate_prodia(prompt: str) -> str:
     """Generates an image and returns the path."""
     url = "https://api.prodia.com/v1/sdxl/generate"
 
-    payload = { "prompt": prompt }
+    payload = {"prompt": prompt}
     headers = {
         "accept": "application/json",
         "content-type": "application/json",
-        "X-Prodia-Key": prodia_key
+        "X-Prodia-Key": prodia_key,
     }
 
     response = requests.post(url, json=payload, headers=headers)
 
     job = response.json()["job"]
-
 
     while True:
         await asyncio.sleep(1)
@@ -111,7 +108,7 @@ async def generate_prodia(prompt: str) -> str:
         headers = {
             "accept": "application/json",
             # Read in api key
-            "X-Prodia-Key": prodia_key
+            "X-Prodia-Key": prodia_key,
         }
 
         response = requests.get(url, headers=headers)
@@ -121,7 +118,6 @@ async def generate_prodia(prompt: str) -> str:
             image_url = response.json()["imageUrl"]
             # print(image_url)
             break
-
 
     r = requests.get(image_url, allow_redirects=True)
     temp_id = uuid.uuid1()

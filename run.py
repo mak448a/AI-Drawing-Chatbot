@@ -4,8 +4,7 @@ import json
 import os
 
 
-logging.basicConfig(level=logging.INFO,
-                    format="[%(levelname)s] %(message)s")
+logging.basicConfig(level=logging.INFO, format="[%(levelname)s] %(message)s")
 
 
 def configure():
@@ -39,7 +38,7 @@ def configure():
         "model": "gpt4free",
         "loading_gif": "https://tenor.com/view/loading-gif-9212724",
         "sync": True,
-        "image_model": "stable_diffusion_2.1"
+        "image_model": "stable_diffusion_2.1",
     }
     # Set a variable to store new config
     config = default_config  # add .copy() if you want it to be separate

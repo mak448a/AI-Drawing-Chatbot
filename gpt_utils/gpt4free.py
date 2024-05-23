@@ -3,11 +3,11 @@ import aiohttp
 from helper_utils.utils import chatgpt_key
 
 
-
 with open("gpt_utils/prompt.txt") as f:
     prompt = f.read()
 
 messages = [{"role": "system", "content": prompt}]
+
 
 async def generate_message(message: str) -> str:
     global prompt
@@ -20,7 +20,7 @@ async def generate_message(message: str) -> str:
             provider=g4f.Provider.OpenaiChat,
             messages=messages,
             access_token=chatgpt_key,
-            stream=False
+            stream=False,
         )
         messages.append({"role": "assistant", "content": response})
     except aiohttp.client_exceptions.ClientResponseError:
@@ -28,7 +28,7 @@ async def generate_message(message: str) -> str:
             model="meta-llama/Llama-2-70b-chat-hf",
             provider=g4f.Provider.HuggingChat,
             messages=messages,
-            stream=False
+            stream=False,
         )
         messages.append({"role": "assistant", "content": response})
     print(response)
