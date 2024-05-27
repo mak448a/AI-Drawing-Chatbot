@@ -19,7 +19,7 @@ def configure():
         choices=["On", "Off"],
     ).execute()
     loading_gif = inquirer.text(
-        message="Paste gif link: (press enter to use default)"
+        message="Paste loading gif link: (press enter to use default)"
     ).execute()
 
     # Error checking for loading GIF
