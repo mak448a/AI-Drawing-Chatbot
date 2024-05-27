@@ -9,6 +9,5 @@ httpx~=0.27.0
 inquirerpy~=0.3.4
 
 # Language models
-gpt4all~=2.6.0 # For GPT4All
 imaginepy~=2.0.1 # For upscaling
 g4f

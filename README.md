@@ -34,18 +34,14 @@ This project uses various APIs, which allows it to run on less powerful computer
 
 ## Notes
 
-- gpt4free is the recommended model.
-- GPT4All isn't very "smart"
+- ChatGPT is the recommended model.
 - When using SDXL-Beta it sends your generated images to improve the model.
-- While generating a response with GPT4All, the Discord bot will lock up.
-No commands can be run until the bot finishes writing.
 - Do not input any personal information on the `/imagine_poly` command because your generated image will be displayed
 on their official frontpage.
 - Please do not enter any personal information in the chatbot or in the image generators,
 because your prompts are sent to various providers.
 - When you use Stable Horde to generate images, your prompts are sent to Stable Horde, as listed in their [privacy policy](https://stablehorde.net/privacy).
 - The chatbot will not work as expected if multiple users are chatting with it at once.
-- When hosting on a low-end server, GPT4All cannot be used.
 
 
 ## Prerequisites
@@ -94,15 +90,14 @@ This project assumes that:
 Go to `config.json` and set the key `"model"` to the model you want.
 
 **Available Models**
-- gpt4free
-- GPT4All
+- ChatGPT
 
 You must write the model exactly as it is written here.
 
 When you are done, the edited line should look like this:
 
 ```json
-"model": "gpt4free",
+"model": "ChatGPT",
 ```
 
 </details>

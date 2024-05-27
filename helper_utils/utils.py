@@ -37,11 +37,7 @@ class FakeCtx:
 # Import functions for use in other files
 if config["chatbot"]:
     # Figure out which model the user specified
-    if config["model"] == "GPT4All":
-        # GPT4All
-        from gpt_utils.gpt4all import generate_message, clear_context  # NOQA
-    elif config["model"] == "gpt4free":
-        # GPT4All
+    if config["model"] == "ChatGPT":
         from gpt_utils.gpt4free import generate_message, clear_context  # NOQA
     else:
         # Fallback
