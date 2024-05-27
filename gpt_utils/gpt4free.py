@@ -28,6 +28,7 @@ async def generate_message(message: str) -> str:
             model=g4f.models.gpt_35_turbo,
             provider=g4f.Provider.OpenaiChat,
             messages=messages,
+            access_token=chatgpt_key,
             stream=False
         )
         messages.append({"role": "assistant", "content": response})

@@ -60,7 +60,7 @@ This project assumes that:
 3. Clone the Stable Horde module: `git clone https://github.com/mak448a/horde_module helper_utils/horde_module --depth=1`
 4. Create venv and install dependencies: `python -m venv venv` `venv\Scripts\activate.bat`
 `pip install -r requirements.txt`
-5. Grab your ChatGPT key, which is under `accessToken` from here: `https://chat.openai.com/api/auth/session`.
+5. Grab your ChatGPT key, which is under `accessToken` from here: `https://chat.openai.com/api/auth/session`. Make sure to not include the quotation marks!
 6. Run `python run.py` and fill in all the information it asks for.
 7. Invite the bot with the link it provides!
 8. You can chat with the bot by mentioning it and typing your message.
@@ -71,7 +71,7 @@ This project assumes that:
 2. Grab an API key from Stable Horde [at their register page](https://stablehorde.net/register).
 3. Create venv and install dependencies: `python3 -m venv venv && source venv/bin/activate && pip install -r requirements.txt`
 4. Clone the Stable Horde module: `git clone https://github.com/mak448a/horde_module helper_utils/horde_module --depth=1`
-5. Grab your ChatGPT key, which is under `accessToken` from here: `https://chat.openai.com/api/auth/session`.
+5. Grab your ChatGPT key, which is under `accessToken` from here: `https://chat.openai.com/api/auth/session`. Make sure to not include the quotation marks!
 6. Run `python3 run.py` and fill in all the information it asks for.
 7. Invite the bot with the link it provides!
 8. You can chat with the bot by mentioning it and typing your message.
@@ -85,6 +85,9 @@ This project assumes that:
 
 
 ## Manual Configuration
+
+If you want to manually configure the program for any reason, here are some steps.
+
 <details><summary>Configuring chat model</summary>
 
 Go to `config.json` and set the key `"model"` to the model you want.
