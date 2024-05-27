@@ -25,8 +25,8 @@ async def generate_message(message: str) -> str:
         messages.append({"role": "assistant", "content": response})
     except aiohttp.client_exceptions.ClientResponseError:
         response = await g4f.ChatCompletion.create_async(
-            model="meta-llama/Llama-2-70b-chat-hf",
-            provider=g4f.Provider.HuggingChat,
+            model=g4f.models.gpt_35_turbo,
+            provider=g4f.Provider.OpenaiChat,
             messages=messages,
             stream=False
         )
