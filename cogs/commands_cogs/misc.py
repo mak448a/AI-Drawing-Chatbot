@@ -22,7 +22,17 @@ class Misc(commands.Cog):
     @commands.hybrid_command(name="imagine_prodia", description="Generate an image with Prodia")
     @app_commands.choices(model=[
         app_commands.Choice(name="SDXL 1.0",
-                            value="SDXL 1.0")
+                            value="sd_xl_base_1.0.safetensors [be9edd61];sdxl"),
+        app_commands.Choice(name="Stable Diffusion v1.4",
+                            value="sdv1_4.ckpt [7460a6fa];sd"),
+        app_commands.Choice(name="OpenJourney v4",
+                            value="openjourney_V4.ckpt [ca2f377f];sd"),
+        app_commands.Choice(name="Anything V3",
+                            value="anythingv3_0-pruned.ckpt [2700c435];sd"),
+        app_commands.Choice(name="Absolute Reality v1.8.1",
+                            value="absolutereality_v181.safetensors [3d9d4d2b];sd"),
+        app_commands.Choice(name="Deliberate v3",
+                            value="deliberate_v3.safetensors [afd9d2d4];sd")
     ])
     async def prodia(self, ctx, *, prompt, model: app_commands.Choice[str]):
         reply = await ctx.send(
@@ -30,7 +40,7 @@ class Misc(commands.Cog):
             f"{model.name}! "
             f"{line_junk}{config['loading_gif']}")
         
-        filename = await generate_prodia(prompt)
+        filename = await generate_prodia(prompt, model=model.value)
         await reply.edit(
             content=f"Here are the generated images for {ctx.author.mention}.\n- Prompt: ```{prompt}```\n- Model: `"
                     f"{model.name}`",

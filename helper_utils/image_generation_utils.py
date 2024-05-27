@@ -87,15 +87,24 @@ async def upscale_image(image):
 
 
 
-async def generate_prodia(prompt: str) -> str:
+async def generate_prodia(prompt: str, model: str) -> str:
     """Generates an image and returns the path."""
-    url = "https://api.prodia.com/v1/sdxl/generate"
 
-    payload = { "prompt": prompt }
+    model_name, model_type = model.split(";")
+
+    if model_type == "sdxl":
+        url = "https://api.prodia.com/v1/sdxl/generate"
+    elif model_type == "sd":
+        url = "https://api.prodia.com/v1/sd/generate"
+    else:
+        # Shouldn't happen
+        url = "https://api.prodia.com/v1/sdxl/generate"
+
+    payload = { "prompt": prompt, "model": model_name }
     headers = {
         "accept": "application/json",
         "content-type": "application/json",
-        "X-Prodia-Key": prodia_key
+        "X-Prodia-Key": prodia_key,
     }
 
     response = requests.post(url, json=payload, headers=headers)
