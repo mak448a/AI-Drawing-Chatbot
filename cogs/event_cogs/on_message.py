@@ -41,11 +41,17 @@ class OnMessage(commands.Cog):
             logging.debug(f"{message.author.mention} is generating ```{prompt}``` with "
                         f"{config['image_model']}!")
 
-            await self.bot.get_cog("Horde").imagine_horde(  # Get cog Horde (cogs/horde.py) and then call imagine_horde
+            # await self.bot.get_cog("Horde").imagine_horde(  # Get cog Horde (cogs/horde.py) and then call imagine_horde
+            #     FakeCtx(message),  # NOQA
+            #     prompt=prompt,
+            #     model=app_commands.Choice(name=config["image_model"], value=config["image_model"])
+            # )
+            await self.bot.get_cog("Misc").prodia(
                 FakeCtx(message),  # NOQA
                 prompt=prompt,
-                model=app_commands.Choice(name=config["image_model"], value=config["image_model"])
+                model=app_commands.Choice(name="SDXL 1.0", value="sd_xl_base_1.0.safetensors [be9edd61];sdxl")
             )
+
 
 async def setup(bot):
     await bot.add_cog(OnMessage(bot))
