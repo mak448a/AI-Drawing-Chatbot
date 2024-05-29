@@ -70,7 +70,7 @@ def get_credentials():
         token = inquirer.text(message="Bot Token:").execute()
         key = inquirer.text(message="Stable Horde API Key:").execute()
         prodia_key = inquirer.text(message="Prodia API Key:").execute()
-        groq_key = inquirer.text(message="ChatGPT Key:").execute()
+        groq_key = inquirer.text(message="Groq Key:").execute()
         lines = f"""\
 BOT_TOKEN={token}
 PRODIA_KEY={prodia_key}
