@@ -70,12 +70,12 @@ def get_credentials():
         token = inquirer.text(message="Bot Token:").execute()
         key = inquirer.text(message="Stable Horde API Key:").execute()
         prodia_key = inquirer.text(message="Prodia API Key:").execute()
-        chatgpt_key = inquirer.text(message="ChatGPT Key:").execute()
+        groq_key = inquirer.text(message="ChatGPT Key:").execute()
         lines = f"""\
 BOT_TOKEN={token}
 PRODIA_KEY={prodia_key}
 API_KEY={key}
-CHATGPT_KEY={chatgpt_key}"""
+GROQ_KEY={groq_key}"""
         if token == "" or key == "" or prodia_key == "":
             print("Enter valid input.")
             continue
@@ -95,7 +95,7 @@ while True:
     else:
         option = inquirer.select(
             message="Select Option:",
-            choices=["Run", "Configure", "Add Credentials"],
+            choices=["Run", "Configure", "Add Credentials", "Quit"],
         ).execute()
         if option == "Run":
             print("Launching program...")
@@ -104,3 +104,5 @@ while True:
             configure()
         elif option == "Add Credentials":
             get_credentials()
+        elif option == "Quit":
+            quit()

@@ -5,7 +5,7 @@
 ![](https://img.shields.io/github/repo-size/mak448a/Stable-Diffusion-Bot)
 
 This is a completely free AI image generator Discord bot written in Python.
-It has a chatbot that you can ask to draw pictures which uses ChatGPT!
+It has a chatbot that you can ask to draw pictures which uses Llama 3!
 
 This project uses various APIs, which allows it to run on less powerful computers.
 
@@ -34,7 +34,7 @@ This project uses various APIs, which allows it to run on less powerful computer
 
 ## Notes
 
-- ChatGPT is the recommended model.
+- Llama3 is the recommended model.
 - When using SDXL-Beta it sends your generated images to improve the model.
 - Do not input any personal information on the `/imagine_poly` command because your generated image will be displayed
 on their official frontpage.
@@ -60,7 +60,7 @@ This project assumes that:
 3. Clone the Stable Horde module: `git clone https://github.com/mak448a/horde_module helper_utils/horde_module --depth=1`
 4. Create venv and install dependencies: `python -m venv venv` `venv\Scripts\activate.bat`
 `pip install -r requirements.txt`
-5. Grab your ChatGPT key, which is under `accessToken` from here: `https://chat.openai.com/api/auth/session`. Make sure to not include the quotation marks!
+5. Grab your Groq key from here: `https://console.groq.com/keys`.
 6. Run `python run.py` and fill in all the information it asks for.
 7. Invite the bot with the link it provides!
 8. You can chat with the bot by mentioning it and typing your message.
@@ -71,7 +71,7 @@ This project assumes that:
 2. Grab an API key from Stable Horde [at their register page](https://stablehorde.net/register).
 3. Create venv and install dependencies: `python3 -m venv venv && source venv/bin/activate && pip install -r requirements.txt`
 4. Clone the Stable Horde module: `git clone https://github.com/mak448a/horde_module helper_utils/horde_module --depth=1`
-5. Grab your ChatGPT key, which is under `accessToken` from here: `https://chat.openai.com/api/auth/session`. Make sure to not include the quotation marks!
+5. Grab your Groq key from here: `https://console.groq.com/keys`.
 6. Run `python3 run.py` and fill in all the information it asks for.
 7. Invite the bot with the link it provides!
 8. You can chat with the bot by mentioning it and typing your message.
@@ -93,14 +93,14 @@ If you want to manually configure the program for any reason, here are some step
 Go to `config.json` and set the key `"model"` to the model you want.
 
 **Available Models**
-- ChatGPT
+- Llama3
 
 You must write the model exactly as it is written here.
 
 When you are done, the edited line should look like this:
 
 ```json
-"model": "ChatGPT",
+"model": "Llama3",
 ```
 
 </details>

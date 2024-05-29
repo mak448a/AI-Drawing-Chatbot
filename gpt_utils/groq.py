@@ -1,7 +1,8 @@
 from openai import AsyncOpenAI
+from helper_utils.utils import groq_key
 
 
-client = AsyncOpenAI(base_url="https://api.groq.com/openai/v1", api_key="")
+client = AsyncOpenAI(base_url="https://api.groq.com/openai/v1", api_key=groq_key)
 
 with open("gpt_utils/prompt.txt") as f:
     prompt = f.read()

@@ -9,7 +9,7 @@ load_dotenv(".env")
 bot_token: str = os.getenv("BOT_TOKEN")
 api_key: str = os.getenv("API_KEY")
 prodia_key: str = os.getenv("PRODIA_KEY")
-chatgpt_key: str = os.getenv("CHATGPT_KEY")
+groq_key: str = os.getenv("GROQ_KEY")
 
 if api_key == "0000000000":
     logging.warning("Default API key selected. Generating images will be slower. "
@@ -37,12 +37,13 @@ class FakeCtx:
 # Import functions for use in other files
 if config["chatbot"]:
     # Figure out which model the user specified
-    if config["model"] == "ChatGPT":
-        from gpt_utils.gpt4free import generate_message, clear_context  # NOQA
+    if config["model"] == "Llama3":
+        # from gpt_utils.gpt4free import generate_message, clear_context  # NOQA
+        from gpt_utils.groq import generate_message, clear_context  # NOQA
     else:
         # Fallback
         logging.warning("Configured model improperly! Check config.json!")
-        from gpt_utils.gpt4free import generate_message, clear_context  # NOQA
+        from gpt_utils.groq import generate_message, clear_context  # NOQA
 else:
     # Create a dummy function so that we don't error out when importing them
     def fake_function():
