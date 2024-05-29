@@ -12,7 +12,7 @@ def configure():
     print("For all options, choose the first option if unsure.")
     model = inquirer.select(
         message="Choose model:",
-        choices=["ChatGPT", "None"],
+        choices=["Llama3", "None"],
     ).execute()
     sync_commands = inquirer.select(
         message="Bot command syncing:",
@@ -46,8 +46,8 @@ def configure():
     # Models
     if model == "None":
         config["chatbot"] = False
-    elif model == "ChatGPT":
-        config["model"] = "ChatGPT"
+    elif model == "Llama3":
+        config["model"] = "Llama3"
         config["chatbot"] = True
     else:
         config["chatbot"] = False
