@@ -84,7 +84,7 @@ This project assumes that:
 
 ## Manual Configuration
 
-If you want to manually configure the program for any reason, here are some steps.
+If you want to manually configure the program for any reason, here's how.
 
 <details><summary>Configuring chat model</summary>
 
