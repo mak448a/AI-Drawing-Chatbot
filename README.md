@@ -1,8 +1,8 @@
-# AI Drawing ChatBot
+# AI Drawing Chatbot
 
-![](https://img.shields.io/github/license/mak448a/AI-Drawing-ChatBot)
-![](https://img.shields.io/github/contributors/mak448a/AI-Drawing-ChatBot)
-![](https://img.shields.io/github/repo-size/mak448a/AI-Drawing-ChatBot)
+![](https://img.shields.io/github/license/mak448a/AI-Drawing-Chatbot)
+![](https://img.shields.io/github/contributors/mak448a/AI-Drawing-Chatbot)
+![](https://img.shields.io/github/repo-size/mak448a/AI-Drawing-Chatbot)
 
 This is a completely free AI image generator Discord bot written in Python.
 It has a chatbot that you can ask to draw pictures which uses Llama 3!
