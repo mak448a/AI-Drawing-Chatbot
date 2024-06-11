@@ -32,7 +32,6 @@ This is a completely free AI image generator Discord bot written in Python. It h
 
 
 ## Notes
-
 - Llama3 is the recommended model.
 - When using SDXL-Beta it sends your generated images to improve the model.
 - Do not input any personal information on the `/imagine_poly` command because your generated image will be displayed
