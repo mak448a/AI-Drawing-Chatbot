@@ -1,6 +1,6 @@
 # AI Drawing Chatbot
 
-![Discord Invite](https://dcbadge.limes.pink/api/server/https://discord.gg/e4UxaEEYdu?style=flat)
+[![Discord Invite](https://dcbadge.limes.pink/api/server/https://discord.gg/e4UxaEEYdu?style=flat)](https://discord.gg/e4UxaEEYdu)
 ![](https://img.shields.io/github/license/mak448a/AI-Drawing-Chatbot)
 ![](https://img.shields.io/github/contributors/mak448a/AI-Drawing-Chatbot)
 ![](https://img.shields.io/github/repo-size/mak448a/AI-Drawing-Chatbot)
