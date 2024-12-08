@@ -41,19 +41,23 @@ class Horde(commands.Cog):
         # `###` tells Stable Horde we want a negative prompt.
         image_files, images = await generate_with_stable_horde(
             f"{prompt}{'###' if negative else ''}{negative if negative else ''}", model.value)
-
-        if negative:
-            negative_string = f"\n- Negative Prompt: ```{negative}```"
+        
+        if not image_files or images:
+            print("Stable Horde isn't installed! Check the README of this Discord bot for installation instructions.")
+            await reply.edit(content="Stable Horde isn't installed! Ask the bot administrator to install it.")
         else:
-            negative_string = ""
+            if negative:
+                negative_string = f"\n- Negative Prompt: ```{negative}```"
+            else:
+                negative_string = ""
 
-        await reply.edit(
-            content=f"Here are the generated images for {ctx.author.mention}.\n- Prompt: ```{prompt}```\n- Model: `"
-                    f"{model.name}`{negative_string}",
-            attachments=image_files)
+            await reply.edit(
+                content=f"Here are the generated images for {ctx.author.mention}.\n- Prompt: ```{prompt}```\n- Model: `"
+                        f"{model.name}`{negative_string}",
+                attachments=image_files)
 
-        for image in images:
-            os.remove(image)
+            for image in images:
+                os.remove(image)
 
 
 async def setup(bot):
