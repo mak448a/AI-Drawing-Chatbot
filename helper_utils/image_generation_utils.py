@@ -1,4 +1,3 @@
-from helper_utils.horde_module import Generator
 from .utils import api_key, prodia_key
 
 import uuid
@@ -10,30 +9,46 @@ import discord
 import requests
 from imaginepy import AsyncImagine, Style, Ratio
 
-horde_generator = Generator()
+# Import stable horde if it is installed
+try:
+    from helper_utils.horde_module import Generator
+    horde_available = True
+except ModuleNotFoundError:
+    horde_available = False
+
+
+if horde_available:
+    horde_generator = Generator()
+else:
+    horde_generator = None
 
 
 async def generate_with_stable_horde(prompt: str, model: str):
     file_uuid = uuid.uuid1()
 
-    await horde_generator.async_generate(prompt, api_key, f"{file_uuid}.png", 4,
+    if horde_available:
+        await horde_generator.async_generate(prompt, api_key, f"{file_uuid}.png", 4,
                                          f"{model}")
 
-    # Loop until the images generate. We check for the fourth image.
-    while True:
-        if os.path.exists(f"3_{file_uuid}.png"):
-            break
-        await asyncio.sleep(0.8)
+        # Loop until the images generate. We check for the fourth image.
+        while True:
+            if os.path.exists(f"3_{file_uuid}.png"):
+                break
+            await asyncio.sleep(0.8)
 
-    images = []
+        images = []
 
-    # Grab all the filenames
-    for i in range(4):
-        images.append(f"{i}_{file_uuid}.png")
+        # Grab all the filenames
+        for i in range(4):
+            images.append(f"{i}_{file_uuid}.png")
 
-    image_files = [discord.File(image) for image in images]
+        image_files = [discord.File(image) for image in images]
 
-    return image_files, images
+        return image_files, images
+    else:
+        # Stable Horde isn't installed.
+        return None, None
+
 
 
 # Imaginepy function
