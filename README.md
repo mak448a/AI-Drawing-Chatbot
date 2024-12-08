@@ -44,7 +44,7 @@ because your prompts are sent to various providers.
 
 ## Prerequisites
 This project assumes that:
-- Python 3.8+ is installed and is on your PATH
+- Python 3.12+ is installed and is on your PATH
 - Pip is installed
 - Git is installed
 - You know how to create a Discord Bot account
