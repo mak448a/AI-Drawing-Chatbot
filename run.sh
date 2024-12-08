@@ -31,11 +31,11 @@ else
   echo -n "Enter your Stable Horde API Key: "
   read API_KEY
 
-  echo -n "Enter your ChatGPT Key: "
+  echo -n "Enter your Groq Key: "
   read GROQ_KEY
 
   # If token is none exit
-  if [ -z $PRODIA_KEY ] || [-z $TOKEN] || [-z $API_KEY]
+  if [ -z $PRODIA_KEY ] || [ -z $TOKEN ] || [ -z $API_KEY ];
   then
     echo "ERROR! YOU DIDN'T ENTER ALL YOUR CREDENTIALS!"
     exit 1

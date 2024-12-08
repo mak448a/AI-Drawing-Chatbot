@@ -27,8 +27,8 @@ if exist %FILE% (
   echo PRODIA_KEY=%PRODIA_KEY% >> .env
   set /p API_KEY=Enter your API Key: 
   echo API_KEY=%API_KEY% >> .env
-  set /p API_KEY=Enter your ChatGPT Key: 
-  echo GROQ_KEY=%API_KEY% >> .env
+  set /p GROQ_KEY=Enter your ChatGPT Key: 
+  echo GROQ_KEY=%GROQ_KEY% >> .env
   if [%TOKEN%]==[] (
     goto fail
   )
