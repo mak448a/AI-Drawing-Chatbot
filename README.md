@@ -1,5 +1,8 @@
 # AI Drawing Chatbot
 
+Hi everyone, I'm going to archive this repository. If you want me to continue development, just send me an email or a message at Discord. Bye!
+
+
 [![Discord Invite](https://dcbadge.limes.pink/api/server/https://discord.gg/gV8SjzZAXj?style=flat)](https://discord.gg/gV8SjzZAXj)
 ![](https://img.shields.io/github/license/mak448a/AI-Drawing-Chatbot)
 ![](https://img.shields.io/github/contributors/mak448a/AI-Drawing-Chatbot)
